@@ -14,8 +14,7 @@ export default function RootLayout({ children }) {
             className="w-full border-0" />
         </a>
         <div className="flex">
-          <Sidebar />
-          <main className="mt-12 p-3 flex-1">{children}</main>
+          <main className="">{children}</main>
         </div>
       </body>
     </html>
