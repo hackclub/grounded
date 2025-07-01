@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '@primer/css/dist/markdown.css';
+@import 'highlight.js/styles/github.css';
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+
+@layer utilities {
+  .font-hackclub {
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #000000;
+  }
+}
+
+.markdown-body blockquote {
+  color: #a0a0a0;           /* lighter gray text */
+  border-left-color: #d0d0d0; /* lighter gray vertical bar */
+}
+
+.markdown-body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: var(--foreground);
+background-image:
+  linear-gradient(0deg, rgba(220, 255, 213, 0.7), rgba(255, 255, 255, 0.6)),
+  url("https://hc-cdn.hel1.your-objectstorage.com/s/v3/688c9b9bec9d799be407270cb43714e5f4cfbb2f_bg-light.svg");  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position-x: center;
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/* Override your global link styles to NOT break Primer's GitHub style */
+a {
+  /* Either remove this block entirely */
+  /* Or be more specific so it doesn't apply inside markdown content */
+}
+
+.markdown-body a {
+  color: #0969da; /* GitHub blue */
+  text-decoration: underline;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+.markdown-body a {
+  color: #0969da; /* GitHub blue */
+  text-decoration: underline;
+}

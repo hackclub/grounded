@@ -1,0 +1,136 @@
+import Image from 'next/image'
+
+<img src="https://cloud-b3h81o0df-hack-club-bot.vercel.app/0onboard_github.png" alt="Onboard GitHub banner" />
+
+## Onboard has ended now :/
+
+But much more to come! Stay tuned :).  
+[Sign up here.](https://forms.hackclub.com/t/xtYYcGvNTCus)
+
+# OnBoard - Get a $100 grant and make a PCB!
+
+> "I’m so glad that young people can create things like PC boards online. May your creativity have no limits!”  
+> _– [Steve Wozniak](https://en.wikipedia.org/wiki/Steve_Wozniak), Apple co-founder endorsing Hack Club OnBoard_
+
+It's easier than ever for high school students to get involved with programming; all you need is a computing device and internet access. Yet, *it's not the same for hardware*. While PCB fabs have greatly increased the accessibility for professionally done boards, there is still no clear way for high school students to jump in. This is where OnBoard comes in.
+
+---
+
+Every student will receive up to $100 to cover PCB manufacturing costs, and join a community of peers — some more beginner and some more experienced.
+
+## Requirements
+
+Every design/submission needs to meet the following constraints to be approved:
+
+- Unique and open-source design  
+- Must be orderable on JLCPCB or other [approved vendor](https://github.com/hackclub/OnBoard/blob/main/docs/VENDORS.md)  
+- Must be in high school or younger[^1] and show proof of school enrollment to submit  
+  See also: [^2], [^3]
+
+[^1]: Home school still counts!  
+[^2]: If you left high school early you can also submit.  
+[^3]: If you need help with ideas for proof of age, ask in our Slack and we'll help you out! [Join here](https://hackclub.com/slack/?event=onboard)
+
+## Getting Started
+
+> You can also go through a video with instructions on how to submit your grant!  
+>  
+> [![Watch on YouTube](https://cloud-hlrub17tx-hack-club-bot.vercel.app/0yt_link.png)](https://www.youtube.com/watch?v=Bh3dm81X_zs)
+
+### Star the repo (Optional)
+
+To follow the repo for updates and show you're participating, click the "star" button on the [`onboard`](https://github.com/hackclub/OnBoard/) repo.
+
+<img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/b77d28463971ac110a13546d740a68c0c9e6d3cd_star-repo.png" alt="Star repo" />
+
+### 1. Join `#electronics` on Slack!
+
+Our [`#electronics`](https://hackclub.slack.com/archives/C0587U78RK4) channel[^4] is where the party is getting started!  
+Sign up to our community via [this link](https://hackclub.com/slack/?event=onboard).
+
+[^4]: This link only works after you've joined the Slack.
+
+Perhaps ping a little hello to `@Kevin Yang`?
+
+### 2. Design a Board!
+
+Most people reading this will be new to PCB design, so we've made a simple tutorial on making an example board.
+
+Check out our [PCB tutorials](https://jams.hackclub.com/tag/pcb).
+
+_If you get stuck or want more example projects, post in the Slack channel._
+
+### 3. Upload to a Vendor and Take a Screenshot
+
+Upload your Gerber files to [JLCPCB.com](https://jlcpcb.com/) and take a screenshot after you finish checkout.
+
+> Curious about order settings or shipping tips?  
+> See [`ordering_from_JLCPCB.md`](./docs/ordering_from_JLCPCB.md) and [`Shipping Tips`](./community/shipping.md)
+
+Example screenshot:
+
+<img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/51761af33c599ad46040b56176a516b543293c64_cart__1_.png" alt="Cart Screenshot" />
+
+**Note:** Screenshot is **required** for project approval.
+
+[^5]: Check [`VENDORS.md`](./docs/VENDORS.md) for more options.  
+[^6]: Outside the US? You may be charged customs.
+
+### 4. Fork!
+
+Fork the [`onboard`](https://github.com/hackclub/OnBoard/) repo! This is where you’ll add your project.
+
+<img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/b14876a9f0d07e4dce80772c9b8c396a071ff765_onboard-fork.png" alt="Fork repo" />
+
+### 5. Add Your Design to Your Project Repo
+
+Create a folder under `OnBoard/projects/` and place a `README.md` using the contents of [`TEMPLATE.md`](./projects/!Template/TEMPLATE.md?plain=1).
+
+<img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/a68b911b667f2a3a8c87e6ea8a1d08b9de819b4e_creating-a-folder-highlighted.png" alt="Create folder" />
+
+Then commit your changes.
+
+Upload:
+- `README.md`
+- `cart.png`
+- `gerber.zip`
+- `schematic.pdf`
+- `/src/` (your editor files: EasyEDA JSONs, KiCad `.kicad_pcb`, `.kicad_sch`, etc.)
+
+Example folder structures:
+
+| EasyEDA STD | KiCad |
+|-------------|--------|
+| ![](https://github.com/hackclub/OnBoard/assets/28641114/5f8bac7f-4a91-4e2c-be67-c002025307e0) | ![](docs/images/kicad/kicad-template.png) |
+
+### 6. Create a PR!
+
+Click “Open pull request” from your fork’s “Contribute” tab.
+
+<img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/2e5de63ed76b0aa521b2f5971101d0cc33203d84_open-pr.png" alt="Open PR" />
+
+Follow the checklist.
+
+<img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/23d22d5e5deb85de7b59de5d016f3d2ef8139944_submission-checklist.png" alt="Checklist" />
+
+### 7. Get approval and order your board!
+
+You’ll receive:
+- One approval for school status
+- One for technical/design review
+
+Expect ~24–48 business hours for this. After merge, you’ll get your virtual card via email.
+
+### 8. Ship it!
+
+Share your board in [`#electronics`](https://hackclub.slack.com/archives/C056AMWSFKJ)!
+
+<img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/54d28c4e1c05457e39b2191c79389a7e550aad65_john-sharing-pcb.png" alt="PCB Sharing" />
+
+---
+
+## Example Projects
+
+- [PCB Business Card with NFC, "Hackercard"](https://jams.hackclub.com/jam/hacker-card)  
+- [Build a USB Hub](https://jams.hackclub.com/batch/usb-hub)  
+- [Make a Digital Level](https://jams.hackclub.com/batch/sparkletilt-pcb)
