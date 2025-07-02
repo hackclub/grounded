@@ -1,71 +1,101 @@
+"use client";
+
+import { useState } from "react";
+import clsx from "clsx";
+
 const SideBar = () => {
+  const [open, setOpen] = useState(false);
+
   return (
-    <div className="w-60">
-      <aside className="fixed bg-slate-600 space-y-4 max-w-prose p-4 h-screen border-r-4 border-slate-800 border-dashed hackclub-font text-slate-300">
-        {/* Title */}
+    <>
+      {/*Hamburger */}
+      <button
+        onClick={() => setOpen((o) => !o)}
+        aria-label="Toggle navigation"
+        className="fixed top-4 left-4 z-50 rounded-lg bg-slate-800 p-2 text-white shadow sm:hidden"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path strokeWidth="2" strokeLinecap="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+
+      {/*moble blur*/}
+      {open && (
+        <div
+          onClick={() => setOpen(false)}
+          className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm sm:hidden"
+        />
+      )}
+
+      {/*sidebar*/}
+      <aside
+        className={clsx(
+          "fixed inset-y-0 left-0 z-50 w-60 overflow-y-auto border-r-4 border-dashed border-slate-800",
+          "bg-gradient-to-b from-slate-700 via-slate-800 to-slate-900 p-4 font-mono text-slate-300",
+          "transform transition-transform duration-300",
+          open ? "translate-x-0" : "-translate-x-full",
+          "sm:translate-x-0"
+        )}
+      >
         <a
           href="/"
-          className="block text-3xl font-bold text-white mb-4 hover:text-green-500 transition-colors"
+          className="mb-4 block text-3xl font-bold text-white transition-colors hover:text-green-500"
         >
           Grounded
         </a>
 
-        {/* Section 1 */}
-        <div>
-          <h2 className="text-lg font-semibold mb-2 text-white">Components Grant</h2>
-          <ul className="space-y-1">
-            <li>
-              <a href="/guide" className="block py-2 px-4 rounded hover:bg-slate-200 hover:text-cyan-800 transition-all">
-                Overview
-              </a>
-            </li>
-            <li>
-              <a href="/resources" className="block py-2 px-4 rounded hover:bg-slate-200 hover:text-cyan-800 transition-all">
-                How to use Wokwi
-              </a>
-            </li>
-          </ul>
-        </div>
+        <section className="space-y-1">
+          <h2 className="mb-2 text-lg font-semibold text-white">Components Grant</h2>
+          <a
+            href="/components-overview"
+            className="block rounded px-4 py-2 transition-all hover:bg-slate-200 hover:text-cyan-800"
+          >
+            Overview
+          </a>
+          <a
+            href="/components-resources"
+            className="block rounded px-4 py-2 transition-all hover:bg-slate-200 hover:text-cyan-800"
+          >
+            How&nbsp;to&nbsp;use&nbsp;Wokwi
+          </a>
+        </section>
 
-        <div>
-          <h2 className="text-lg font-semibold mb-2 text-white">PCB Grant</h2>
-          <ul className="space-y-1">
-            <li>
-              <a href="/pcb-overview" className="block py-2 px-4 rounded hover:bg-slate-200 hover:text-cyan-800 transition-all">
-                Overview
-              </a>
-            </li>
-            <li>
-              <a href="/pcb-resources" className="block py-2 px-4 rounded hover:bg-slate-200 hover:text-cyan-800 transition-all">
-                Design Resources
-              </a>
-            </li>
-            <li>
-              <a href="/jlcpcb-ordering" className="block py-2 px-4 rounded hover:bg-slate-200 hover:text-cyan-800 transition-all">
-                Ordering from JCLPCB
-              </a>
-            </li>
-            <li>
-              <a href="/vendors" className="block py-2 px-4 rounded hover:bg-slate-200 hover:text-cyan-800 transition-all">
-                Alternative Vendors
-              </a>
-            </li>
-            <li>
-              <a href="/kicad-guide" className="block py-2 px-4 rounded hover:bg-slate-200 hover:text-cyan-800 transition-all">
-                Ki-Cad Beginner Guide
-              </a>
-            </li>
-                        <li>
-              <a href="/kicad-submission" className="block py-2 px-4 rounded hover:bg-slate-200 hover:text-cyan-800 transition-all">
-                Ki-Cad Submission Guide
-              </a>
-            </li>
-          </ul>
-        </div>
+        <section className="mt-4 space-y-1">
+          <h2 className="mb-2 text-lg font-semibold text-white">PCB Grant</h2>
+          <a
+            href="/pcb-overview"
+            className="block rounded px-4 py-2 transition-all hover:bg-slate-200 hover:text-cyan-800"
+          >
+            Overview
+          </a>
+          <a
+            href="/pcb-resources"
+            className="block rounded px-4 py-2 transition-all hover:bg-slate-200 hover:text-cyan-800"
+          >
+            Design&nbsp;Resources
+          </a>
+          <a
+            href="/pcb-submission"
+            className="block rounded px-4 py-2 transition-all hover:bg-slate-200 hover:text-cyan-800"
+          >
+            Submission&nbsp;Guide
+          </a>
+          <a
+            href="/pcb-ordering"
+            className="block rounded px-4 py-2 transition-all hover:bg-slate-200 hover:text-cyan-800"
+          >
+            Ordering&nbsp;Guide
+          </a>
+        </section>
       </aside>
-    </div>
+    </>
   );
 };
 
 export default SideBar;
-  
