@@ -37,34 +37,32 @@ const SideBar = () => {
       <aside
         className={clsx(
           "fixed inset-y-0 left-0 z-50 w-60 overflow-y-auto border-r-4 border-dashed border-slate-800",
-          "bg-gradient-to-b from-slate-700 via-slate-800 to-slate-900 p-4 font-mono text-slate-300",
+          "bg-gradient-to-b from-slate-700 via-slate-800 to-slate-900 p-4 pt-0 font-mono text-slate-300",
           "transform transition-transform duration-300",
           open ? "translate-x-0" : "-translate-x-full",
           "sm:translate-x-0"
         )}
       >
-        <a
-          href="/"
-          className="mb-4 block text-3xl font-bold text-white transition-colors hover:text-green-500"
-        >
-          Grounded
+        <a href="/" className="mb-4 block w-60 h-28 relative group mx-auto">
+          <img
+            src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/93380dc2e825fc88413dc354972b31fbf6997ebb_grounded.svg"
+            alt="Grounded"
+            className="absolute inset-0 w-full h-full object-contain transition-opacity duration-300 ease-in-out backface-hidden group-hover:opacity-0"
+            style={{ willChange: 'opacity' }}
+          />
+
+          <img
+            src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/d48d1c12c5393b1bad126d177dbcccd5334c3add_grounded_shadow.svg"
+            alt="Grounded hover"
+            className="absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-300 ease-in-out backface-hidden group-hover:opacity-100"
+            style={{ willChange: 'opacity' }}
+          />
         </a>
 
-        <section className="space-y-1">
-          <h2 className="mb-2 text-lg font-semibold text-white">Components Grant</h2>
-          <a
-            href="/components-overview"
-            className="block rounded px-4 py-2 transition-all hover:bg-slate-200 hover:text-cyan-800"
-          >
-            Overview
-          </a>
-          <a
-            href="/components-resources"
-            className="block rounded px-4 py-2 transition-all hover:bg-slate-200 hover:text-cyan-800"
-          >
-            How&nbsp;to&nbsp;use&nbsp;Wokwi
-          </a>
-        </section>
+
+
+
+
 
         <section className="mt-4 space-y-1">
           <h2 className="mb-2 text-lg font-semibold text-white">PCB Grant</h2>
@@ -92,6 +90,10 @@ const SideBar = () => {
           >
             Ordering&nbsp;Guide
           </a>
+        </section>
+        <section className="space-y-1">
+          <h2 className="mb-2 text-lg font-semibold text-white">Components Grant (coming soon!)</h2>
+
         </section>
       </aside>
     </>

@@ -1,5 +1,6 @@
 import Sidebar from '../components/Sidebar';
 import './globals.css';
+import Footer from '../components/footer'
 
 export default function RootLayout({ children }) {
   return (
@@ -16,6 +17,7 @@ export default function RootLayout({ children }) {
         <div className="flex">
           <main className="">{children}</main>
         </div>
+        <Footer/>
       </body>
     </html>
   );
