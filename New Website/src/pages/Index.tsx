@@ -394,9 +394,9 @@ const Index = () => {
             <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center">
               <span className="text-xl">🔥</span>
             </div>
-            <div className="text-lg font-bold text-green-400">HACK CLUB × GROUNDED</div>
+            <div className="text-lg font-bold text-green-400">HACK CLUB GROUNDED</div>
           </div>
-          <p className="text-gray-500 mb-2">© 2024 Made with ❤️ by teen hackers, for teen hackers</p>
+          <p className="text-gray-500 mb-2">© 2025 Made with ❤️ by Aarav J</p>
           <p className="text-gray-600 text-sm">🚀 Hack the world! 🔧</p>
         </footer>
       </div>

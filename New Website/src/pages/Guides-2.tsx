@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { BookOpen, ChevronRight, ChevronDown, ExternalLink, Zap, Shield, Download, Upload, Settings, CreditCard, Eye, Wrench } from 'lucide-react';
-import overview from './guides/overview.tsx';
-import componentsOverview from './guides/components-overview.tsx';
-import jlcOrdering from './guides/jlc-order-guide.tsx';
-import pcbResources from './guides/pcb-resources.tsx';
-import wokwiGuide from './guides/wokwi-guide.tsx';
+import overview from '../guides/overview.mdx';
+import requirements from '../guides/requirements.mdx';
+import firstSteps from '../guides/first-steps.mdx';
+import jlcOrdering from '../guides/jlc-ordering.mdx';
+import gerberFiles from '../guides/gerber-files.mdx';
+import assemblyOptions from '../guides/assembly-options.mdx';
+import kicadTutorial from '../guides/kicad-tutorial.mdx';
 
 // Configuration for sidebar structure and file mappings
 const guides = {
@@ -13,8 +15,8 @@ const guides = {
     icon: <BookOpen className="w-4 h-4" />,
     items: [
       { id: 'overview', title: 'Overview', icon: <BookOpen className="w-4 h-4" />, file: 'guides/overview.mdx', content: overview },
-      { id: 'components-overview', title: 'Components Overview', icon: <Shield className="w-4 h-4" />, file: 'guides/components-overview.mdx', content: componentsOverview },
-      { id: 'jlc-ordering', title: 'How to Order from JLCPCB', icon: <Zap className="w-4 h-4" />, file: 'guides/jlc-ordering.mdx', content: jlcOrdering },
+      { id: 'requirements', title: 'Requirements & Eligibility', icon: <Shield className="w-4 h-4" />, file: 'guides/requirements.mdx', content: requirements },
+      { id: 'first-steps', title: 'First Steps', icon: <Zap className="w-4 h-4" />, file: 'guides/first-steps.mdx', content: firstSteps },
     ]
   },
   'ordering': {
@@ -28,8 +30,7 @@ const guides = {
     title: 'Design',
     icon: <Wrench className="w-4 h-4" />,
     items: [
-      { id: 'wokwi-guide', title: 'How to Use Wokwi', icon: <Download className="w-4 h-4" />, file: 'guides/wokwi-guide.mdx', content: wokwiGuide },
-      { id: 'pcb-resources', title: 'PCB Resources', icon: <Download className="w-4 h-4" />, file: 'guides/pcb-resources.mdx', content: pcbResources },
+      { id: 'gerber-files', title: 'Generating Gerber Files', icon: <Download className="w-4 h-4" />, file: 'guides/gerber-files.mdx', content: gerberFiles },
     ]
   },
 };
@@ -44,7 +45,7 @@ Object.values(guides).forEach(section => {
 
 // Simple MDX renderer component
 const MDXRenderer = ({ content }) => {
-  return <div>{content}</div>;
+  // ... (rest of the code remains the same)
 };
 
 const TutorialSystem = () => {
