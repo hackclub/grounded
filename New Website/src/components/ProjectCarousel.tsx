@@ -39,36 +39,6 @@ const projects: Project[] = [
     imageUrl: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/7e51c1129ae840b9626f04786beea81ee03fceef_image.png",
     githubUrl: "https://github.com/yourusername/project-two",
   },
-   {
-    title: "Project One",
-    imageUrl: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/7e51c1129ae840b9626f04786beea81ee03fceef_image.png",
-    githubUrl: "https://github.com/yourusername/project-one",
-  },
-  {
-    title: "Project Two",
-    imageUrl: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/7e51c1129ae840b9626f04786beea81ee03fceef_image.png",
-    githubUrl: "https://github.com/yourusername/project-two",
-  },
-   {
-    title: "Project One",
-    imageUrl: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/7e51c1129ae840b9626f04786beea81ee03fceef_image.png",
-    githubUrl: "https://github.com/yourusername/project-one",
-  },
-  {
-    title: "Project Two",
-    imageUrl: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/7e51c1129ae840b9626f04786beea81ee03fceef_image.png",
-    githubUrl: "https://github.com/yourusername/project-two",
-  },
-   {
-    title: "Project One",
-    imageUrl: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/7e51c1129ae840b9626f04786beea81ee03fceef_image.png",
-    githubUrl: "https://github.com/yourusername/project-one",
-  },
-  {
-    title: "Project Two",
-    imageUrl: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/7e51c1129ae840b9626f04786beea81ee03fceef_image.png",
-    githubUrl: "https://github.com/yourusername/project-two",
-  },
 ];
 
 const SCROLL_SPEED = 0.5; // pixels per frame
@@ -100,7 +70,7 @@ export default function ProjectCarousel() {
   const loopedProjects = [...projects, ...projects];
 
   return (
-    <div className="overflow-hidden relative w-full py-6 bg-neutral-950 scrollbar-hide">
+    <div className="overflow-hidden relative w-full py-6  scrollbar-hide">
       <div
         ref={containerRef}
         className="flex w-full gap-4 overflow-x-scroll scrollbar-hide"
@@ -112,7 +82,7 @@ export default function ProjectCarousel() {
         {loopedProjects.map((project, idx) => (
           <motion.div
             key={idx}
-            className="relative min-w-[300px] h-[200px] rounded-xl overflow-hidden shadow-lg group"
+            className="relative min-w-[600px] h-[400px] rounded-xl overflow-hidden shadow-lg group"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
@@ -121,7 +91,7 @@ export default function ProjectCarousel() {
               alt={project.title}
               className="object-cover w-full h-full"
             />
-            <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-white text-center p-4">
+            <div className="absolute inset-0  bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-white text-center p-4">
               <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
               <a
                 href={project.githubUrl}

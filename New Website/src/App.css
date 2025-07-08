@@ -40,3 +40,13 @@
 .read-the-docs {
   color: #888;
 }
+
+.floaty img {
+    width: 100%;
+}
+
+.floaty {
+    width: 17vw;
+    position: absolute;
+    animation: float 6s ease-in-out infinite;
+}

@@ -20,8 +20,13 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    setMousePosition({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
+
 
   useEffect(() => {
     // Create floating elements
@@ -38,30 +43,6 @@ const Index = () => {
     }
     setFloatingElements(elements);
   }, []);
-
-  const features = [
-    {
-      icon: Zap,
-      title: "Hardware Grants",
-      description: "Get components, tools, and materials to build your wildest hardware projects!",
-      gradient: "from-green-400 to-green-500",
-      emoji: "🗑️"
-    },
-    {
-      icon: Cpu,
-      title: "PCB Manufacturing",
-      description: "Custom PCB fabrication with up to $5k funding for serious open-source projects! 🚀",
-      gradient: "from-blue-400 to-cyan-400",
-      emoji: "🔧"
-    },
-    {
-      icon: Heart,
-      title: "Community Love",
-      description: "Connect with awesome teen builders, get help, and collaborate on amazing projects! 💫",
-      gradient: "from-green-300 to-green-400",
-      emoji: "❤️"
-    }
-  ];
 
 
   const stats = [
@@ -115,6 +96,50 @@ const Index = () => {
         />
       </div>
 
+      <a
+        className="hidden md:block w-[20vw] absolute animate-float z-[9999] top-64 left-7"
+        href="https://jams.hackclub.com/batch/sparkletilt-pcb"
+        target="_blank"
+      >
+        <img
+          src="https://cloud-myjum5y6g-hack-club-bot.vercel.app/0longhorn2.png"
+          alt="Floating module"
+        />
+      </a>
+
+       <a
+        className="hidden md:block w-[20vw] absolute animate-float z-[9999] top-[650px] left-20"
+        target="_blank"
+      >
+        <img
+          src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/ae8f46ee7f073299633edd7b0d4ad17281649096_image-6-removebg-preview.png"
+          alt="Floating module"
+        />
+      </a>
+
+      <a
+        className="w-[15vw] absolute animate-float z-[9999] top-64 right-7 hidden md:block"
+        href="https://github.com/hackclub/OnBoard/tree/main/projects/TOTKey"
+        target="_blank"
+      >
+        <img
+          src="https://cloud-6a1wip38p-hack-club-bot.vercel.app/1totk_key.png"
+          alt="Floating module"
+        />
+      </a>
+
+      <a
+        className="w-[15vw] absolute animate-float z-[9999] top-[700px] right-20 hidden md:block"
+        href="https://jams.hackclub.com/batch/usb-hub"
+        target="_blank"
+      >
+        <img
+          src="https://cloud-c953eezuq-hack-club-bot.vercel.app/0hub.png"
+          alt="Floating module"
+        />
+      </a>
+
+
       {/* Animated background orbs */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-black" />
@@ -148,6 +173,15 @@ const Index = () => {
       </div>
 
       <div className="relative z-10">
+
+        <a href="https://hackclub.com/">
+          <img
+            src="https://assets.hackclub.com/flag-orpheus-top.svg"
+            alt="Hack Club"
+            className="absolute top-0 left-[300px] border-0 w-[175px] z-[999]"
+          />
+        </a>
+
         {/* Navigation */}
         <nav className="flex justify-between items-center p-6 border-b border-green-700/30 backdrop-blur-sm">
           <div className="flex items-center gap-4">
@@ -198,7 +232,7 @@ const Index = () => {
         {/* Hero Section */}
         <section className="py-20 px-6 text-center">
 
-          <div className="mb-8 relative group h-64">
+          <div className="mb-8 relative group h-64 pointer-events-none">
             <img
               src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/8817be7a0c3611dd75cb36b77c7757d8d03da8ee_group_3.svg"
               alt="Grounded"
@@ -285,7 +319,13 @@ const Index = () => {
                       </div>
                       <p className="text-sm text-blue-300">For larger, serious projects</p>
                     </div>
+                    <div className="p-4 border border-yellow-800/50 rounded-xl bg-yellow-900/20">
+                      <div className="flex justify-between items-center">
+                        <span className="text-yellow-400 font-bold">Unlimited Unique Submissions!</span>
+                      </div>
+                    </div>
                   </div>
+                  
                   <Link to="/guides">
                     <Button className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-semibold text-lg py-3 shadow-lg hover:shadow-blue-500/25 transition-all duration-300">
                       Get started with a PCB grant
@@ -383,7 +423,7 @@ const Index = () => {
                 target="_blank" // optional: opens in new tab
                 rel="noopener noreferrer" // optional: for security when using target="_blank"
               >
-                full playlist 
+                full playlist
               </Link>
               . and ask questions on the Hack Club Slack
             </p>
