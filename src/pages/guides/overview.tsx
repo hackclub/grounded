@@ -17,20 +17,16 @@ export default function GroundedPCBGrant() {
         <ul className="list-disc list-inside space-y-1 text-slate-300">
           <li>Unique and open-source design</li>
           <li>
-            Must be orderable on JLCPCB or other{" "}
-            <a
-              href="https://github.com/hackclub/OnBoard/blob/main/docs/VENDORS.md"
-              target="_blank"
-              rel="noreferrer"
-              className="text-emerald-400 underline"
-            >
-              approved vendor
-            </a>
+            Must be orderable on JLCPCB
+
           </li>
           <li>
             Must be in high school or younger and show proof of school enrollment to submit
           </li>
         </ul>
+        <p className="text-red-600 font-semibold mt-2">
+          NOTE: Grounded does not accept more than one "tutorial project" per person
+        </p>
       </section>
 
       <section>
@@ -101,12 +97,8 @@ export default function GroundedPCBGrant() {
               Curious about order settings or shipping tips?<br />
               See{" "}
               <code className="bg-emerald-700 px-1 rounded">
-                ordering_from_JLCPCB.md
+                How to Order from JLCPCB
               </code>{" "}
-              and{" "}
-              <code className="bg-emerald-700 px-1 rounded">
-                Shipping Tips
-              </code>
             </blockquote>
             <img
               src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/51761af33c599ad46040b56176a516b543293c64_cart__1_.png"
@@ -116,6 +108,25 @@ export default function GroundedPCBGrant() {
             <p className="text-sm text-slate-500 mt-2">
               <strong className="text-white">Note:</strong> Screenshot is <strong className="text-white">required</strong> for project approval.
             </p>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-semibold mb-2">4. Create your Github Repo</h3>
+            <p>Your repository can take many forms but it needs to contain the following files:</p>
+            <ul className="list-disc list-inside space-y-1 text-slate-300">
+              <li><code className="bg-emerald-700 px-1 rounded">README.md</code>: It also needs to contain photos of your shematic/rendered PCB</li>
+              <li><code className="bg-emerald-700 px-1 rounded">gerber.zip</code>: This should be the file that you send off to the vendor.</li>
+              <li><code className="bg-emerald-700 px-1 rounded">shematic.pdf</code>: Export the schematic from your EDA program as a PDF.</li>
+              <li className="pl-6">Go to File &gt; Export &gt; PDF in EasyEDA's Schematic tab for this.</li>
+              <li><code className="bg-emerald-700 px-1 rounded">gerber.zip</code>: This should be the file that you send off to the vendor.</li>
+              <li><code className="bg-emerald-700 px-1 rounded">src/</code>:  Make a folder called src and Whatever format your designer outputs should be included.</li>
+              <li className="pl-6">For EasyEDA STD, you need to File &gt; Export &gt; EasyEDA two JSON files - one from the schematic tab and one from the PCB tab.</li>
+              <li className="pl-12">Optionally, for EasyEDA STD, export a 3D Model as .obj as save it to the /src folder</li>
+              <li className="pl-6">For KiCad, add the .kicad_pcb, .kicad_sch and .kicad_pro files to your /src folder.</li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold mb-2 text-red-600">IMPORTANT!! Required for EasyEDA Grants!!!</h3>
           </div>
 
           <div>
