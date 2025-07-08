@@ -11,34 +11,25 @@ type Project = {
 const projects: Project[] = [
   {
     title: "A Fidget Spinner without any moving parts",
-    imageUrl: "https://cloud-r2xrlpq9q-hack-club-bot.vercel.app/0spinner.png",
-    githubUrl: "https://github.com/hackclub/OnBoard/tree/main/projects/E-Fidget%20Lite",
+    imageUrl: "https://cloud-myjum5y6g-hack-club-bot.vercel.app/0longhorn2.png",
+    githubUrl: "https://jams.hackclub.com/batch/sparkletilt-pcb",
   },
   {
-    title: "Project Two",
-    imageUrl: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/7e51c1129ae840b9626f04786beea81ee03fceef_image.png",
-    githubUrl: "https://github.com/yourusername/project-two",
+    title: "An Infared Gun",
+    imageUrl: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/ae8f46ee7f073299633edd7b0d4ad17281649096_image-6-removebg-preview.png",
+    githubUrl: "https://github.com/souptik-samanta/Infrared-gun",
   },
    {
-    title: "Project One",
-    imageUrl: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/7e51c1129ae840b9626f04786beea81ee03fceef_image.png",
-    githubUrl: "https://github.com/yourusername/project-one",
+    title: "A Hardware Key",
+    imageUrl: "https://cloud-6a1wip38p-hack-club-bot.vercel.app/1totk_key.png",
+    githubUrl: "https://github.com/hackclub/OnBoard/tree/main/projects/TOTKey",
   },
   {
-    title: "Project Two",
-    imageUrl: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/7e51c1129ae840b9626f04786beea81ee03fceef_image.png",
-    githubUrl: "https://github.com/yourusername/project-two",
+    title: "A Cool USB Hub",
+    imageUrl: "https://cloud-c953eezuq-hack-club-bot.vercel.app/0hub.png",
+    githubUrl: "https://jams.hackclub.com/batch/usb-hub",
   },
-   {
-    title: "Project One",
-    imageUrl: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/7e51c1129ae840b9626f04786beea81ee03fceef_image.png",
-    githubUrl: "https://github.com/yourusername/project-one",
-  },
-  {
-    title: "Project Two",
-    imageUrl: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/7e51c1129ae840b9626f04786beea81ee03fceef_image.png",
-    githubUrl: "https://github.com/yourusername/project-two",
-  },
+
 ];
 
 const SCROLL_SPEED = 0.5; // pixels per frame
