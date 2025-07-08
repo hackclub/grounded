@@ -3,6 +3,9 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Zap, Cpu, Github, MessageSquare, Sparkles, Layers, Heart, Rocket, Code, Wrench, Star, Trophy } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import ProjectCarousel from "@/components/ProjectCarousel"
+import YoutubeVideo from '@/components/youtube-video';
 
 const Index = () => {
   const [glowIntensity, setGlowIntensity] = useState(0);
@@ -40,9 +43,9 @@ const Index = () => {
     {
       icon: Zap,
       title: "Hardware Grants",
-      description: "Get funding for components, tools, and materials to build your wildest hardware projects! 🔥",
+      description: "Get components, tools, and materials to build your wildest hardware projects!",
       gradient: "from-green-400 to-green-500",
-      emoji: "⚡"
+      emoji: "🗑️"
     },
     {
       icon: Cpu,
@@ -60,15 +63,12 @@ const Index = () => {
     }
   ];
 
-  const projects = [
-    { title: "Hackducky Board", tags: ["Hacking", "USB", "SD Card", "RP2040", "BadUSB"], emoji: "🌈" },
-  ];
 
   const stats = [
-    { value: "1337+", label: "Teen Hackers", color: "text-green-400", emoji: "🧑‍💻" },
-    { value: "$100K+", label: "Grants Awarded", color: "text-green-500", emoji: "💰" },
-    { value: "9000+", label: "PCBs Made", color: "text-blue-400", emoji: "🔌" },
-    { value: "50+", label: "Countries", color: "text-green-300", emoji: "🌍" }
+    { value: "5000+", label: "Teen Hackers", color: "text-green-400", emoji: "" },
+    { value: "$100K+", label: "Grants Awarded", color: "text-green-500", emoji: "" },
+    { value: "1200+", label: "PCBs Made", color: "text-blue-400", emoji: "" },
+    { value: "50+", label: "Countries", color: "text-green-300", emoji: "" }
   ];
 
   return (
@@ -118,7 +118,7 @@ const Index = () => {
       {/* Animated background orbs */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-black" />
-        <div 
+        <div
           className="absolute w-96 h-96 bg-gradient-radial from-green-500/20 via-green-500/10 to-transparent rounded-full blur-3xl animate-pulse"
           style={{
             left: '15%',
@@ -127,7 +127,7 @@ const Index = () => {
             animation: 'float 12s ease-in-out infinite'
           }}
         />
-        <div 
+        <div
           className="absolute w-96 h-96 bg-gradient-radial from-blue-500/20 via-purple-500/10 to-transparent rounded-full blur-3xl animate-pulse"
           style={{
             right: '15%',
@@ -136,7 +136,7 @@ const Index = () => {
             animation: 'float 15s ease-in-out infinite reverse'
           }}
         />
-        <div 
+        <div
           className="absolute w-64 h-64 bg-gradient-radial from-green-300/20 via-green-400/10 to-transparent rounded-full blur-2xl animate-pulse"
           style={{
             left: '60%',
@@ -150,7 +150,7 @@ const Index = () => {
       <div className="relative z-10">
         {/* Navigation */}
         <nav className="flex justify-between items-center p-6 border-b border-green-700/30 backdrop-blur-sm">
-        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4">
             <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center transform rotate-12 hover:rotate-0 transition-transform duration-300 overflow-hidden">
               <img
                 src="/hc-logo.png"
@@ -189,7 +189,7 @@ const Index = () => {
               className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold shadow-lg hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105"
               onClick={() => window.open("https://forms.hackclub.com/grounded", "_blank")}
             >
-              Apply Now! 🚀
+              Apply Now
             </Button>
           </div>
 
@@ -197,34 +197,40 @@ const Index = () => {
 
         {/* Hero Section */}
         <section className="py-20 px-6 text-center">
+
+          <div className="mb-8 relative group h-64">
+            <img
+              src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/8817be7a0c3611dd75cb36b77c7757d8d03da8ee_group_3.svg"
+              alt="Grounded"
+              className="absolute inset-0 w-full h-full object-contain transition-opacity duration-300 ease-in-out"
+              style={{ willChange: 'opacity' }}
+            />
+          </div>
           <div className="max-w-6xl mx-auto">
-            <div className="mb-8">
-              <span className="text-6xl animate-bounce">🛠️</span>
-              <span className="text-6xl animate-bounce" style={{ animationDelay: '0.1s' }}>⚡</span>
-              <span className="text-6xl animate-bounce" style={{ animationDelay: '0.2s' }}>🗑️</span>
-            </div>
-            
-            <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-green-400 via-green-500 to-green-300 bg-clip-text text-transparent animate-pulse">
-              Build Hardware That's
-              <span className="block text-7xl md:text-9xl"> TOTALLY AWESOME! </span>
+
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-green-400 via-green-500 to-green-300 bg-clip-text text-transparent animate-pulse">
+              Circuit boards are magical
+              <span className="block text-5xl md:text-7xl"> If you make one, we will buy it!</span>
             </h1>
-            
-            <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
-              Turn your <span className="text-green-400 font-bold">wildest</span> hardware dreams into reality! 
-              Get funding, community support, and manufacturing resources to build the 
-              <span className="text-green-500 font-bold"> next generation</span> of electronics! 🎯
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-              <Button size="lg" className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold text-lg px-8 py-6 shadow-lg hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105">
-                <Rocket className="w-5 h-5 mr-2" />
-                Start Building! 
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-              <Button size="lg" variant="outline" className="border-green-600 text-green-400 hover:bg-green-900/50 hover:text-white text-lg px-8 py-6 transition-all duration-300">
-                <Github className="w-5 h-5 mr-2" />
-                View Epic Projects
-              </Button>
+
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 mt-16">
+              <Link to="/guides">
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold text-lg px-8 py-6 shadow-lg hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105"
+                >
+                  <Rocket className="w-5 h-5 mr-2" />
+                  Get Started!
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </Link>
+              <Link to="https://github.com/hackclub/OnBoard/tree/main/projects">
+                <Button size="lg" variant="outline" className="border-green-600 text-green-400 hover:bg-green-900/50 hover:text-white text-lg px-8 py-6 transition-all duration-300">
+                  <Github className="w-5 h-5 mr-2" />
+                  View Past Projects
+                </Button>
+              </Link>
             </div>
 
             {/* Stats with emojis */}
@@ -247,44 +253,12 @@ const Index = () => {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent">
-                Choose Your Adventure! 🎮
+                Choose Your Path
               </h2>
-              <p className="text-xl text-gray-300 mb-4">
-                Pick the path that matches your project vibes
-              </p>
-              <div className="text-4xl">🛤️ → 🚀 → 🏆</div>
+
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
-              {/* Hardware Grant */}
-              <Card className="bg-gray-900/70 border-green-700/50 hover:border-green-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-green-500/40 hover:ring-2 hover:ring-green-500/40">
-                <CardContent className="p-8 text-center">
-                  <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-300">
-                    <span className="text-3xl">⚡</span>
-                  </div>
-                  <h3 className="text-2xl font-bold text-white mb-4">Hardware Grant 🔥</h3>
-                  <p className="text-gray-300 mb-6">Get funding for components, tools, and materials to build your hardware project! Perfect for devboards, IoT devices, and robotics that'll blow minds! 🤯</p>
-                  
-                  <div className="space-y-3 mb-8">
-                    <div className="flex justify-between items-center bg-green-900/30 p-3 rounded-lg">
-                      <span className="text-green-400 font-semibold">💰 Funding:</span>
-                      <span className="text-green-400 font-mono">Varies by awesomeness</span>
-                    </div>
-                    <div className="flex justify-between items-center bg-green-800/30 p-3 rounded-lg">
-                      <span className="text-green-500 font-semibold">⏰ Timeline:</span>
-                      <span className="text-green-500 font-mono">1-2 weeks</span>
-                    </div>
-                    <div className="flex justify-between items-center bg-green-900/20 p-3 rounded-lg">
-                      <span className="text-green-300 font-semibold">🎮 Simulation:</span>
-                      <span className="text-green-300 font-mono">Wokwi magic</span>
-                    </div>
-                  </div>
-
-                  <Button className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold text-lg py-3 shadow-lg hover:shadow-green-500/40 hover:bg-green-700/40 transition-all duration-300">
-                    🚀 Apply for Hardware Grant
-                  </Button>
-                </CardContent>
-              </Card>
 
               {/* PCB Grant */}
               <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20">
@@ -292,99 +266,138 @@ const Index = () => {
                   <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-300">
                     <span className="text-3xl">🔧</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-4">PCB Grant 🎯</h3>
+                  <h3 className="text-2xl font-bold text-white mb-4">PCB Grant</h3>
                   <p className="text-gray-300 mb-6">Custom PCB fabrication with funding for serious open-source projects! Two epic tracks for different design tools. Time to make some circuit magic! ✨</p>
-                  
+
                   <div className="space-y-4 mb-8">
                     <div className="p-4 border border-green-800/50 rounded-xl bg-green-900/20">
                       <div className="flex justify-between items-center mb-2">
                         <span className="text-green-400 font-bold">🟢 KiCad Track</span>
                         <span className="text-green-400 font-mono font-bold">$30 limit</span>
                       </div>
-                      <p className="text-sm text-green-300">Perfect for learning & starter projects! 🌱</p>
+                      <p className="text-sm text-green-300">Perfect for learning & starter projects</p>
                     </div>
-                    
+
                     <div className="p-4 border border-blue-800/50 rounded-xl bg-blue-900/20">
                       <div className="flex justify-between items-center mb-2">
                         <span className="text-blue-400 font-bold">🔥 EasyEDA + OSHWlabs</span>
-                        <span className="text-blue-400 font-mono font-bold">$5K limit</span>
+                        <span className="text-blue-400 font-mono font-bold">$1K limit</span>
                       </div>
-                      <p className="text-sm text-blue-300">For serious world-changing projects! 🌍</p>
+                      <p className="text-sm text-blue-300">For larger, serious projects</p>
                     </div>
                   </div>
-
-                  <Button className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-semibold text-lg py-3 shadow-lg hover:shadow-blue-500/25 transition-all duration-300">
-                    🎯 Apply for PCB Grant
-                  </Button>
+                  <Link to="/guides">
+                    <Button className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-semibold text-lg py-3 shadow-lg hover:shadow-blue-500/25 transition-all duration-300">
+                      Get started with a PCB grant
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
+              <div className="relative">
+                {/* Grayed out overlay */}
+                <Card className="bg-gray-900/70 border-green-700/50 transition-all duration-300 group scale-100 shadow-none filter grayscale opacity-70 pointer-events-none">
+                  <CardContent className="p-8 text-center">
+                    <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-300">
+                      <span className="text-3xl">🗑️</span>
+                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-4">Hardware Grant</h3>
+                    <p className="text-gray-300 mb-6">
+                      Get components, tools, and materials to build your hardware project! Perfect for devboards, IoT devices, and robotics
+                    </p>
+
+                    <div className="space-y-3 mb-8">
+                      <div className="flex justify-between items-center bg-green-900/30 p-3 rounded-lg">
+                        <span className="text-green-400 font-semibold">Funding:</span>
+                        <span className="text-green-400 font-mono">Varies by awesomeness</span>
+                      </div>
+                      <div className="flex justify-between items-center bg-green-800/30 p-3 rounded-lg">
+                        <span className="text-green-500 font-semibold">Timeline:</span>
+                        <span className="text-green-500 font-mono">1-2 weeks</span>
+                      </div>
+                      <div className="flex justify-between items-center bg-green-900/20 p-3 rounded-lg">
+                        <span className="text-green-300 font-semibold">Submission:</span>
+                        <span className="text-green-300 font-mono">Wokwi and CAD</span>
+                      </div>
+                    </div>
+
+                    <Button className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold text-lg py-3 shadow-lg cursor-not-allowed opacity-50">
+                      Apply for Hardware Grant
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                {/* Banner */}
+                <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-yellow-400 text-black font-bold uppercase px-4 py-1 rounded shadow-lg select-none pointer-events-none z-20 text-sm sm:text-base">
+                  Coming soon after 50 PCBs are made
+                </div>
+              </div>
+
+
+
             </div>
           </div>
         </section>
 
         {/* Sample Projects */}
         <section className="py-20 px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent">
-                What Teens Are Building! 🔥
-              </h2>
-              <p className="text-xl text-gray-300 mb-4">
-                Get inspired by these absolutely incredible projects from our amazing community!
-              </p>
-              <div className="text-4xl">🤯 → 💡 → 🚀</div>
-            </div>
+          <div className="max-w-6xl mx-auto text-center mb-16">
+            <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent">
+              What are people already making?
+            </h2>
+            <p className="text-xl text-gray-300 mb-4">
+              Get inspired by these absolutely incredible projects from our amazing community!
+            </p>
+          </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {projects.map((project, index) => (
-                <Card key={index} className="bg-gray-900/70 border-gray-700 hover:border-green-500 transition-all duration-300 group cursor-pointer hover:scale-105 hover:shadow-xl hover:shadow-green-500/40 hover:ring-2 hover:ring-green-500/40">
-                  <CardContent className="p-6">
-                    <div className="w-full h-36 bg-gradient-to-br from-green-500/20 to-green-600/20 rounded-xl mb-4 flex items-center justify-center group-hover:from-green-500/30 group-hover:to-green-600/30 transition-all duration-300">
-                      <div className="text-center">
-                        <div className="text-4xl mb-2 group-hover:animate-bounce">{project.emoji}</div>
-                        <Cpu className="w-8 h-8 text-green-400 mx-auto" />
-                      </div>
-                    </div>
-                    <h3 className="text-lg font-bold text-white mb-3 group-hover:text-green-400 transition-colors duration-300">
-                      {project.title}
-                    </h3>
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag, tagIndex) => (
-                        <Badge key={tagIndex} variant="outline" className="border-green-500/50 text-green-400 text-xs hover:bg-green-500/20 transition-colors duration-300">
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+          {/* Full-width ProjectCarousel without constraints */}
+          <div className="w-screen relative left-1/2 -translate-x-1/2">
+            <ProjectCarousel />
           </div>
         </section>
+
 
         {/* CTA Section */}
         <section className="py-20 px-6 bg-gradient-to-r from-green-900/50 to-green-900/50 backdrop-blur-sm">
           <div className="max-w-5xl mx-auto text-center">
-            <div className="text-6xl mb-6">🚀✨🔥</div>
             <h2 className="text-6xl font-bold mb-6 bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent">
-              Ready to Build the Future?
+              Never made a circuit board before? No problem.
             </h2>
             <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-              Join thousands of teen builders who are turning their hardware dreams into reality! 
-              Your epic journey starts right here, right now! 🌟
+              Join thousands of teenagers who are learning as well. Check out our written and video tutorials. Ask questions in #electronics on Slack
+            </p>
+            <div className='w-full flex justify-center'>
+
+              <YoutubeVideo
+                youtube-id="LrSKs35nR8k"
+                list="PLbNbddgD-XxECO7C2z-FAlSoJ57VqcJA3"
+                height="600px"
+                width="1200px"
+              />
+            </div>
+
+            <p className='p-5'>
+              See the{' '}
+              <Link
+                to="https://www.youtube.com/watch?v=LrSKs35nR8k&list=PLbNbddgD-XxECO7C2z-FAlSoJ57VqcJA3"
+                className="text-blue-500 underline hover:text-blue-400 transition-colors duration-200"
+                target="_blank" // optional: opens in new tab
+                rel="noopener noreferrer" // optional: for security when using target="_blank"
+              >
+                full playlist 
+              </Link>
+              . and ask questions on the Hack Club Slack
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Button size="lg" className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold text-xl px-12 py-8 shadow-xl hover:shadow-green-500/40 hover:bg-green-700/40 transition-all duration-300 transform hover:scale-105">
-                <Trophy className="w-6 h-6 mr-2" />
-                Apply for Grant! 🎯
-                <ArrowRight className="w-6 h-6 ml-2" />
-              </Button>
-              <Button size="lg" variant="outline" className="border-green-600 text-green-400 hover:bg-green-900/50 hover:text-white text-xl px-12 py-8 transition-all duration-300">
-                <Sparkles className="w-6 h-6 mr-2" />
-                Learn More 📚
-              </Button>
+              <Link to="https://hackclub.slack.com/">
+                <Button size="lg" variant="outline" className="border-green-600 text-green-400 hover:bg-green-900/50 hover:text-white text-xl px-12 py-8 transition-all duration-300">
+                  <Sparkles className="w-6 h-6 mr-2" />
+                  Join the Slack
+                </Button>
+              </Link>
+
+
             </div>
-            <div className="text-4xl animate-pulse">🎉 LET'S HACK THE WORLD! 🎉</div>
+            <div className="text-4xl animate-pulse">LET'S HACK THE WORLD!</div>
           </div>
         </section>
 
@@ -392,12 +405,16 @@ const Index = () => {
         <footer className="border-t border-green-700/30 py-12 text-center">
           <div className="flex justify-center items-center gap-4 mb-4">
             <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center">
-              <span className="text-xl">🔥</span>
+              <img
+                src="/hc-logo.png"
+                alt="Logo"
+                className="w-8 h-8 object-contain"
+              />
             </div>
             <div className="text-lg font-bold text-green-400">HACK CLUB GROUNDED</div>
           </div>
           <p className="text-gray-500 mb-2">© 2025 Made with ❤️ by Aarav J</p>
-          <p className="text-gray-600 text-sm">🚀 Hack the world! 🔧</p>
+          <p className="text-gray-600 text-sm">Hack the world!</p>
         </footer>
       </div>
 
