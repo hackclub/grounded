@@ -4,10 +4,10 @@ export default function GroundedPCBGrant() {
   return (
     <div className="min-h-screen max-w-3xl mx-auto p-6 space-y-10 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-300">
       <div className="text-center">
-        <h1 className="text-3xl font-bold text-emerald-400">Grounded PCB Grant - Get up to $250 for a PCB</h1>
+        <h1 className="text-3xl font-bold text-emerald-400">Grounded PCB Grant - Get up to $1k for a PCB</h1>
         <hr className="my-4 border-slate-700" />
         <p className="text-slate-400">
-          Every student will receive up to <strong className="text-white">$250</strong> to cover PCB manufacturing costs,
+          Every teen under 18 (or 18) will receive up to <strong className="text-white">$1k</strong> to cover PCB manufacturing costs,
           and join a community of peers — some more beginner and some more experienced.
         </p>
       </div>
@@ -75,7 +75,7 @@ export default function GroundedPCBGrant() {
               If you get stuck or want more example projects, post in the Slack channel.
             </p>
             <p className="text-red-600 font-semibold mt-2">
-              NOTE: The price limit is $250 for PCBs made in EasyEDA but only $50 for PCBs made in KiCad
+              NOTE: The price limit is $1k for PCBs made in EasyEDA but only $30 for PCBs made in KiCad
             </p>
           </div>
 

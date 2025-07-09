@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { BookOpen, ChevronRight, ArrowLeft, ChevronDown, ExternalLink, Zap, Shield, Download, Upload, Settings, CreditCard, Eye, Wrench } from 'lucide-react';
+import{ useState, useEffect } from 'react';
+import { BookOpen, ChevronRight, ArrowLeft, ChevronDown, Shield, Download, Upload, Wrench } from 'lucide-react';
 import overview from './guides/overview.tsx';
 import componentsOverview from './guides/components-overview.tsx';
 import jlcOrdering from './guides/jlc-order-guide.tsx';
-import pcbResources from './guides/pcb-resources.tsx';
 import wokwiGuide from './guides/wokwi-guide.tsx';
 import { Link } from 'react-router-dom';
+import OSHWLabStarsGuide from './guides/oshwlab-tutorial.tsx';
 
 
 // Configuration for sidebar structure and file mappings
@@ -16,7 +16,6 @@ const guides = {
     items: [
       { id: 'overview', title: 'Overview', icon: <BookOpen className="w-4 h-4" />, file: 'guides/overview.mdx', content: overview },
       { id: 'components-overview', title: 'Components Overview', icon: <Shield className="w-4 h-4" />, file: 'guides/components-overview.mdx', content: componentsOverview },
-      { id: 'jlc-ordering', title: 'How to Order from JLCPCB', icon: <Zap className="w-4 h-4" />, file: 'guides/jlc-ordering.mdx', content: jlcOrdering },
     ]
   },
   'ordering': {
@@ -24,6 +23,8 @@ const guides = {
     icon: <Upload className="w-4 h-4" />,
     items: [
       { id: 'jlc-ordering', title: 'How to Order from JLCPCB', icon: <Upload className="w-4 h-4" />, file: 'guides/jlc-ordering.mdx', content: jlcOrdering },
+      { id: 'oshwlab-tutorial', title: 'OSHWLab Stars Submission Guide', icon: <Upload className="w-4 h-4" />, file: 'guides/oshwlab-tutorial.mdx', content: OSHWLabStarsGuide },
+
     ]
   },
   'design': {
@@ -31,7 +32,7 @@ const guides = {
     icon: <Wrench className="w-4 h-4" />,
     items: [
       { id: 'wokwi-guide', title: 'How to Use Wokwi', icon: <Download className="w-4 h-4" />, file: 'guides/wokwi-guide.mdx', content: wokwiGuide },
-      { id: 'pcb-resources', title: 'PCB Resources', icon: <Download className="w-4 h-4" />, file: 'guides/pcb-resources.mdx', content: pcbResources },
+      { id: 'pcb-resources', title: 'PCB Resources', icon: <Download className="w-4 h-4" />, file: 'guides/pcb-resources.mdx', content: OSHWLabStarsGuide },
     ]
   },
 };
