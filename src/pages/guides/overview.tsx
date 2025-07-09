@@ -57,7 +57,7 @@ export default function GroundedPCBGrant() {
             <p>
               Create a git repository for your project! Most people use GitHub, but you can use any git provider you want.
             </p>
-            
+
             <div className="bg-slate-900/60 rounded-lg p-4 my-4 border border-slate-700">
               <h4 className="text-lg font-semibold mb-2 text-emerald-400">📝 Start Your Journal (Required!)</h4>
               <p className="mb-3">
@@ -115,6 +115,7 @@ Created On: "10/7/2025"
               >
                 PCB tutorials
               </a>.
+              Also, see <code className="bg-emerald-700 px-1 rounded">PCB Resources</code>. Note: Only one tutorial project is allowed per person.
             </p>
             <p className="italic text-slate-500">
               If you get stuck or want more example projects, post in the Slack channel.
@@ -122,6 +123,42 @@ Created On: "10/7/2025"
             <p className="text-red-600 font-semibold mt-2">
               NOTE: The price limit is $1k for PCBs made in EasyEDA but only $30 for PCBs made in any other EDA software
             </p>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-3 text-emerald-400">Example Projects</h2>
+              <ul className="list-disc list-inside space-y-1 text-slate-300">
+                <li>
+                  <a
+                    href="https://jams.hackclub.com/jam/hacker-card"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-emerald-400 underline"
+                  >
+                    PCB Business Card with NFC, "Hackercard"
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://jams.hackclub.com/batch/usb-hub"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-emerald-400 underline"
+                  >
+                    Build a USB Hub
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://jams.hackclub.com/batch/sparkletilt-pcb"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-emerald-400 underline"
+                  >
+                    Make a Digital Level
+                  </a>
+                </li>
+              </ul>
+            </section>
           </div>
 
           <div>
@@ -169,15 +206,23 @@ Created On: "10/7/2025"
               <li className="pl-12">Optionally, for EasyEDA STD, export a 3D Model as .obj and save it to the /src folder</li>
               <li className="pl-6">For KiCad, add the .kicad_pcb, .kicad_sch and .kicad_pro files to your /src folder</li>
             </ul>
-            
+
             <div className="bg-red-900/30 border border-red-600 rounded-lg p-4 mt-4">
               <h4 className="text-lg font-semibold text-red-400 mb-2">IMPORTANT!! Required for EasyEDA Grants!!!</h4>
               <p className="text-red-300">Make sure to follow all EasyEDA export requirements above for your submission to be approved.</p>
             </div>
           </div>
+          <div>
+            <h3 className="text-xl font-semibold mb-2">6. Submit your project!</h3>
+            <p>If your project is made in Ki-Cad and/or costs less than $30, you can simply fill out the form below without a Oshwlab link. However, if you would like to have the full $1,000 cost limit, follow the instructions in <code className="bg-emerald-700 px-1 rounded">OSHWLabs Starts Submission Guide</code></p>
+            <section className="space-y-4 pt-5">
+              <p className="text-slate-300">Submit the required details through this form:</p>
+              <a href="https://forms.hackclub.com/grounded" target="_blank" className="inline-block bg-emerald-500/20 px-4 py-2 rounded-md text-emerald-400 font-semibold hover:bg-emerald-500/30 transition">🔗 Grounded PCB Grant</a>
+            </section>
+          </div>
 
           <div>
-            <h3 className="text-xl font-semibold mb-2">6. Ship it!</h3>
+            <h3 className="text-xl font-semibold mb-2">7. Ship it!</h3>
             <p>
               Share your board in{" "}
               <a
@@ -195,44 +240,17 @@ Created On: "10/7/2025"
               className="w-full rounded shadow-lg mt-2"
             />
           </div>
+
+           <div>
+            <h3 className="text-xl font-semibold mb-2">8. Update your journal when you get your PCB</h3>
+            <p>
+              Write about your time spent hacking with the PCB in-person and be sure to include hours. Include your time spent getting it to work and it's use in other projects.
+            </p>
+          </div>
         </div>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-3 text-emerald-400">Example Projects</h2>
-        <ul className="list-disc list-inside space-y-1 text-slate-300">
-          <li>
-            <a
-              href="https://jams.hackclub.com/jam/hacker-card"
-              target="_blank"
-              rel="noreferrer"
-              className="text-emerald-400 underline"
-            >
-              PCB Business Card with NFC, "Hackercard"
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://jams.hackclub.com/batch/usb-hub"
-              target="_blank"
-              rel="noreferrer"
-              className="text-emerald-400 underline"
-            >
-              Build a USB Hub
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://jams.hackclub.com/batch/sparkletilt-pcb"
-              target="_blank"
-              rel="noreferrer"
-              className="text-emerald-400 underline"
-            >
-              Make a Digital Level
-            </a>
-          </li>
-        </ul>
-      </section>
+
 
       <section>
         <h2 className="text-2xl font-semibold mb-3 text-emerald-400">Tips for Success</h2>

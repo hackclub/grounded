@@ -310,7 +310,6 @@ const Index = () => {
                         <span className="text-green-400 font-bold">🟢 KiCad Track</span>
                         <span className="text-green-400 font-mono font-bold">$30 limit</span>
                       </div>
-                      <p className="text-sm text-green-300">Perfect for learning & starter projects</p>
                     </div>
 
                     <div className="p-4 border border-blue-800/50 rounded-xl bg-blue-900/20">
@@ -318,7 +317,6 @@ const Index = () => {
                         <span className="text-blue-400 font-bold">🔥 EasyEDA + OSHWlabs</span>
                         <span className="text-blue-400 font-mono font-bold">$1K limit</span>
                       </div>
-                      <p className="text-sm text-blue-300">For larger, serious projects</p>
                     </div>
                     <div className="p-4 border border-yellow-800/50 rounded-xl bg-yellow-900/20">
                       <div className="flex justify-between items-center">
