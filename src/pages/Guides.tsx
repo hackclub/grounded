@@ -16,10 +16,10 @@ const guides = {
     icon: <BookOpen className="w-4 h-4" />,
     items: [
       { id: 'overview', title: 'Overview', icon: <BookOpen className="w-4 h-4" />, file: 'guides/overview.mdx', content: overview },
-      { id: 'components-overview', title: 'Components Overview', icon: <Shield className="w-4 h-4" />, file: 'guides/components-overview.mdx', content: componentsOverview },
+      // { id: 'components-overview', title: 'Components Overview', icon: <Shield className="w-4 h-4" />, file: 'guides/components-overview.mdx', content: componentsOverview },
       { id: 'jlc-ordering', title: 'How to Order from JLCPCB', icon: <Upload className="w-4 h-4" />, file: 'guides/jlc-ordering.mdx', content: jlcOrdering },
       { id: 'oshwlab-tutorial', title: 'OSHWLab Stars Submission Guide', icon: <Upload className="w-4 h-4" />, file: 'guides/oshwlab-tutorial.mdx', content: OSHWLabStarsGuide },
-      { id: 'wokwi-guide', title: 'How to Use Wokwi', icon: <Download className="w-4 h-4" />, file: 'guides/wokwi-guide.mdx', content: wokwiGuide },
+      // { id: 'wokwi-guide', title: 'How to Use Wokwi', icon: <Download className="w-4 h-4" />, file: 'guides/wokwi-guide.mdx', content: wokwiGuide },
       { id: 'pcb-resources', title: 'PCB Resources', icon: <Download className="w-4 h-4" />, file: 'guides/pcb-resources.mdx', content: pcbResources },
     ]
   }
