@@ -107,7 +107,7 @@ const Index = () => {
         />
       </a>
 
-       <a
+      <a
         className="hidden md:block w-[20vw] absolute animate-float z-[9999] top-[650px] left-20"
         href="https://github.com/souptik-samanta/Infrared-gun"
         target="_blank"
@@ -324,7 +324,7 @@ const Index = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   <Link to="/guides">
                     <Button className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-semibold text-lg py-3 shadow-lg hover:shadow-blue-500/25 transition-all duration-300">
                       Get started with a PCB grant
@@ -439,6 +439,36 @@ const Index = () => {
             <div className="text-4xl animate-pulse">LET'S HACK THE WORLD!</div>
           </div>
         </section>
+
+        <section className='p-6 pl-12 pr-12'>x  
+          <h1 className="text-2xl font-bold text-white mb-4 text-center">Frequently Asked Questions</h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
+              <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">How many grants can I get</h3>
+              <p className="text-gray-300 mt-2">You can grants for as many projects as you like. The only requirement is that there is only one "tutorial" project per person and that each new project mush be unique.</p>
+            </Card>
+
+            <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
+              <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">Can I submit my Highway or other YSWS project here?</h3>
+              <p className="text-gray-300 mt-2">Depends, if you are claiming the time spent developing the PCB for another program such as Highway, you are illegible for the Grounded program grant for that PCB.</p>
+            </Card>
+            <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
+              <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">How are the grants awarded?</h3>
+              <p className="text-gray-300 mt-2">Grants are typically givin in the form of a Hack Club Bank card along with various coupons depending on the orders</p>
+            </Card>
+             <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
+              <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">When will the components grant start?</h3>
+              <p className="text-gray-300 mt-2">Once 50 unique PCB's are designed, we will launch a components grant giving away</p>
+            </Card>
+            <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
+              <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">How can I get the full 5000?</h3>
+              <p className="text-gray-300 mt-2">In order to get the full 5000, you need to qualify for the OSHWLab stars prohgram. Hack Club will pay for your shipping on top.</p>
+            </Card>
+          
+          </div>
+        </section>
+
+
 
         {/* Footer */}
         <footer className="border-t border-green-700/30 py-12 text-center">
