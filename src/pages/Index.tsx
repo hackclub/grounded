@@ -83,7 +83,7 @@ const Index = () => {
         >
           <img
             src="https://cloud-myjum5y6g-hack-club-bot.vercel.app/0longhorn2.png"
-            alt="Floating module"
+            alt="Floating module: sparkletilt digital level"
             className="hidden md:block"
           />
         </a>
@@ -96,7 +96,7 @@ const Index = () => {
         >
           <img
             src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/ae8f46ee7f073299633edd7b0d4ad17281649096_image-6-removebg-preview.png"
-            alt="Floating module" />
+            alt="Floating module - a non contact temperature meter" />
         </a>
 
         <a
@@ -107,7 +107,7 @@ const Index = () => {
         >
           <img
             src="https://cloud-6a1wip38p-hack-club-bot.vercel.app/1totk_key.png"
-            alt="Floating module" />
+            alt="Floating module - a hardware key" />
         </a>
 
         <a
@@ -118,7 +118,7 @@ const Index = () => {
         >
           <img
             src="https://cloud-c953eezuq-hack-club-bot.vercel.app/0hub.png"
-            alt="Floating module" />
+            alt="Floating module - a USB hub" />
         </a>
 
         <div className="relative z-10">
@@ -128,7 +128,7 @@ const Index = () => {
               <a href="https://hackclub.com/" className='hidden sm:block'>
                 <img
                   src="https://assets.hackclub.com/flag-orpheus-top.svg"
-                  alt="Hack Club"
+                  alt="Hack Club orpheus flag"
                   style={{
                     top: '-8px',
                     zIndex: "999",
