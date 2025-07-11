@@ -440,7 +440,7 @@ const Index = () => {
           </div>
         </section>
 
-        <section className='p-6 pl-12 pr-12'>x  
+        <section className='p-6 pl-12 pr-12'>
           <h1 className="text-2xl font-bold text-white mb-4 text-center">Frequently Asked Questions</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
@@ -462,7 +462,7 @@ const Index = () => {
             </Card>
             <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
               <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">How can I get the full 5000?</h3>
-              <p className="text-gray-300 mt-2">In order to get the full 5000, you need to qualify for the OSHWLab stars prohgram. Hack Club will pay for your shipping on top.</p>
+              <p className="text-gray-300 mt-2">In order to get the full 5000, you need to qualify for the OSHWLab stars prohgram. Hack Club will pay for your shipping and taxes.</p>
             </Card>
           
           </div>
