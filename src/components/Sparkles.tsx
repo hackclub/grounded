@@ -1,15 +1,27 @@
 // https://github.com/hackclub/site/blob/main/components/sparkles/index.js
 // Full credit to https://joshwcomeau.com/react/animated-sparkles-in-react/
-import { useState } from 'react'
+import { useState, ReactNode, FC } from 'react'
 import styled from '@emotion/styled'
 import { keyframes } from '@emotion/react'
 import { range, sample, random } from 'lodash'
 import { Text } from 'theme-ui'
 import theme from '@hackclub/theme'
-import useRandomInterval from '../lib/use-random-interval'
-import usePrefersReducedMotion from '../lib/prefers-reduced-motion'
+import useRandomInterval from '@/lib/use-random-interval'
+import usePrefersReducedMotion from '@/lib/prefers-reduced-motion'
+import { ThemeUICSSObject } from 'theme-ui'
 
-const generateSparkle = color => {
+interface SparkleType {
+  id: string
+  createdAt: number
+  color: string
+  size: number
+  style: {
+    top: string
+    left: string
+  }
+}
+
+const generateSparkle = (color: string): SparkleType => {
   const sparkle = {
     id: String(random(10000, 99999)),
     createdAt: Date.now(),
@@ -23,14 +35,21 @@ const generateSparkle = color => {
   return sparkle
 }
 
-const Sparkles = ({
+interface SparklesProps {
+  colors?: string[]
+  children: ReactNode
+  sx?: ThemeUICSSObject
+}
+
+const Sparkles: FC<SparklesProps & React.ComponentProps<'span'>> = ({
   colors = ['orange', 'yellow', 'green'],
   children,
   sx,
-  props,
   ...delegated
 }) => {
-  const allColors = colors.map(n => theme.colors[n])
+  const allColors = colors.map(
+    n => (theme.colors as Record<string, unknown>)[n] as string
+  )
   const getColor = () => sample(allColors)
   const [sparkles, setSparkles] = useState(() => {
     return range(3).map(() => generateSparkle(getColor()))
@@ -61,14 +80,20 @@ const Sparkles = ({
           style={sparkle.style}
         />
       ))}
-      <ChildWrapper as="strong" sx={sx} {...props}>
+      <ChildWrapper as="strong" sx={sx}>
         {children}
       </ChildWrapper>
     </Wrapper>
   )
 }
 
-const Sparkle = ({ size, color, style }) => {
+interface SparkleProps {
+  size: number
+  color: string
+  style: React.CSSProperties
+}
+
+const Sparkle: FC<SparkleProps> = ({ size, color, style }) => {
   const path =
     'M26.5 25.5C19.0043 33.3697 0 34 0 34C0 34 19.1013 35.3684 26.5 43.5C33.234 50.901 34 68 34 68C34 68 36.9884 50.7065 44.5 43.5C51.6431 36.647 68 34 68 34C68 34 51.6947 32.0939 44.5 25.5C36.5605 18.2235 34 0 34 0C34 0 33.6591 17.9837 26.5 25.5Z'
   return (

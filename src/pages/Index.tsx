@@ -194,7 +194,7 @@ const Index = () => {
               >
                 <Balancer ratio={0.3}>
                   Circuit boards are{' '}
-                  <Sparkles sx={{}} props={{}}>
+                  <Sparkles>
                     <Text sx={{ fontWeight: 400 }}>magical{'.'}</Text>
                   </Sparkles>{' '}
                   You design one, we'll pay for printing it!
