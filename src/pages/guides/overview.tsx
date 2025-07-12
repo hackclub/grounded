@@ -121,7 +121,7 @@ Created On: "10/7/2025"
               If you get stuck or want more example projects, post in the Slack channel.
             </p>
             <p className="text-red-600 font-semibold mt-2">
-              NOTE: The price limit is $1k for PCBs made in EasyEDA but only $30 for PCBs made in any other EDA software
+              NOTE: The price limit is $1k for PCBs made in EasyEDA Pro but only $30 for PCBs made in any other EDA software
             </p>
 
             <section>
