@@ -10,63 +10,62 @@ type Project = {
 
 const projects: Project[] = [
   {
-    title: "A Fidget Spinner without any moving parts",
+    title: "A digital level with RGB LEDs",
     imageUrl: "https://cloud-myjum5y6g-hack-club-bot.vercel.app/0longhorn2.png",
     githubUrl: "https://jams.hackclub.com/batch/sparkletilt-pcb",
   },
   {
-    title: "An Infared Gun",
+    title: "A non-contact temperature meter",
     imageUrl: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/ae8f46ee7f073299633edd7b0d4ad17281649096_image-6-removebg-preview.png",
     githubUrl: "https://github.com/souptik-samanta/Infrared-gun",
   },
-   {
-    title: "A Hardware Key",
+  {
+    title: "A USB Hardware Key",
     imageUrl: "https://cloud-6a1wip38p-hack-club-bot.vercel.app/1totk_key.png",
     githubUrl: "https://github.com/hackclub/OnBoard/tree/main/projects/TOTKey",
   },
   {
-    title: "A Cool USB Hub",
+    title: "An Awesome USB Hub",
     imageUrl: "https://cloud-c953eezuq-hack-club-bot.vercel.app/0hub.png",
     githubUrl: "https://jams.hackclub.com/batch/usb-hub",
   },
 
 ];
 
-const SCROLL_SPEED = 0.5; // pixels per frame
+const SCROLL_SPEED = 1; // pixels per frame, must be a whole number for firefox :/
 
 export default function ProjectCarousel() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
-    let animationFrameId: number;
     const container = containerRef.current;
+    if (!container) return;
 
     const scroll = () => {
-      if (container && !isPaused) {
-        container.scrollLeft += SCROLL_SPEED;
-        if (container.scrollLeft >= container.scrollWidth / 2) {
-          container.scrollLeft = 0;
-        }
+      if (!container || isPaused) return;
+
+      container.scrollLeft += SCROLL_SPEED;
+
+      if (container.scrollLeft >= container.scrollWidth / 2) {
+        container.scrollLeft = 0;
       }
-      animationFrameId = requestAnimationFrame(scroll);
     };
 
-    animationFrameId = requestAnimationFrame(scroll);
+    const intervalId = setInterval(scroll, 16); // ~60fps
 
-    return () => cancelAnimationFrame(animationFrameId);
+    return () => clearInterval(intervalId);
   }, [isPaused]);
 
   // Duplicate projects to create seamless loop effect
   const loopedProjects = [...projects, ...projects];
 
   return (
-    <div className="overflow-hidden relative w-full py-6  scrollbar-hide">
+    <div className="overflow-hidden relative w-full py-6 scrollbar-hide">
       <div
         ref={containerRef}
         className="flex w-full gap-4 overflow-x-scroll scrollbar-hide"
         style={{
-          scrollBehavior: "auto",
           whiteSpace: "nowrap",
         }}
       >
@@ -80,9 +79,9 @@ export default function ProjectCarousel() {
             <img
               src={project.imageUrl}
               alt={project.title}
-              className="object-cover w-full h-full"
+              className="object-contain w-full h-full group-hover:blur-sm"
             />
-            <div className="absolute inset-0  bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-white text-center p-4">
+            <div className="absolute inset-0 bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-white text-center p-4">
               <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
               <a
                 href={project.githubUrl}
