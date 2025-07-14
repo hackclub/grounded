@@ -253,25 +253,35 @@ const Index = () => {
                       <span className="text-3xl" style={{ fontFamily: 'emoji' }}>🔧</span>
                     </div>
                     <h3 className="text-2xl font-bold text-white mb-4">PCB Grant</h3>
-                    <p className="text-gray-300 mb-6">Custom PCB fabrication with funding for serious open-source projects! Two epic tracks for different design tools. Time to make some circuit magic! ✨</p>
+                    <p className="text-gray-300 mb-6">Custom PCB fabrication with funding for serious open-source projects!</p>
 
                     <div className="space-y-4 mb-8">
+
                       <div className="p-4 border border-green-800/50 rounded-xl bg-green-900/20">
-                        <div className="flex justify-between items-center mb-2">
-                          <span className="text-green-400 font-bold">🟢 KiCad Track</span>
-                          <span className="text-green-400 font-mono font-bold">$30 limit</span>
+                        <div className="flex justify-between items-center">
+                          <span className="text-green-400 font-bold">Tier 3 grant (3-8 hours of work)</span>
+                          <span className="text-green-400 font-mono font-bold">$20 limit</span>
                         </div>
                       </div>
 
                       <div className="p-4 border border-blue-800/50 rounded-xl bg-blue-900/20">
-                        <div className="flex justify-between items-center mb-2">
-                          <span className="text-blue-400 font-bold">🔥 EasyEDA + OSHWlabs</span>
-                          <span className="text-blue-400 font-mono font-bold">$1K limit</span>
+                        <div className="flex justify-between items-center">
+                          <span className="text-blue-400 font-bold">Tier 2 grant (8-25 hours of work)</span>
+                          <span className="text-blue-400 font-mono font-bold">$50 limit</span>
                         </div>
                       </div>
+
+                      <div className="p-4 border border-amber-700/50 rounded-xl bg-rose-100/10">
+                        <div className="flex justify-between items-center">
+                          <span className="text-amber-600 font-bold">Tier 1 grant (25+ hours of work)</span>
+                          <span className="text-rose-500 font-mono font-bold">$150 limit</span>
+                        </div>
+                      </div>
+
                       <div className="p-4 border border-yellow-800/50 rounded-xl bg-yellow-900/20">
                         <div className="flex justify-between items-center">
-                          <span className="text-yellow-400 font-bold">Unlimited Unique Submissions!</span>
+                          <span className="text-yellow-600 font-bold">OSHWLabs Level Project</span>
+                          <span className="text-yellow-500 font-mono font-bold">$5000 from OSWHLabs + $150</span>
                         </div>
                       </div>
                     </div>
@@ -298,7 +308,7 @@ const Index = () => {
                       <div className="space-y-3 mb-8">
                         <div className="flex justify-between items-center bg-green-900/30 p-3 rounded-lg">
                           <span className="text-green-400 font-semibold">Funding:</span>
-                          <span className="text-green-400 font-mono">Varies by awesomeness</span>
+                          <span className="text-green-400 font-mono">Varies</span>
                         </div>
                         <div className="flex justify-between items-center bg-green-800/30 p-3 rounded-lg">
                           <span className="text-green-500 font-semibold">Timeline:</span>
@@ -382,6 +392,37 @@ const Index = () => {
                   </Button>
                 </Link>
               </div>
+            </div>
+          </section>
+
+          <section className='p-12 pl-12 pr-12'>
+            <h1 className="text-2xl font-bold text-white mb-4 text-center">Frequently Asked Questions</h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
+                <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">How many grants can I get</h3>
+                <p className="text-gray-300 mt-2">You can grants for as many projects as you like. The only requirement is that there is only one "tutorial" project per person and that each new project mush be unique.</p>
+              </Card>
+
+              <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
+                <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">Can I submit my Highway or other YSWS project here?</h3>
+                <p className="text-gray-300 mt-2">You can not submit the same project to two programs.</p>
+              </Card>
+              <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
+                <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">How are the grants awarded?</h3>
+                <p className="text-gray-300 mt-2">Grants are typically givin in the form of a Hack Club Bank card along with various coupons depending on the orders</p>
+              </Card>
+              <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
+                <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">When will the components grant start?</h3>
+                <p className="text-gray-300 mt-2">Once 50 unique PCB's are designed, we will launch a components grant giving away</p>
+              </Card>
+              <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
+                <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">How can I get the full 5000?</h3>
+                <p className="text-gray-300 mt-2">In order to get the full 5000, you need to qualify for the OSHWLab stars prohgram. Hack Club will pay for your shipping on top.</p>
+              </Card>
+              <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
+                <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">When does this program end?</h3>
+                <p className="text-gray-300 mt-2">The current end date for the grant program is for August 31 however this may be subject to changes.</p>
+              </Card>
             </div>
           </section>
           {/* Footer */}
