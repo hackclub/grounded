@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>grounded tracker - track ur project lol</title>
+    
+    <!-- Essential resources -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+    <!-- Tailwind configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'wiggle': 'wiggle 1s ease-in-out infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'pulse-rainbow': 'pulse-rainbow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' },
+                        },
+                        'pulse-rainbow': {
+                            '0%': { transform: 'scale(1)' },
+                            '100%': { transform: 'scale(1.05)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Styles -->
+    <style>
+        /* Hack Club Phantom Sans Font */
+        @font-face {
+            font-family: 'Phantom Sans';
+            src: url('https://assets.hackclub.com/fonts/Phantom_Sans_0.7/Regular.woff') format('woff'),
+                url('https://assets.hackclub.com/fonts/Phantom_Sans_0.7/Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Phantom Sans';
+            src: url('https://assets.hackclub.com/fonts/Phantom_Sans_0.7/Bold.woff') format('woff'),
+                url('https://assets.hackclub.com/fonts/Phantom_Sans_0.7/Bold.woff2') format('woff2');
+            font-weight: bold;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        /* Hack Club Colors */
+        :root {
+            --red: #ec3750;
+            --orange: #ff8c37;
+            --yellow: #f1c40f;
+            --green: #33d6a6;
+            --cyan: #5bc0de;
+            --blue: #338eda;
+            --purple: #a633d6;
+        }
+        
+        /* Base Styles */
+        body {
+            font-family: 'Phantom Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            scroll-behavior: smooth;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #312e81 50%, #1e293b 75%, #0f172a 100%);
+            min-height: 100vh;
+            color: white;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Floating background elements */
+        .bg-floaty {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .bg-floaty:nth-child(1) {
+            top: 10%;
+            left: 80%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .bg-floaty:nth-child(2) {
+            top: 70%;
+            left: 10%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+        
+        .bg-floaty:nth-child(3) {
+            top: 40%;
+            left: 90%;
+            animation: float 10s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        /* Hack Club Specific Styles - more playful */
+        .hack-gradient {
+            background: linear-gradient(45deg, var(--orange), var(--red), var(--purple));
+            background-size: 200% 200%;
+            animation: gradient-shift 3s ease infinite;
+        }
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .hack-btn {
+            background: linear-gradient(45deg, var(--orange), var(--red));
+            transition: all 0.3s ease;
+            transform: scale(1) rotate(0deg);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hack-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .hack-btn:hover::before {
+            left: 100%;
+        }
+        
+        .hack-btn:hover {
+            transform: scale(1.05) rotate(1deg);
+            box-shadow: 0 8px 25px rgba(236, 55, 80, 0.4);
+        }
+        
+        .hack-btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .hack-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-3px) rotate(-1deg);
+        }
+        
+        .hack-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hack-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--orange), var(--red), var(--purple));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .hack-card:hover::before {
+            opacity: 1;
+        }
+        
+        .hack-card:hover {
+            transform: translateY(-6px) rotate(1deg);
+            box-shadow: 0 15px 50px 0 rgba(31, 38, 135, 0.4);
+        }
+        
+        .hack-text-gradient {
+            background: linear-gradient(45deg, var(--orange), var(--red), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% 200%;
+            animation: gradient-shift 3s ease infinite;
+        }
+        
+        /* Handwritten style elements */
+        .handwritten {
+            font-family: 'Comic Sans MS', cursive, 'Phantom Sans';
+            transform: rotate(-2deg);
+        }
+        
+        .squiggly {
+            text-decoration: underline;
+            text-decoration-style: wavy;
+            text-decoration-color: var(--yellow);
+        }
+        
+        /* Custom scrollbar - more fun */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, var(--orange), var(--red));
+            border-radius: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, var(--red), var(--purple));
+        }
+        
+        /* Emoji cursor */
+        .cursor-emoji {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text y="20" font-size="20">👾</text></svg>'), auto;
+        }
+        
+        /* Fade-in animation for content */
+        .fade-in {
+            animation: fadeIn 0.6s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px) rotate(-5deg); }
+            to { opacity: 1; transform: translateY(0) rotate(0deg); }
+        }
+        
+        /* Glitch effect for title */
+        .glitch {
+            position: relative;
+            animation: glitch 2s infinite;
+        }
+        
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+        }
+    </style>
+</head>
+<body class="cursor-emoji">
+    <!-- Floating background elements -->
+    <div class="bg-floaty w-16 h-16 bg-purple-500/20 rounded-full blur-xl"></div>
+    <div class="bg-floaty w-24 h-24 bg-orange-500/20 rounded-full blur-xl"></div>
+    <div class="bg-floaty w-12 h-12 bg-red-500/20 rounded-full blur-xl"></div>
+
+    <!-- Rainbow progress bar at top of page -->
+    <div class="fixed top-0 left-0 w-full h-2 hack-gradient z-50"></div>
+
+    <!-- Flash messages container -->
+    <div class="container mx-auto px-4 py-8 relative z-10">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="mb-4 p-4 rounded-2xl border-2 border-dashed
+                        {% if category == 'error' %}bg-red-600/80 border-red-400
+                        {% elif category == 'success' %}bg-emerald-600/80 border-emerald-400
+                        {% else %}bg-slate-700/80 border-slate-500{% endif %} text-white shadow-md animate-bounce-slow">
+                        {{ message }} 
+                        <span class="float-right">
+                            {% if category == 'error' %}😅
+                            {% elif category == 'success' %}🎉
+                            {% else %}💭{% endif %}
+                        </span>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <div class="min-h-screen relative z-10">
+        <!-- Hero Section with Hack Club Flag -->
+        <div class="relative overflow-hidden">
+            <!-- Hack Club Flag -->
+            <a href="https://hackclub.com/" class="absolute top-4 right-4 z-50 hidden md:block animate-wiggle">
+                <img style="width: 150px;" src="https://assets.hackclub.com/flag-orpheus-top.svg" alt="Hack Club"/>
+            </a>
+            
+            <!-- Content -->
+            <div class="container mx-auto px-4 py-16 relative z-10">
+                <div class="flex flex-col items-center text-center mb-16 animate__animated animate__fadeIn">
+                    <!-- App Icon with more personality -->
+                    <div class="bg-opacity-20 p-6 rounded-full mb-6 hack-gradient animate-pulse-rainbow">
+                        <i class='bx bx-time-five text-6xl text-white animate-wiggle'></i>
+                    </div>
+                    
+                    <!-- Title with more personality -->
+                    <h1 class="text-5xl md:text-7xl font-bold mb-6 hack-text-gradient glitch">
+                        Grounded Tracker
+                    </h1>
+                    
+                    <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mb-8 leading-relaxed">
+                        Track your <span class="squiggly font-bold text-yellow-400">Grounded</span> project journey step by step 🚀<br>
+                        <span class="handwritten text-lg text-purple-300">Document your development process and watch yourself grow</span>
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-6">
+                        <a href="{{ url_for('login') }}" class="hack-btn px-10 py-5 text-white rounded-2xl font-bold flex items-center justify-center gap-3 shadow-lg text-lg">
+                            <i class='bx bx-rocket'></i> Get Started
+                        </a>
+                        <a href="https://grounded.hackclub.com" target="_blank" class="hack-btn-secondary px-10 py-5 text-white rounded-2xl font-semibold flex items-center justify-center gap-3 shadow-lg">
+                            <i class='bx bx-question-mark'></i> What's Grounded?
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="container mx-auto px-4 py-16">
+            <h2 class="text-4xl font-bold text-center text-white mb-4">Why Grounded Tracker Works</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="hack-card p-8 animate__animated animate__fadeIn animate__delay-1s">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-4 rounded-full animate-bounce-slow" style="background: rgba(255, 140, 55, 0.3)">
+                            <i class='bx bx-stopwatch text-3xl' style="color: var(--orange)"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Time Tracking Made Simple</h3>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed">Log your development sessions without having to manually log on GitHub. It makes tracking your progress so much easier.</p>
+                    <div class="mt-4 text-sm text-purple-300 handwritten">*Actually works the way you think*</div>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="hack-card p-8 animate__animated animate__fadeIn animate__delay-2s">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-4 rounded-full animate-bounce-slow" style="background: rgba(236, 55, 80, 0.3)">
+                            <i class='bx bx-notepad text-3xl' style="color: var(--red)"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Development Logs</h3>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed">Document your breakthroughs, challenges, and those late-night debugging sessions. Future you will appreciate the context.</p>
+                    <div class="mt-4 text-sm text-green-300 handwritten">*Genuinely helpful for learning*</div>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="hack-card p-8 animate__animated animate__fadeIn animate__delay-3s">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-4 rounded-full animate-bounce-slow" style="background: rgba(166, 51, 214, 0.3)">
+                            <i class='bx bx-brain text-3xl' style="color: var(--purple)"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Progress Reflection</h3>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed">Look back at your journey and see how much you've grown. It's like a development diary that actually matters.</p>
+                    <div class="mt-4 text-sm text-blue-300 handwritten">*Surprisingly motivating*</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- How It Works Section -->
+        <div class="container mx-auto px-4 py-16">
+            <h2 class="text-4xl font-bold text-center text-white mb-6">How It Works</h2>
+            <p class="text-center text-gray-400 mb-16 handwritten">Four simple steps to better project tracking</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Step 1 -->
+                <div class="hack-card p-8 relative animate__animated animate__fadeIn animate__delay-1s">
+                    <div class="absolute -top-6 -left-6 w-12 h-12 hack-gradient rounded-full flex items-center justify-center text-white font-bold text-xl animate-pulse-rainbow">1</div>
+                    <h3 class="text-xl font-bold text-white mb-4 mt-4">Create Your Project</h3>
+                    <p class="text-gray-300">Set up a new project for your <span class="squiggly">grounded</span> journey</p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="hack-card p-8 relative animate__animated animate__fadeIn animate__delay-2s">
+                    <div class="absolute -top-6 -left-6 w-12 h-12 hack-gradient rounded-full flex items-center justify-center text-white font-bold text-xl animate-pulse-rainbow">2</div>
+                    <h3 class="text-xl font-bold text-white mb-4 mt-4">Track Your Time</h3>
+                    <p class="text-gray-300">Report how much time you spent on a devlog with a video for proof!</p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="hack-card p-8 relative animate__animated animate__fadeIn animate__delay-3s">
+                    <div class="absolute -top-6 -left-6 w-12 h-12 hack-radient rounded-full flex items-center justify-center text-white font-bold text-xl animate-pulse-rainbow">3</div>
+                    <h3 class="text-xl font-bold text-white mb-4 mt-4">Document Progress</h3>
+                    <p class="text-gray-300">Write about what you built and what you learned</p>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="hack-card p-8 relative animate__animated animate__fadeIn animate__delay-4s">
+                    <div class="absolute -top-6 -left-6 w-12 h-12 hack-gradient rounded-full flex items-center justify-center text-white font-bold text-xl animate-pulse-rainbow">4</div>
+                    <h3 class="text-xl font-bold text-white mb-4 mt-4">Review Your Growth</h3>
+                    <p class="text-gray-300">Watch your progress unfold over time</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CTA Section -->
+        <div class="container mx-auto px-4 py-16 text-center">
+            <div class="hack-card p-12 max-w-4xl mx-auto animate__animated animate__fadeIn relative overflow-hidden">
+                <!-- More decorative elements -->
+                <div class="absolute top-0 right-0 w-32 h-32 bg-red-500/20 rounded-full translate-x-16 -translate-y-16 blur-xl animate-pulse"></div>
+                <div class="absolute bottom-0 left-0 w-32 h-32 bg-orange-500/20 rounded-full -translate-x-16 translate-y-16 blur-xl animate-pulse"></div>
+                <div class="absolute top-1/2 left-1/2 w-40 h-40 bg-purple-500/10 rounded-full -translate-x-20 -translate-y-20 blur-2xl animate-pulse"></div>
+                
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 relative z-10">
+                    Ready to track your <span class="hack-text-gradient squiggly">Grounded</span> journey?
+                </h2>
+                <p class="text-xl text-gray-300 mb-8 relative z-10 handwritten">
+                    Track your project progress with ease
+                </p>
+                <a href="{{ url_for('login') }}" class="hack-btn px-12 py-6 text-white rounded-2xl font-bold inline-flex items-center gap-3 shadow-lg text-xl relative z-10">
+                    <i class='bx bxl-slack animate-wiggle'></i> Login with Slack
+                </a>
+                
+                <div class="mt-8 text-sm text-gray-400 handwritten relative z-10">
+                    Built with Hack Club spirit at 3 am 😭🔥 by Aarav J
+                </div>
+                
+                <!-- Orpheus with personality -->
+                <div class="mt-6 opacity-70 animate-bounce-slow">
+                    <img src="https://assets.hackclub.com/icon-rounded.svg" alt="Hack Club" class="h-10 mx-auto">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add some interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Make cards randomly tilt slightly on load
+            const cards = document.querySelectorAll('.hack-card');
+            cards.forEach(card => {
+                const randomTilt = (Math.random() - 0.5) * 2; // Random tilt between -1 and 1 degree
+                card.style.transform = `rotate(${randomTilt}deg)`;
+            });
+            
+            // Add click effect to buttons
+            const buttons = document.querySelectorAll('.hack-btn, .hack-btn-secondary');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95) rotate(5deg)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

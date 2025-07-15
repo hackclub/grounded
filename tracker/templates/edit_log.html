@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Dev Log - Grounded Tracker{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 py-8 fade-in">
+  <div class="glass-card p-8 rounded-lg shadow-xl animate__animated animate__fadeIn">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
+      <div class="flex items-center">
+        <div class="bg-primary-500 bg-opacity-20 p-3 rounded-full mr-4">
+          <i class='bx bx-edit-alt text-3xl text-primary-400'></i>
+        </div>
+        <h1 class="text-2xl font-bold text-white">Edit Dev Log</h1>
+      </div>
+      <a href="{{ url_for('index') }}" class="flex items-center bg-slate-700 hover:bg-slate-600 px-4 py-2 text-white rounded-lg transition-all duration-300">
+        <i class='bx bx-arrow-back mr-2'></i> Back to Dashboard
+      </a>
+    </div>
+
+    <div id="loading" class="text-center py-12 animate__animated animate__fadeIn">
+      <div class="flex flex-col items-center">
+        <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-500 mb-4"></div>
+        <p class="text-white text-lg">Loading log data...</p>
+      </div>
+    </div>
+
+      <form id="edit-form" method="POST" class="space-y-6 hidden animate__animated animate__fadeIn">
+        <input type="hidden" id="record_id" name="record_id">
+        <div class="bg-slate-800 bg-opacity-50 p-5 rounded-lg">
+          <label class="flex items-center text-primary-300 font-semibold mb-3">
+            <i class='bx bx-rename mr-2'></i> Project Name
+          </label>
+          <input type="text" id="project_name" name="project_name" required class="w-full p-3 rounded-lg bg-slate-700 text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-300" placeholder="Project Name">
+        </div>
+
+        <div class="bg-slate-800 bg-opacity-50 p-5 rounded-lg">
+          <label class="flex items-center text-primary-300 font-semibold mb-3">
+            <i class='bx bx-info-circle mr-2'></i> Description
+          </label>
+          <input type="text" id="description" name="description" required class="w-full p-3 rounded-lg bg-slate-700 text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-300" placeholder="Brief description of your work session">
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-slate-800 bg-opacity-50 p-5 rounded-lg">
+            <label class="flex items-center text-primary-300 font-semibold mb-3">
+              <i class='bx bx-error-circle mr-2'></i> Issues Faced
+            </label>
+            <textarea id="issues_faced" name="issues_faced" rows="3" class="w-full p-3 rounded-lg bg-slate-700 text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-300" placeholder="Any issues you faced..."></textarea>
+          </div>
+
+          <div class="bg-slate-800 bg-opacity-50 p-5 rounded-lg">
+            <label class="flex items-center text-primary-300 font-semibold mb-3">
+              <i class='bx bx-chevrons-right mr-2'></i> Next Steps
+            </label>
+            <textarea id="next_steps" name="next_steps" rows="3" class="w-full p-3 rounded-lg bg-slate-700 text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-300" placeholder="What you plan to do next..."></textarea>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-slate-800 bg-opacity-50 p-5 rounded-lg">
+            <label class="flex items-center text-primary-300 font-semibold mb-3">
+              <i class='bx bx-time mr-2'></i> Time Spent (minutes)
+            </label>
+            <input type="number" id="time_spent" name="time_spent" required min="1" class="w-full p-3 rounded-lg bg-slate-700 text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-300" placeholder="How many minutes did you spend?">
+          </div>
+
+          <div id="media-preview" class="hidden bg-slate-800 bg-opacity-50 p-5 rounded-lg">
+            <label class="flex items-center text-primary-300 font-semibold mb-3">
+              <i class='bx bx-image-alt mr-2'></i> Current Media
+            </label>
+            <div class="overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+              <img id="media-image" src="" class="w-full object-cover hover:scale-105 transition-all duration-500 rounded-lg" alt="Dev log media">
+            </div>
+            <p class="text-slate-400 text-sm mt-2 flex items-center">
+              <i class='bx bx-info-circle mr-1'></i> Media cannot be changed after upload
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4 mt-8">
+          <button type="submit" class="btn-primary px-8 py-3 text-white font-semibold rounded-lg flex items-center justify-center gap-2 shadow-lg hover:shadow-primary-500/20">
+            <i class='bx bx-save text-xl'></i> Update Dev Log
+          </button>
+          <a href="{{ url_for('index') }}" class="bg-slate-700 hover:bg-slate-600 px-8 py-3 text-white font-semibold rounded-lg flex items-center justify-center gap-2 transition-all duration-300 shadow-lg">
+            <i class='bx bx-x text-xl'></i> Cancel
+          </a>
+        </div>
+      </form>
+
+      <div id="error-message" class="hidden bg-red-500 text-white p-4 rounded-lg mt-4">
+        Failed to load log data. Please try again.
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const recordId = urlParams.get('id');
+    
+    if (!recordId) {
+      window.location.href = '{{ url_for("index") }}';
+      return;
+    }
+
+    document.getElementById('record_id').value = recordId;
+    
+    const loadingEl = document.getElementById('loading');
+    loadingEl.innerHTML = `
+      <div class="flex flex-col items-center justify-center animate__animated animate__pulse animate__infinite">
+        <i class='bx bx-loader-alt bx-spin text-primary-400 text-4xl mb-3'></i>
+        <p class="text-primary-300">Loading log data...</p>
+      </div>
+    `;
+    
+    fetch(`/api/logs/${recordId}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch log data');
+        }
+        return response.json();
+      })
+      .then(data => {
+        document.getElementById('project_name').value = data.fields['Project Name'];
+        document.getElementById('description').value = data.fields['Description'];
+        document.getElementById('issues_faced').value = data.fields['Issues Faced'] || '';
+        document.getElementById('next_steps').value = data.fields['Next Steps'] || '';
+        document.getElementById('time_spent').value = data.fields['Time Spent (minutes)'];
+        
+        if (data.fields['Media URL']) {
+          document.getElementById('media-image').src = data.fields['Media URL'];
+          document.getElementById('media-preview').classList.remove('hidden');
+        }
+        
+        loadingEl.classList.add('animate__animated', 'animate__fadeOut');
+        setTimeout(() => {
+          loadingEl.classList.add('hidden');
+          document.getElementById('edit-form').classList.remove('hidden');
+        }, 300);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        loadingEl.classList.remove('animate__pulse', 'animate__infinite');
+        loadingEl.innerHTML = `
+          <div class="bg-red-500 bg-opacity-20 p-6 rounded-lg text-center animate__animated animate__shakeX">
+            <i class='bx bx-error-circle text-red-400 text-4xl mb-3'></i>
+            <p class="text-red-300 mb-4">Error loading log data</p>
+            <button onclick="window.location.reload()" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg flex items-center mx-auto">
+              <i class='bx bx-refresh mr-2'></i> Try Again
+            </button>
+          </div>
+        `;
+      });
+
+    document.getElementById('edit-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const submitBtn = this.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<i class='bx bx-loader-alt bx-spin'></i> Updating...`;
+      
+      const formData = {
+        project_name: document.getElementById('project_name').value,
+        description: document.getElementById('description').value,
+        issues_faced: document.getElementById('issues_faced').value,
+        next_steps: document.getElementById('next_steps').value,
+        time_spent: parseInt(document.getElementById('time_spent').value)
+      };
+      
+      fetch(`/api/logs/${recordId}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to update log');
+        }
+        return response.json();
+      })
+      .then(data => {
+        submitBtn.innerHTML = `<i class='bx bx-check'></i> Updated!`;
+        submitBtn.classList.add('animate__animated', 'animate__pulse');
+        
+        setTimeout(() => {
+          window.location.href = '{{ url_for("index") }}?updated=true';
+        }, 500);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+        
+        const errorMsg = document.createElement('div');
+        errorMsg.className = 'bg-red-500 bg-opacity-20 p-4 rounded-lg text-center mt-4 animate__animated animate__shakeX';
+        errorMsg.innerHTML = `
+          <div class="flex items-center justify-center">
+            <i class='bx bx-error-circle text-red-400 text-xl mr-2'></i>
+            <p class="text-red-300">Failed to update log. Please try again.</p>
+          </div>
+        `;
+        
+        const buttonsContainer = document.querySelector('.flex.flex-col.sm\\:flex-row');
+        buttonsContainer.parentNode.insertBefore(errorMsg, buttonsContainer.nextSibling);
+        
+        setTimeout(() => {
+          errorMsg.classList.add('animate__fadeOut');
+          setTimeout(() => errorMsg.remove(), 500);
+        }, 5000);
+      });
+    });
+  });
+</script>
+{% endblock %}

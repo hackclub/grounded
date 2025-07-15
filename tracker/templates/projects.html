@@ -1,0 +1,491 @@
+{% extends "base.html" %}
+
+{% block title %}Projects - Grounded Tracker{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto fade-in">
+    <!-- Top Bar with Welcome Message and Actions -->
+    <div class="glass-card p-8 mb-8 animate__animated animate__fadeIn relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10 bg-gradient-to-r from-primary-500/20 to-purple-500/20"></div>
+        <div class="absolute top-0 left-0 w-40 h-40 bg-primary-400/10 rounded-full -translate-x-20 -translate-y-20 blur-xl"></div>
+        <div class="absolute bottom-0 right-0 w-32 h-32 bg-purple-400/10 rounded-full translate-x-16 translate-y-16 blur-xl"></div>
+        
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4 relative z-10">
+            <div class="text-center md:text-left">
+                <div class="flex items-center gap-3 mb-2">
+                    <div class="relative">
+                        <i class='bx bx-code-block text-primary-400 text-3xl animate-pulse'></i>
+                        <div class="absolute -top-1 -right-1 w-3 h-3 bg-primary-400 rounded-full animate-ping"></div>
+                    </div>
+                    <h1 class="text-3xl font-bold text-white bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
+                        Welcome, {{ user.user_name }}!
+                    </h1>
+                </div>
+                <p class="text-gray-200 mt-2 text-lg">Track your development journey and reflect on your progress</p>
+                <div class="flex items-center gap-2 mt-3 text-sm text-gray-400">
+                    <i class='bx bx-time-five'></i>
+                    <span id="current-time"></span>
+                </div>
+            </div>
+            <div class="flex gap-4">
+                <a href="{{ url_for('create_project_page') }}" class="btn-primary px-6 py-3 text-white rounded-lg font-semibold flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700">
+                    <i class='bx bx-plus animate-bounce'></i> Create Project
+                </a>
+                <a href="{{ url_for('logout') }}" class="bg-slate-700 hover:bg-slate-600 px-6 py-3 text-white rounded-lg font-semibold flex items-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+                    <i class='bx bx-log-out'></i> Logout
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="glass-card p-6 animate__animated animate__fadeIn animate__delay-1s">
+            <div class="flex items-center gap-4">
+                <div class="p-3 bg-primary-500/20 rounded-full">
+                    <i class='bx bx-folder text-primary-400 text-2xl'></i>
+                </div>
+                <div>
+                    <p class="text-gray-400 text-sm">Total Projects</p>
+                    <p class="text-2xl font-bold text-white" id="total-projects">0</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="glass-card p-6 animate__animated animate__fadeIn animate__delay-2s">
+            <div class="flex items-center gap-4">
+                <div class="p-3 bg-emerald-500/20 rounded-full">
+                    <i class='bx bx-trending-up text-emerald-400 text-2xl'></i>
+                </div>
+                <div>
+                    <p class="text-gray-400 text-sm">Active Projects</p>
+                    <p class="text-2xl font-bold text-white" id="active-projects">0</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="glass-card p-6 animate__animated animate__fadeIn animate__delay-3s">
+            <div class="flex items-center gap-4">
+                <div class="p-3 bg-purple-500/20 rounded-full">
+                    <i class='bx bx-star text-purple-400 text-2xl'></i>
+                </div>
+                <div>
+                    <p class="text-gray-400 text-sm">Latest Project</p>
+                    <p class="text-lg font-bold text-white truncate" id="latest-project">Loading...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="glass-card p-8 animate__animated animate__fadeIn animate__delay-1s relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary-500/10 to-transparent"></div>
+            <div class="absolute top-10 left-10 w-20 h-20 bg-primary-400/10 rounded-full blur-xl"></div>
+            <div class="absolute bottom-10 right-10 w-24 h-24 bg-purple-400/10 rounded-full blur-xl"></div>
+        </div>
+        
+        <div class="flex items-center justify-between mb-6 relative z-10">
+            <div class="flex items-center gap-3">
+                <div class="relative">
+                    <i class='bx bx-folder text-primary-400 text-2xl'></i>
+                    <div class="absolute -top-1 -right-1 w-2 h-2 bg-primary-400 rounded-full animate-pulse"></div>
+                </div>
+                <h2 class="text-2xl font-bold text-white bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">My Projects</h2>
+            </div>
+            
+            <!-- Filter and Sort Controls -->
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2">
+                    <label class="text-gray-400 text-sm">Sort by:</label>
+                    <select id="sort-projects" class="bg-slate-700 text-white px-3 py-1 rounded-lg text-sm border border-slate-600 focus:border-primary-400 focus:outline-none transition-colors">
+                        <option value="newest">Newest</option>
+                        <option value="oldest">Oldest</option>
+                        <option value="name">Name</option>
+                    </select>
+                </div>
+                <div class="flex items-center gap-2">
+                    <label class="text-gray-400 text-sm">View:</label>
+                    <button id="grid-view" class="p-2 rounded-lg bg-primary-500 text-white transition-all duration-300">
+                        <i class='bx bx-grid-alt'></i>
+                    </button>
+                    <button id="list-view" class="p-2 rounded-lg bg-slate-700 text-gray-400 hover:bg-slate-600 hover:text-white transition-all duration-300">
+                        <i class='bx bx-list-ul'></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+            <div class="flex justify-center items-center py-8 col-span-full">
+                <div class="relative">
+                    <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-400"></div>
+                    <div class="absolute inset-0 animate-ping rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-400/20"></div>
+                </div>
+                <p class="text-gray-200 ml-4 animate-pulse">Loading your projects...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Enhanced Floating Action Button -->
+<div class="fixed bottom-6 right-6 z-40">
+    <a href="{{ url_for('create_project_page') }}" class="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white p-4 rounded-full shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300 flex items-center justify-center group">
+        <i class='bx bx-plus text-2xl group-hover:rotate-90 transition-transform duration-300'></i>
+    </a>
+</div>
+
+<script>
+// Update current time
+function updateTime() {
+    const now = new Date();
+    const options = { 
+        hour: '2-digit', 
+        minute: '2-digit',
+        day: 'numeric',
+        month: 'short'
+    };
+    document.getElementById('current-time').textContent = now.toLocaleDateString('en-US', options);
+}
+updateTime();
+setInterval(updateTime, 60000);
+
+// View toggle functionality
+let isGridView = true;
+document.getElementById('grid-view').addEventListener('click', () => {
+    isGridView = true;
+    document.getElementById('grid-view').classList.add('bg-primary-500', 'text-white');
+    document.getElementById('grid-view').classList.remove('bg-slate-700', 'text-gray-400');
+    document.getElementById('list-view').classList.remove('bg-primary-500', 'text-white');
+    document.getElementById('list-view').classList.add('bg-slate-700', 'text-gray-400');
+    updateProjectsDisplay();
+});
+
+document.getElementById('list-view').addEventListener('click', () => {
+    isGridView = false;
+    document.getElementById('list-view').classList.add('bg-primary-500', 'text-white');
+    document.getElementById('list-view').classList.remove('bg-slate-700', 'text-gray-400');
+    document.getElementById('grid-view').classList.remove('bg-primary-500', 'text-white');
+    document.getElementById('grid-view').classList.add('bg-slate-700', 'text-gray-400');
+    updateProjectsDisplay();
+});
+
+// Sort functionality
+document.getElementById('sort-projects').addEventListener('change', (e) => {
+    sortProjects(e.target.value);
+});
+
+let allProjects = [];
+
+function updateProjectsDisplay() {
+    const container = document.getElementById('projects-container');
+    if (isGridView) {
+        container.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10';
+    } else {
+        container.className = 'space-y-4 relative z-10';
+    }
+    renderProjects(allProjects);
+}
+
+function sortProjects(sortBy) {
+    const sortedProjects = [...allProjects].sort((a, b) => {
+        switch(sortBy) {
+            case 'newest':
+                return new Date(b.fields['Created At']) - new Date(a.fields['Created At']);
+            case 'oldest':
+                return new Date(a.fields['Created At']) - new Date(b.fields['Created At']);
+            case 'name':
+                return a.fields['Project Name'].localeCompare(b.fields['Project Name']);
+            default:
+                return 0;
+        }
+    });
+    renderProjects(sortedProjects);
+}
+
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('updated') === 'true') {
+    const flashMessage = document.createElement('div');
+    flashMessage.className = 'mb-4 p-4 rounded-lg bg-gradient-to-r from-primary-500 to-primary-600 text-white shadow-2xl animate__animated animate__fadeIn flex items-center border border-primary-400/20';
+    flashMessage.innerHTML = `
+        <i class='bx bx-check-circle text-2xl mr-3 animate-bounce'></i>
+        <span class="font-semibold">Project updated successfully!</span>
+    `;
+    document.querySelector('.container').prepend(flashMessage);
+    
+    window.history.replaceState({}, document.title, window.location.pathname);
+    
+    setTimeout(() => {
+        flashMessage.classList.add('animate__fadeOut');
+        setTimeout(() => {
+            flashMessage.remove();
+        }, 500);
+    }, 4500);
+}
+
+function getTagColor(tag) {
+    const colors = {
+        'CAD': 'bg-gradient-to-r from-blue-500 to-blue-600',
+        'PCB': 'bg-gradient-to-r from-purple-500 to-purple-600',
+        'Hardware': 'bg-gradient-to-r from-orange-500 to-orange-600',
+        'Software': 'bg-gradient-to-r from-emerald-500 to-emerald-600',
+        '3D Printing': 'bg-gradient-to-r from-pink-500 to-pink-600',
+        'Research': 'bg-gradient-to-r from-indigo-500 to-indigo-600',
+        'General': 'bg-gradient-to-r from-gray-500 to-gray-600'
+    };
+    
+    return colors[tag] || 'bg-gradient-to-r from-gray-500 to-gray-600';
+}
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    if (isNaN(date)) return '';
+    
+    const now = new Date();
+    const diffMs = now - date;
+    const diffSec = Math.floor(diffMs / 1000);
+    const diffMin = Math.floor(diffSec / 60);
+    const diffHour = Math.floor(diffMin / 60);
+    const diffDay = Math.floor(diffHour / 24);
+    
+    if (diffDay > 0) {
+        return diffDay === 1 ? 'Yesterday' : `${diffDay} days ago`;
+    } else if (diffHour > 0) {
+        return `${diffHour} hour${diffHour > 1 ? 's' : ''} ago`;
+    } else if (diffMin > 0) {
+        return `${diffMin} minute${diffMin > 1 ? 's' : ''} ago`;
+    } else {
+        return 'Just now';
+    }
+}
+
+function renderProjects(projects) {
+    const container = document.getElementById('projects-container');
+    
+    if (projects.length === 0) {
+        container.innerHTML = `
+            <div class="text-center py-16 animate__animated animate__fadeIn col-span-full">
+                <div class="relative mb-6">
+                    <i class='bx bx-folder-open text-6xl text-gray-400 mb-4 animate-pulse'></i>
+                    <div class="absolute -top-2 -right-2 w-4 h-4 bg-primary-400 rounded-full animate-ping"></div>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-2">No Projects Yet</h3>
+                <p class="text-gray-300 text-lg mb-6">Start your development journey by creating your first project!</p>
+                <a href="{{ url_for('create_project') }}" class="btn-primary inline-flex items-center gap-2 px-8 py-3 text-white rounded-lg font-semibold bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+                    <i class='bx bx-plus animate-bounce'></i> Create Your First Project
+                </a>
+            </div>
+        `;
+        return;
+    }
+    
+    if (isGridView) {
+        container.innerHTML = projects.map((project, index) => {
+            const projectTag = project.fields['Project Tag'];
+            const tagColor = getTagColor(projectTag);
+            const createdDate = project.fields['Created At'] ? formatDate(project.fields['Created At']) : '';
+            const animationDelay = index < 6 ? `animate__delay-${index % 3 + 1}s` : '';
+            const coverImage = project.fields['Cover Image URL'] || '/default_cover.png';
+            
+            return `
+            <div class="glass-card overflow-hidden rounded-xl hover:shadow-2xl transition-all duration-500 animate__animated animate__fadeIn ${animationDelay} flex flex-col h-full transform hover:scale-105 group">
+                <div class="relative overflow-hidden h-48">
+                    <img src="${coverImage}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="${project.fields['Project Name']}">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-0 left-0 p-4 w-full bg-gradient-to-t from-black/90 to-transparent">
+                        <div class="flex items-center justify-between">
+                            ${projectTag ? `<span class="${tagColor} text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">${projectTag}</span>` : '<div></div>'}
+                            <span class="text-gray-300 text-sm bg-black/30 px-2 py-1 rounded-lg backdrop-blur-sm">${createdDate}</span>
+                        </div>
+                        <h3 class="text-white text-xl font-bold mt-2 truncate drop-shadow-lg">${project.fields['Project Name']}</h3>
+                    </div>
+                </div>
+                
+                <div class="p-6 flex-grow">
+                    <p class="text-gray-300 line-clamp-3 h-18 overflow-hidden leading-relaxed">${project.fields['Description'] || 'No description provided.'}</p>
+                </div>
+                
+                <div class="p-6 pt-0 flex justify-between items-center">
+                    <a href="/project/${project.id}" class="btn-primary px-6 py-2 text-white rounded-lg text-sm font-medium flex items-center gap-2 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+                        <i class='bx bx-folder-open'></i> View Project
+                    </a>
+                    <div class="flex space-x-2">
+                        <a href="/edit-project?id=${project.id}" class="text-gray-400 hover:text-gray-300 bg-slate-800 hover:bg-slate-700 p-2 rounded-full transition-all duration-300 transform hover:scale-110 shadow-lg">
+                            <i class='bx bx-edit text-lg'></i>
+                        </a>
+                        <button onclick="deleteProject('${project.id}')" class="text-red-400 hover:text-red-300 bg-slate-800 hover:bg-slate-700 p-2 rounded-full transition-all duration-300 transform hover:scale-110 shadow-lg">
+                            <i class='bx bx-trash text-lg'></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            `;
+        }).join('');
+    } else {
+        // List view
+        container.innerHTML = projects.map((project, index) => {
+            const projectTag = project.fields['Project Tag'];
+            const tagColor = getTagColor(projectTag);
+            const createdDate = project.fields['Created At'] ? formatDate(project.fields['Created At']) : '';
+            const coverImage = project.fields['Cover Image URL'] || '/default_cover.png';
+            
+            return `
+            <div class="glass-card p-6 rounded-xl hover:shadow-2xl transition-all duration-500 animate__animated animate__fadeIn flex items-center gap-6 transform hover:scale-102 group">
+                <div class="relative overflow-hidden w-24 h-24 rounded-lg flex-shrink-0">
+                    <img src="${coverImage}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="${project.fields['Project Name']}">
+                </div>
+                
+                <div class="flex-grow">
+                    <div class="flex items-center gap-3 mb-2">
+                        <h3 class="text-xl font-bold text-white">${project.fields['Project Name']}</h3>
+                        ${projectTag ? `<span class="${tagColor} text-white px-3 py-1 rounded-full text-sm font-medium">${projectTag}</span>` : ''}
+                    </div>
+                    <p class="text-gray-300 line-clamp-2 mb-2">${project.fields['Description'] || 'No description provided.'}</p>
+                    <p class="text-gray-400 text-sm">${createdDate}</p>
+                </div>
+                
+                <div class="flex items-center gap-3">
+                    <a href="/project/${project.id}" class="btn-primary px-4 py-2 text-white rounded-lg text-sm font-medium flex items-center gap-2 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 transform hover:scale-105 transition-all duration-300">
+                        <i class='bx bx-folder-open'></i> View
+                    </a>
+                    <a href="/edit-project?id=${project.id}" class="text-gray-400 hover:text-gray-300 bg-slate-800 hover:bg-slate-700 p-2 rounded-full transition-all duration-300">
+                        <i class='bx bx-edit text-lg'></i>
+                    </a>
+                    <button onclick="deleteProject('${project.id}')" class="text-red-400 hover:text-red-300 bg-slate-800 hover:bg-slate-700 p-2 rounded-full transition-all duration-300">
+                        <i class='bx bx-trash text-lg'></i>
+                    </button>
+                </div>
+            </div>
+            `;
+        }).join('');
+    }
+}
+
+fetch('/api/projects')
+    .then(response => response.json())
+    .then(projects => {
+        allProjects = projects;
+        
+        // Update stats
+        document.getElementById('total-projects').textContent = projects.length;
+        document.getElementById('active-projects').textContent = projects.length; // Assuming all are active
+        document.getElementById('latest-project').textContent = projects.length > 0 ? projects[0].fields['Project Name'] : 'None';
+        
+        renderProjects(projects);
+    })
+    .catch(error => {
+        console.error('Error loading projects:', error);
+        document.getElementById('projects-container').innerHTML = `
+            <div class="text-center py-16 animate__animated animate__fadeIn col-span-full">
+                <div class="relative mb-6">
+                    <i class='bx bx-error-circle text-6xl text-red-400 mb-4 animate-pulse'></i>
+                    <div class="absolute -top-2 -right-2 w-4 h-4 bg-red-400 rounded-full animate-ping"></div>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-2">Oops! Something went wrong</h3>
+                <p class="text-red-300 text-lg mb-6">We couldn't load your projects. Please try again.</p>
+                <button onclick="window.location.reload()" class="bg-slate-700 hover:bg-slate-600 px-8 py-3 text-white rounded-lg font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+                    <i class='bx bx-refresh mr-2 animate-spin'></i> Try Again
+                </button>
+            </div>
+        `;
+    });
+
+function deleteProject(recordId) {
+    const overlay = document.createElement('div');
+    overlay.className = 'fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 animate__animated animate__fadeIn';
+    
+    const dialog = document.createElement('div');
+    dialog.className = 'glass-card p-8 rounded-xl max-w-md w-full mx-4 animate__animated animate__zoomIn shadow-2xl border border-white/10';
+    dialog.innerHTML = `
+        <div class="text-center mb-6">
+            <div class="relative mb-4">
+                <i class='bx bx-trash text-red-400 text-5xl animate-pulse'></i>
+                <div class="absolute -top-2 -right-2 w-4 h-4 bg-red-400 rounded-full animate-ping"></div>
+            </div>
+            <h3 class="text-2xl font-bold text-white mt-4 mb-2">Delete Project</h3>
+            <p class="text-gray-300 mt-2 leading-relaxed">Are you sure you want to delete this project? This action cannot be undone.</p>
+            <div class="mt-4 p-3 bg-red-500/10 border border-red-500/20 rounded-lg">
+                <p class="text-red-300 text-sm">⚠️ Note: This will not delete the associated dev logs.</p>
+            </div>
+        </div>
+        <div class="flex justify-center gap-4 mt-8">
+            <button id="cancel-delete" class="bg-slate-700 hover:bg-slate-600 px-6 py-3 text-white rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                Cancel
+            </button>
+            <button id="confirm-delete" class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 px-6 py-3 text-white rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                Delete Project
+            </button>
+        </div>
+    `;
+    
+    overlay.appendChild(dialog);
+    document.body.appendChild(overlay);
+    
+    document.getElementById('cancel-delete').addEventListener('click', () => {
+        dialog.classList.replace('animate__zoomIn', 'animate__zoomOut');
+        overlay.classList.replace('animate__fadeIn', 'animate__fadeOut');
+        setTimeout(() => overlay.remove(), 500);
+    });
+    
+    document.getElementById('confirm-delete').addEventListener('click', () => {
+        document.getElementById('confirm-delete').innerHTML = `
+            <div class="flex items-center">
+                <div class="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-white mr-2"></div>
+                Deleting...
+            </div>
+        `;
+        document.getElementById('confirm-delete').disabled = true;
+        
+        fetch(`/api/projects/${recordId}`, {
+            method: 'DELETE'
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                dialog.innerHTML = `
+                    <div class="text-center mb-6">
+                        <div class="relative mb-4">
+                            <i class='bx bx-check-circle text-primary-400 text-5xl animate-bounce'></i>
+                            <div class="absolute -top-2 -right-2 w-4 h-4 bg-primary-400 rounded-full animate-ping"></div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mt-4">Success!</h3>
+                        <p class="text-gray-300 mt-2">Project deleted successfully.</p>
+                    </div>
+                `;
+                
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
+            } else {
+                throw new Error(data.message || 'Failed to delete project');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            dialog.innerHTML = `
+                <div class="text-center mb-6">
+                    <div class="relative mb-4">
+                        <i class='bx bx-error-circle text-red-400 text-5xl animate-pulse'></i>
+                        <div class="absolute -top-2 -right-2 w-4 h-4 bg-red-400 rounded-full animate-ping"></div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mt-4">Error</h3>
+                    <p class="text-red-300 mt-2">${error.message || 'An error occurred while deleting the project'}</p>
+                </div>
+                <div class="flex justify-center mt-6">
+                    <button id="close-error" class="bg-slate-700 hover:bg-slate-600 px-6 py-3 text-white rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        Close
+                    </button>
+                </div>
+            `;
+            
+            document.getElementById('close-error').addEventListener('click', () => {
+                dialog.classList.replace('animate__zoomIn', 'animate__zoomOut');
+                overlay.classList.replace('animate__fadeIn', 'animate__fadeOut');
+                setTimeout(() => overlay.remove(), 500);
+            });
+        });
+    });
+}
+</script>
+{% endblock %}

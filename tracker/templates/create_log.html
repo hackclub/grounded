@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block title %}Create Dev Log - Grounded Tracker{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 py-8 fade-in">
+  <div class="glass-card p-8 rounded-lg shadow-xl animate__animated animate__fadeIn">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
+      <div class="flex items-center">
+        <div class="bg-primary-500 bg-opacity-20 p-3 rounded-full mr-4">
+          <i class='bx bx-plus-circle text-3xl text-primary-400'></i>
+        </div>
+        <h1 class="text-2xl font-bold text-white">Create Dev Log</h1>
+      </div>
+      <a href="{{ url_for('index') }}" class="flex items-center bg-slate-700 hover:bg-slate-600 px-4 py-2 text-white rounded-lg transition-all duration-300">
+        <i class='bx bx-arrow-back mr-2'></i> Back to Dashboard
+      </a>
+    </div>
+
+      <form method="POST" enctype="multipart/form-data" class="space-y-6 animate__animated animate__fadeIn animate__delay-1s">
+        <div class="bg-slate-800 bg-opacity-50 p-5 rounded-lg">
+          <label class="flex items-center text-primary-300 font-semibold mb-3">
+            <i class='bx bx-rename mr-2'></i> Project Name
+          </label>
+          <input type="text" name="project_name" required class="w-full p-3 rounded-lg bg-slate-700 text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-300" placeholder="Project Name" value="{{ project_name }}">
+        </div>
+        
+        <div class="bg-slate-800 bg-opacity-50 p-5 rounded-lg">
+          <label class="flex items-center text-primary-300 font-semibold mb-3">
+            <i class='bx bx-tag mr-2'></i> Dev Log Tag
+          </label>
+          <select name="project_tag" required class="w-full p-3 rounded-lg bg-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-300" value="{{ project_tag }}">
+            <option value="" disabled {% if not project_tag %}selected{% endif %}>Select a tag</option>
+            <option value="CAD" {% if project_tag == 'CAD' %}selected{% endif %}>CAD</option>
+            <option value="PCB" {% if project_tag == 'PCB' %}selected{% endif %}>PCB</option>
+            <option value="Hardware" {% if project_tag == 'Hardware' %}selected{% endif %}>Hardware</option>
+            <option value="Software" {% if project_tag == 'Software' %}selected{% endif %}>Software</option>
+            <option value="3D Printing" {% if project_tag == '3D Printing' %}selected{% endif %}>3D Printing</option>
+            <option value="Research" {% if project_tag == 'Research' %}selected{% endif %}>Research</option>
+          </select>
+        </div>
+
+        <div class="bg-slate-800 bg-opacity-50 p-5 rounded-lg">
+          <label class="flex items-center text-primary-300 font-semibold mb-3">
+            <i class='bx bx-info-circle mr-2'></i> Title
+          </label>
+          <input type="text" name="title" required class="w-full p-3 rounded-lg bg-slate-700 text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-300" placeholder="Brief title for this log entry">
+        </div>
+        
+        <div class="bg-slate-800 bg-opacity-50 p-5 rounded-lg">
+          <label class="flex items-center text-primary-300 font-semibold mb-3">
+            <i class='bx bx-code-block mr-2'></i> What I Did
+          </label>
+          <textarea name="what_did" required rows="4" class="w-full p-3 rounded-lg bg-slate-700 text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-300" placeholder="What I did today..."></textarea>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-slate-800 bg-opacity-50 p-5 rounded-lg">
+            <label class="flex items-center text-primary-300 font-semibold mb-3">
+              <i class='bx bx-error-circle mr-2'></i> Issues Faced
+            </label>
+            <textarea name="issues_faced" rows="3" class="w-full p-3 rounded-lg bg-slate-700 text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-300" placeholder="Any issues you faced today..."></textarea>
+          </div>
+
+          <div class="bg-slate-800 bg-opacity-50 p-5 rounded-lg">
+            <label class="flex items-center text-primary-300 font-semibold mb-3">
+              <i class='bx bx-chevrons-right mr-2'></i> Next Steps
+            </label>
+            <textarea name="next_steps" rows="3" class="w-full p-3 rounded-lg bg-slate-700 text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-300" placeholder="What you plan to do next..."></textarea>
+          </div>
+        </div>
+        
+        <div class="bg-slate-800 bg-opacity-50 p-5 rounded-lg">
+          <label class="flex items-center text-primary-300 font-semibold mb-3">
+            <i class='bx bx-time mr-2'></i> Time Spent (minutes)
+          </label>
+          <input type="number" name="time_spent" required min="1" class="w-full p-3 rounded-lg bg-slate-700 text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-300" placeholder="How many minutes did you spend?">
+        </div>
+
+        <div class="bg-slate-800 bg-opacity-50 p-5 rounded-lg">
+          <label class="flex items-center text-primary-300 font-semibold mb-3">
+            <i class='bx bx-image-alt mr-2'></i> Screenshot or Video
+          </label>
+          <div class="relative">
+            <input type="file" name="media_file" accept="image/*,video/*" required class="w-full p-3 rounded-lg bg-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-300 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-primary-500 file:text-white hover:file:bg-primary-600">
+          </div>
+          <p class="text-slate-400 text-sm mt-2 flex items-center">
+            <i class='bx bx-info-circle mr-1'></i> Upload a screenshot or video of your work
+          </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4 mt-8">
+          <button type="submit" class="btn-primary px-8 py-3 text-white font-semibold rounded-lg flex items-center justify-center gap-2 shadow-lg hover:shadow-primary-500/20">
+            <i class='bx bx-save text-xl'></i> Create Dev Log
+          </button>
+          <a href="{{ url_for('index') }}" class="bg-slate-700 hover:bg-slate-600 px-8 py-3 text-white font-semibold rounded-lg flex items-center justify-center gap-2 transition-all duration-300 shadow-lg">
+            <i class='bx bx-x text-xl'></i> Cancel
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.has('project')) {
+    const projectName = urlParams.get('project');
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('input[name="project_name"]').value = projectName;
+    });
+}
+if (urlParams.has('project_tag')) {
+    const projectTag = urlParams.get('project_tag');
+    document.addEventListener('DOMContentLoaded', function() {
+        const tagSelect = document.querySelector('select[name="project_tag"]');
+        if (tagSelect) {
+            for (let i = 0; i < tagSelect.options.length; i++) {
+                if (tagSelect.options[i].value === projectTag) {
+                    tagSelect.selectedIndex = i;
+                    break;
+                }
+            }
+        }
+    });
+}
+</script>

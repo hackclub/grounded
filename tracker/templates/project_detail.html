@@ -1,0 +1,495 @@
+{% extends "base.html" %}
+
+{% block title %}Project Details - Grounded Tracker{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto fade-in">
+    <!-- Enhanced Header with Breadcrumb -->
+    <div id="project-header" class="glass-card p-8 mb-8 animate__animated animate__fadeIn relative overflow-hidden">
+        <!-- Animated background gradient -->
+        <div class="absolute inset-0 bg-gradient-to-r from-primary-500/10 via-purple-500/10 to-blue-500/10 animate-pulse"></div>
+        
+        <div class="relative z-10">
+            <div class="flex items-center gap-2 mb-6">
+                <nav class="flex items-center space-x-2 text-sm">
+                    <a href="{{ url_for('projects') }}" class="flex items-center text-primary-400 hover:text-primary-300 transition-all duration-300 hover:scale-105">
+                        <i class='bx bx-home mr-1'></i>
+                        <span>Projects</span>
+                    </a>
+                    <i class='bx bx-chevron-right text-gray-400'></i>
+                    <span class="text-gray-300">Project Details</span>
+                </nav>
+            </div>
+            
+            <div id="project-loading" class="flex justify-center items-center py-12">
+                <div class="relative">
+                    <div class="animate-spin rounded-full h-16 w-16 border-t-3 border-b-3 border-primary-400"></div>
+                    <div class="absolute inset-0 rounded-full border-2 border-primary-200 opacity-20"></div>
+                </div>
+                <div class="ml-6">
+                    <p class="text-gray-200 text-lg font-medium">Loading project details...</p>
+                    <p class="text-gray-400 text-sm mt-1">Please wait while we fetch the information</p>
+                </div>
+            </div>
+            
+            <div id="project-details" class="hidden">
+                <!-- Project details will be loaded here -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Enhanced Logs Section -->
+    <div class="glass-card p-8 animate__animated animate__fadeIn animate__delay-1s relative overflow-hidden">
+        <!-- Subtle pattern overlay -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0); background-size: 20px 20px;"></div>
+        </div>
+        
+        <div class="relative z-10">
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+                <div class="flex items-center gap-4">
+                    <div class="p-3 bg-primary-500/20 rounded-xl">
+                        <i class='bx bx-history text-primary-400 text-3xl'></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-white">Development Logs</h2>
+                        <p class="text-gray-400 text-sm mt-1">Track your project progress and milestones</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-3">
+                    <!-- Stats indicator -->
+                    <div id="logs-stats" class="hidden bg-slate-800/50 px-4 py-2 rounded-lg border border-slate-700">
+                        <div class="flex items-center gap-4 text-sm">
+                            <div class="flex items-center gap-1">
+                                <i class='bx bx-notepad text-primary-400'></i>
+                                <span class="text-gray-300"><span id="total-logs">0</span> logs</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <i class='bx bx-time text-green-400'></i>
+                                <span class="text-gray-300"><span id="total-time">0</span> min</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a id="create-log-btn" href="#" class="btn-primary px-6 py-3 text-white rounded-xl font-semibold flex items-center gap-2 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group">
+                        <i class='bx bx-plus group-hover:rotate-90 transition-transform duration-300'></i> 
+                        <span>Add Dev Log</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Filter and Search -->
+            <div id="log-controls" class="hidden mb-6 flex flex-col md:flex-row gap-4">
+                <div class="flex-1 relative">
+                    <input type="text" id="log-search" placeholder="Search logs..." class="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-4 py-2 pl-10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                    <i class='bx bx-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400'></i>
+                </div>
+                <select id="tag-filter" class="bg-slate-800/50 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary-500">
+                    <option value="">All Tags</option>
+                </select>
+                <button id="sort-toggle" class="bg-slate-800/50 border border-slate-700 rounded-lg px-4 py-2 text-white hover:bg-slate-700 transition-all duration-300 flex items-center gap-2">
+                    <i class='bx bx-sort-alt-2'></i>
+                    <span>Latest First</span>
+                </button>
+            </div>
+            
+            <div id="logs-container" class="space-y-6">
+                <div class="flex justify-center items-center py-12">
+                    <div class="relative">
+                        <div class="animate-spin rounded-full h-16 w-16 border-t-3 border-b-3 border-primary-400"></div>
+                        <div class="absolute inset-0 rounded-full border-2 border-primary-200 opacity-20"></div>
+                    </div>
+                    <div class="ml-6">
+                        <p class="text-gray-200 text-lg font-medium">Loading project logs...</p>
+                        <p class="text-gray-400 text-sm mt-1">Fetching development history</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+const pathParts = window.location.pathname.split('/');
+const projectId = pathParts[pathParts.length - 1];
+let allLogs = [];
+let filteredLogs = [];
+let sortOrder = 'desc';
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    if (isNaN(date)) return '';
+    
+    const now = new Date();
+    const diffMs = now - date;
+    const diffSec = Math.floor(diffMs / 1000);
+    const diffMin = Math.floor(diffSec / 60);
+    const diffHour = Math.floor(diffMin / 60);
+    const diffDay = Math.floor(diffHour / 24);
+    
+    if (diffDay > 0) {
+        return diffDay === 1 ? 'Yesterday' : `${diffDay} days ago`;
+    } else if (diffHour > 0) {
+        return `${diffHour} hour${diffHour > 1 ? 's' : ''} ago`;
+    } else if (diffMin > 0) {
+        return `${diffMin} minute${diffMin > 1 ? 's' : ''} ago`;
+    } else {
+        return 'Just now';
+    }
+}
+
+function getTagColor(tag) {
+    const colors = {
+        'CAD': 'bg-blue-500',
+        'PCB': 'bg-purple-500',
+        'Hardware': 'bg-orange-500',
+        'Software': 'bg-emerald-500',
+        '3D Printing': 'bg-pink-500',
+        'Research': 'bg-indigo-500'
+    };
+    
+    return colors[tag] || 'bg-primary-500';
+}
+
+function updateStats() {
+    const totalLogs = allLogs.length;
+    const totalTime = allLogs.reduce((sum, log) => sum + (parseInt(log.fields['Time Spent (minutes)']) || 0), 0);
+    
+    document.getElementById('total-logs').textContent = totalLogs;
+    document.getElementById('total-time').textContent = totalTime;
+    
+    if (totalLogs > 0) {
+        document.getElementById('logs-stats').classList.remove('hidden');
+    }
+}
+
+function filterAndSortLogs() {
+    const searchTerm = document.getElementById('log-search').value.toLowerCase();
+    const tagFilter = document.getElementById('tag-filter').value;
+    
+    filteredLogs = allLogs.filter(log => {
+        const title = log.fields['Title'] || log.fields['title'] || '';
+        console.log("title is", title); // i hate this issue
+        const whatIDid = log.fields['What I Did'] || log.fields['what_did'] || '';
+        const projectTag = log.fields['Project Tag'] || log.fields['project_tag'] || '';
+        
+        const matchesSearch = !searchTerm || 
+            title.toLowerCase().includes(searchTerm) ||
+            whatIDid.toLowerCase().includes(searchTerm);
+        
+        const matchesTag = !tagFilter || projectTag === tagFilter;
+        
+        return matchesSearch && matchesTag;
+    });
+    
+    filteredLogs.sort((a, b) => {
+        const dateA = new Date(a.fields['Created At'] || a.fields['created_at'] || '');
+        const dateB = new Date(b.fields['Created At'] || b.fields['created_at'] || '');
+        return sortOrder === 'desc' ? dateB - dateA : dateA - dateB;
+    });
+    
+    renderLogs();
+}
+
+function renderLogs() {
+    const container = document.getElementById('logs-container');
+    
+    if (filteredLogs.length === 0) {
+        if (allLogs.length === 0) {
+            container.innerHTML = `
+                <div class="text-center py-16 animate__animated animate__fadeIn">
+                    <div class="mb-6">
+                        <i class='bx bx-notepad text-6xl text-gray-400 mb-4'></i>
+                        <h3 class="text-xl font-semibold text-gray-300 mb-2">No Development Logs Yet</h3>
+                        <p class="text-gray-400">Start documenting your project progress by creating your first log entry.</p>
+                    </div>
+                    <a href="{{ url_for('create_log') }}" id="empty-create-log-btn" class="btn-primary inline-flex items-center gap-2 px-6 py-3 text-white rounded-xl font-semibold hover:scale-105 transition-all duration-300">
+                        <i class='bx bx-plus'></i> Create First Log
+                    </a>
+                </div>
+            `;
+        } else {
+            container.innerHTML = `
+                <div class="text-center py-16 animate__animated animate__fadeIn">
+                    <i class='bx bx-search text-6xl text-gray-400 mb-4'></i>
+                    <h3 class="text-xl font-semibold text-gray-300 mb-2">No Logs Found</h3>
+                    <p class="text-gray-400">Try adjusting your search or filter criteria.</p>
+                </div>
+            `;
+        }
+        return;
+    }
+    
+    container.innerHTML = filteredLogs.map((log, index) => {
+        // Add null/undefined checks for all fields - FIXED: Now properly extracting Title field
+        const title = log.fields['Title'] || log.fields['title'] || 'Untitled Log';
+        const projectTag = log.fields['Project Tag'] || log.fields['project_tag'] || 'General';
+        const whatIDid = log.fields['What I Did'] || log.fields['what_did'] || 'No description provided';
+        const timeSpent = log.fields['Time Spent (minutes)'] || log.fields['time_spent'] || '0';
+        const mediaURL = log.fields['Media URL'] || log.fields['media_url'] || '';
+        const createdAt = log.fields['Created At'] || log.fields['created_at'] || '';
+        
+        const tagColor = getTagColor(projectTag);
+        const createdDate = createdAt ? formatDate(createdAt) : '';
+        const animationDelay = index < 5 ? `animate__delay-${index+1}s` : '';
+        
+        return `
+        <div class="glass-card p-6 rounded-xl hover:shadow-xl transition-all duration-300 animate__animated animate__fadeIn ${animationDelay} group border border-slate-700/50 hover:border-primary-500/30">
+            <div class="flex flex-col md:flex-row justify-between items-start mb-4 gap-3">
+                <div class="flex-1">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="${tagColor} text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">${projectTag}</span>
+                        <span class="text-gray-400 text-sm flex items-center gap-1">
+                            <i class='bx bx-time'></i>
+                            ${createdDate}
+                        </span>
+                    </div>
+                    <h3 class="text-white text-xl font-semibold group-hover:text-primary-300 transition-colors duration-300">${title}</h3>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center bg-slate-800/70 px-4 py-2 rounded-full border border-slate-700">
+                        <i class='bx bx-stopwatch text-primary-400 mr-2'></i>
+                        <span class="text-gray-200 text-sm font-medium">${timeSpent} min</span>
+                    </div>
+                    <div class="flex space-x-2">
+                        <a href="/edit-log?id=${log.id}" class="text-blue-400 hover:text-blue-300 bg-slate-800/70 p-2 rounded-full transition-all duration-300 hover:bg-slate-700 hover:scale-110" title="Edit log">
+                            <i class='bx bx-edit text-lg'></i>
+                        </a>
+                        <button onclick="deleteLog('${log.id}')" class="text-red-400 hover:text-red-300 bg-slate-800/70 p-2 rounded-full transition-all duration-300 hover:bg-slate-700 hover:scale-110" title="Delete log">
+                            <i class='bx bx-trash text-lg'></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-slate-800/30 p-6 rounded-xl mb-4 border border-slate-700/50">
+                <div class="flex items-center gap-2 mb-3">
+                    <i class='bx bx-code-block text-primary-400'></i>
+                    <h4 class="text-primary-300 font-medium">What I Did</h4>
+                </div>
+                <p class="text-white leading-relaxed">${whatIDid}</p>
+            </div>
+            
+            ${mediaURL ? `
+            <div class="mt-4">
+                <div class="bg-slate-800/30 p-4 rounded-xl border border-slate-700/50">
+                    <div class="flex items-center gap-2 mb-3">
+                        <i class='bx bx-image text-primary-400'></i>
+                        <h4 class="text-primary-300 font-medium">Attached Media</h4>
+                    </div>
+                    ${(() => {
+                        const url = mediaURL;
+                        const fileExt = url.split('.').pop().toLowerCase();
+                        
+                        if (['jpg', 'jpeg', 'png', 'gif'].includes(fileExt)) {
+                            return `<img src="${url}" class="rounded-lg max-h-96 object-contain border border-slate-700/50 hover:border-primary-500/50 transition-all duration-300" alt="Log media">`;
+                        } else if (['mp4', 'webm', 'ogg'].includes(fileExt)) {
+                            return `<video controls class="rounded-lg max-h-96 w-full border border-slate-700/50"><source src="${url}" type="video/${fileExt}">Your browser does not support the video tag.</video>`;
+                        } else {
+                            return `<a href="${url}" target="_blank" class="text-primary-400 hover:text-primary-300 flex items-center gap-2 p-3 bg-slate-800/50 rounded-lg border border-slate-700/50 hover:border-primary-500/50 transition-all duration-300">
+                                <i class='bx bx-file text-xl'></i> 
+                                <span>View attached file</span>
+                                <i class='bx bx-external-link text-sm'></i>
+                            </a>`;
+                        }
+                    })()}
+                </div>
+            </div>` : ''}
+        </div>
+    `;
+}).join('');
+}
+
+// Load project details
+fetch(`/api/projects/${projectId}`)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to fetch project');
+        }
+        return response.json();
+    })
+    .then(project => {
+        const projectDetails = document.getElementById('project-details');
+        const tagColor = getTagColor(project.fields['Project Tag']);
+        const createdDate = project.fields['Created At'] ? formatDate(project.fields['Created At']) : '';
+        const coverImage = project.fields['Cover Image URL'] || '/default_cover.png';
+        
+        document.title = `${project.fields['Project Name']} - Grounded Tracker`;
+        
+        const projectName = project.fields['Project Name'] || '';
+        const projectTag = project.fields['Project Tag'] || '';
+        document.getElementById('create-log-btn').href = `{{ url_for('create_log') }}?project=${encodeURIComponent(projectName)}&project_tag=${encodeURIComponent(projectTag)}`;
+        
+        projectDetails.innerHTML = `
+            <div class="relative rounded-2xl overflow-hidden mb-8 h-80 group">
+                <img src="${coverImage}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="${project.fields['Project Name']}">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 p-8 w-full">
+                    <div class="flex items-center gap-2 mb-3">
+                        <i class='bx bx-calendar text-primary-400'></i>
+                        <span class="text-gray-300 text-sm">${createdDate}</span>
+                    </div>
+                    <h1 class="text-4xl font-bold text-white mb-2">${project.fields['Project Name']}</h1>
+                </div>
+            </div>
+            
+            <div class="bg-slate-800/30 p-8 rounded-xl mb-6 border border-slate-700/50">
+                <div class="flex items-center gap-2 mb-4">
+                    <i class='bx bx-info-circle text-primary-400 text-xl'></i>
+                    <h3 class="text-primary-300 font-medium text-lg">Project Description</h3>
+                </div>
+                <p class="text-white leading-relaxed text-lg">${project.fields['Description'] || 'No description provided.'}</p>
+            </div>
+            
+            <div class="flex justify-end mt-6 gap-4">
+                <a href="/edit-project?id=${project.id}" class="bg-slate-700/70 hover:bg-slate-600 px-6 py-3 text-white rounded-xl flex items-center gap-2 transition-all duration-300 hover:scale-105 border border-slate-600">
+                    <i class='bx bx-edit'></i> Edit Project
+                </a>
+            </div>
+        `;
+        
+        document.getElementById('project-loading').classList.add('hidden');
+        projectDetails.classList.remove('hidden');
+    })
+    .catch(error => {
+        console.error('Error loading project:', error);
+        document.getElementById('project-loading').innerHTML = `
+            <div class="text-center py-12 w-full">
+                <i class='bx bx-error-circle text-6xl text-red-400 mb-4'></i>
+                <h3 class="text-xl font-semibold text-red-300 mb-2">Failed to Load Project</h3>
+                <p class="text-gray-400 mb-6">There was an error loading the project details.</p>
+                <a href="{{ url_for('projects') }}" class="bg-slate-700 hover:bg-slate-600 px-6 py-3 text-white rounded-xl font-semibold inline-flex items-center gap-2 hover:scale-105 transition-all duration-300">
+                    <i class='bx bx-arrow-back'></i> Back to Projects
+                </a>
+            </div>
+        `;
+    });
+
+function deleteLog(logId) {
+    if (!confirm('Are you sure you want to delete this log? This action cannot be undone.')) {
+        return;
+    }
+    
+    fetch(`/api/logs/${logId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to delete log');
+        }
+        // Remove from local arrays and re-render
+        allLogs = allLogs.filter(log => log.id !== logId);
+        filterAndSortLogs();
+        updateStats();
+    })
+    .catch(error => {
+        console.error('Error deleting log:', error);
+        alert('Error deleting log. Please try again.');
+    });
+}
+
+// Load logs
+fetch(`/api/projects/${projectId}/logs`)
+    .then(response => {
+        console.log('Logs response status:', response.status);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(logs => {
+        console.log('Received logs:', logs);
+        console.log('Number of logs:', logs.length);
+        
+        // Debug: log the structure of the first log if available
+        if (logs.length > 0) {
+            console.log('First log structure:', logs[0]);
+            console.log('First log fields:', logs[0].fields);
+        }
+        
+        allLogs = logs;
+        filteredLogs = [...logs];
+        
+        // Populate tag filter
+        const tagFilter = document.getElementById('tag-filter');
+        const uniqueTags = [...new Set(logs.map(log => log.fields['Project Tag']).filter(Boolean))];
+        console.log('Unique tags:', uniqueTags);
+        
+        uniqueTags.forEach(tag => {
+            const option = document.createElement('option');
+            option.value = tag;
+            option.textContent = tag;
+            tagFilter.appendChild(option);
+        });
+        
+        // Show controls if there are logs
+        if (logs.length > 0) {
+            document.getElementById('log-controls').classList.remove('hidden');
+        }
+        
+        updateStats();
+        filterAndSortLogs();
+        
+        // Update empty state create log button
+        fetch(`/api/projects/${projectId}`)
+            .then(response => response.json())
+            .then(project => {
+                const projectName = project.fields['Project Name'] || '';
+                const projectTag = project.fields['Project Tag'] || '';
+                console.log('Project name for logs:', projectName);
+                console.log('Project tag for logs:', projectTag);
+                
+                const emptyBtn = document.getElementById('empty-create-log-btn');
+                if (emptyBtn) {
+                    emptyBtn.href = `{{ url_for('create_log') }}?project=${encodeURIComponent(projectName)}&project_tag=${encodeURIComponent(projectTag)}`;
+                }
+            });
+    })
+    .catch(error => {
+        console.error('Error loading logs:', error);
+        document.getElementById('logs-container').innerHTML = `
+            <div class="text-center py-16 animate__animated animate__fadeIn">
+                <i class='bx bx-error-circle text-6xl text-red-400 mb-4'></i>
+                <h3 class="text-xl font-semibold text-red-300 mb-2">Error Loading Logs</h3>
+                <p class="text-gray-400 mb-6">There was an error loading the project logs. Check the console for details.</p>
+                <p class="text-sm text-gray-500 mb-6">Error: ${error.message}</p>
+                <button onclick="window.location.reload()" class="bg-slate-700 hover:bg-slate-600 px-6 py-3 text-white rounded-xl font-semibold hover:scale-105 transition-all duration-300 flex items-center gap-2 mx-auto">
+                    <i class='bx bx-refresh'></i> Try Again
+                </button>
+            </div>
+        `;
+    });
+
+// Also add this function to help debug the filtering
+function debugFilterAndSort() {
+    console.log('All logs:', allLogs);
+    console.log('Filtered logs:', filteredLogs);
+    console.log('Current search term:', document.getElementById('log-search').value);
+    console.log('Current tag filter:', document.getElementById('tag-filter').value);
+    console.log('Current sort order:', sortOrder);
+}
+
+// Event listeners
+document.addEventListener('DOMContentLoaded', function() {
+    // Search functionality
+    document.getElementById('log-search').addEventListener('input', filterAndSortLogs);
+    
+    // Tag filter
+    document.getElementById('tag-filter').addEventListener('change', filterAndSortLogs);
+    
+    // Sort toggle
+    document.getElementById('sort-toggle').addEventListener('click', function() {
+        sortOrder = sortOrder === 'desc' ? 'asc' : 'desc';
+        this.innerHTML = `
+            <i class='bx bx-sort-alt-2'></i>
+            <span>${sortOrder === 'desc' ? 'Latest First' : 'Oldest First'}</span>
+        `;
+        filterAndSortLogs();
+    });
+});
+</script>
+{% endblock %}
