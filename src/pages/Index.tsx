@@ -256,7 +256,7 @@ const Index = () => {
                       className="w-28 h-auto mx-auto mb-4"
                     />
 
-                
+
 
                     <h3 className="text-2xl font-bold text-white mb-4">PCB Grant</h3>
                     <p className="text-gray-300 mb-6">Custom PCB fabrication with funding for serious open-source projects!</p>
@@ -430,6 +430,18 @@ const Index = () => {
                 <p className="text-gray-300 mt-2">The current end date for the grant program is for August 31 however this may be subject to changes.</p>
               </Card>
             </div>
+
+            <div className="flex flex-col items-center py-4">
+              <p className="text-white text-lg font-semibold mb-4">Coupons for PCB's were donated by:</p>
+              <div className="flex justify-center items-center gap-8">
+                <img
+                  src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/4737201a9a360dcc0bd5e848a63f2fba3defdeba_image.png"
+                  alt="Sponsor"
+                  className="w-28 h-auto mx-auto mb-4"
+                />
+              </div>
+            </div>
+
           </section>
           {/* Footer */}
           <Footer dark></Footer>
