@@ -249,14 +249,19 @@ const Index = () => {
                 {/* PCB Grant */}
                 <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20">
                   <CardContent className="p-8 text-center">
-                    <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-300">
-                      <span className="text-3xl" style={{ fontFamily: 'emoji' }}>🔧</span>
-                    </div>
+                    {/* Sponsor Image */}
+                    <img
+                      src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/4737201a9a360dcc0bd5e848a63f2fba3defdeba_image.png"
+                      alt="Sponsor"
+                      className="w-28 h-auto mx-auto mb-4"
+                    />
+
+                
+
                     <h3 className="text-2xl font-bold text-white mb-4">PCB Grant</h3>
                     <p className="text-gray-300 mb-6">Custom PCB fabrication with funding for serious open-source projects!</p>
 
                     <div className="space-y-4 mb-8">
-
                       <div className="p-4 border border-green-800/50 rounded-xl bg-green-900/20">
                         <div className="flex justify-between items-center">
                           <span className="text-green-400 font-bold">Tier 3 grant (3-8 hours of work)</span>
@@ -293,6 +298,7 @@ const Index = () => {
                     </Link>
                   </CardContent>
                 </Card>
+
                 <div className="relative">
                   {/* Grayed out overlay */}
                   <Card className="bg-gray-900/70 border-green-700/50 transition-all duration-300 group scale-100 shadow-none filter grayscale opacity-70 pointer-events-none">
