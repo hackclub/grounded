@@ -406,12 +406,12 @@ const Index = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
                 <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">How many grants can I get</h3>
-                <p className="text-gray-300 mt-2">You can grants for as many projects as you like. The only requirement is that there is only one "tutorial" project per person and that each new project mush be unique.</p>
+                <p className="text-gray-300 mt-2">You can grants for as many projects as you like. The only requirement is that each project must be unique</p>
               </Card>
 
               <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
-                <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">Can I submit my Highway or other YSWS project here?</h3>
-                <p className="text-gray-300 mt-2">You can not submit the same project to two programs.</p>
+                <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">Can I submit my Highway or other YSWS project here (including Summer of Making)?</h3>
+                <p className="text-gray-300 mt-2">You cannot submit Grounded projects to anything other than Summer of Making. That means, you are not allowed to submit this to Highway, Silicon, Reality, etc.</p>
               </Card>
               <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
                 <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">How are the grants awarded?</h3>
