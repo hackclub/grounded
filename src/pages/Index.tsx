@@ -411,7 +411,7 @@ const Index = () => {
 
               <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
                 <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">Can I submit my Highway or other YSWS project here (including Summer of Making)?</h3>
-                <p className="text-gray-300 mt-2">You cannot submit Grounded projects to anything other Summer of Making. That means, you are not allowed to submit this to Highway, Silicon, Reality, etc.</p>
+                <p className="text-gray-300 mt-2">You cannot submit Grounded projects to anything other than Summer of Making. That means, you are not allowed to submit this to Highway, Silicon, Reality, etc.</p>
               </Card>
               <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
                 <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">How are the grants awarded?</h3>
