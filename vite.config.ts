@@ -3,21 +3,18 @@ import react from "@vitejs/plugin-react-swc";
 import mdx from "@mdx-js/rollup";
 import path from "path";
 
-// https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig({
   server: {
     host: "::",
-    port: 8080,
+    port: 8080, // Let Vite use default
+    proxy: {
+      "/api": "http://localhost:3001", // Proxy API requests to backend
+    },
   },
-  plugins: [
-    mdx({
-      // Add any MDX options here
-    }),
-    react(),
-  ],
+  plugins: [mdx(), react()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
-}));
+});
