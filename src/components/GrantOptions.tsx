@@ -55,16 +55,16 @@ const GrantOptions = () => {
             <CardHeader>
               <div className="flex justify-between items-start mb-4">
                 <CardTitle className="text-2xl text-cyan-400 font-mono">
-                  PCB Grant
+                  PCBA Grant
                 </CardTitle>
                 <Badge className="bg-cyan-400/20 text-cyan-400 border-cyan-400/50">
-                  Custom PCBs
+                  Custom PCBAs
                 </Badge>
               </div>
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-cyan-300">
-                Fabricate your custom PCB design. Two tracks available based on your design tools and scale.
+                Fabricate your custom PCBA design. Two tracks available based on your design tools and scale.
               </p>
               
               <div className="space-y-3">
