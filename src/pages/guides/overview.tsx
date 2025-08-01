@@ -29,7 +29,7 @@ export default function GroundedPCBGrant() {
 
         <div className="space-y-8 text-slate-300">
           <div>
-            <h3 className="text-xl font-semibold mb-2">1. Join <code className="bg-emerald-500/20 px-1 rounded text-emerald-400">#electronics</code> on Slack!</h3>
+            <h3 className="text-xl font-semibold mb-2">1. Join <code className="bg-emerald-500/20 px-1 rounded text-emerald-400">#electronics</code> and <code className="bg-emerald-500/20 px-1 rounded text-emerald-400">#grounded</code> on Slack!</h3>
             <p>
               Our{" "}
               <a
@@ -54,12 +54,17 @@ export default function GroundedPCBGrant() {
 
           <div>
             <h3 className="text-xl font-semibold mb-2">2. Create your Github Repo & Start Your Journal</h3>
+            <h3 className="text-xl font-semibold mb-2">If you rather not manage a journal, check out <code className="bg-emerald-500/20 px-1 rounded text-emerald-400">#Groundplane</code> on the sidebar</h3>
+
+            <p className="mt-3 text-yellow-400 font-semibold">
+              Journaling is not mandatory for any tutorial projects such as the Hackercard, USB Hub and Sparkletilt.
+            </p>
             <p>
               Create a git repository for your project! Most people use GitHub, but you can use any git provider you want.
             </p>
 
             <div className="bg-slate-900/60 rounded-lg p-4 my-4 border border-slate-700">
-              <h4 className="text-lg font-semibold mb-2 text-emerald-400">📝 Start Your Journal (Required!)</h4>
+              <h4 className="text-lg font-semibold mb-2 text-emerald-400">📝 Start Your Journal (Required for any custom projects!)</h4>
               <p className="mb-3">
                 Create a <code className="bg-emerald-700 px-1 rounded">JOURNAL.md</code> file in your repo. At the very top, include the following data:
               </p>
@@ -72,7 +77,7 @@ Created On: "10/7/2025"
 ---`}</pre>
               </div>
               <p className="mt-3 text-yellow-400 font-semibold">
-                ⚠️ Journaling is mandatory for PCB grants! Poor quality journals will be rejected.
+                Journaling or #Groundplane is mandatory for custom PCBA grants! Poor quality journals will be rejected.
               </p>
             </div>
 
@@ -241,7 +246,7 @@ Created On: "10/7/2025"
             />
           </div>
 
-           <div>
+          <div>
             <h3 className="text-xl font-semibold mb-2">8. Update your journal when you get your PCB</h3>
             <p>
               Write about your time spent hacking with the PCB in-person and be sure to include hours. Include your time spent getting it to work and it's use in other projects.

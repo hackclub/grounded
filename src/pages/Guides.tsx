@@ -1,4 +1,4 @@
-import{ useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { BookOpen, ChevronRight, ArrowLeft, ChevronDown, Shield, Download, Upload, Wrench } from 'lucide-react';
 import overview from './guides/overview.tsx';
 import componentsOverview from './guides/components-overview.tsx';
@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 import OSHWLabStarsGuide from './guides/oshwlab-tutorial.tsx';
 import pcbResources from './guides/pcb-resources.tsx';
 import GroundplaneGuide from './guides/tracking-time.tsx';
+import Parts from './guides/parts.tsx'
+import groundedOverview from './guides/grounded-overview.tsx';
 
 
 // Configuration for sidebar structure and file mappings
@@ -16,7 +18,9 @@ const guides = {
     title: 'Guides!',
     icon: <BookOpen className="w-4 h-4" />,
     items: [
-      { id: 'overview', title: 'Overview', icon: <BookOpen className="w-4 h-4" />, file: 'guides/overview.mdx', content: overview },
+      { id: 'grounded-overview', title: 'Grounded Overview', icon: <BookOpen className="w-4 h-4" />, file: 'guides/components-overview.mdx', content: groundedOverview },
+      { id: 'overview', title: 'PCBA Overview', icon: <BookOpen className="w-4 h-4" />, file: 'guides/overview.mdx', content: overview },
+      { id: 'parts', title: 'Hardware Overview', icon: <BookOpen className="w-4 h-4" />, file: 'guides/wokwi-guide.mdx', content: Parts },
       { id: 'tracking-time', title: 'How to Track Time using Groundplane', icon: <Wrench className="w-4 h-4" />, file: 'guides/tracking-time.mdx', content: GroundplaneGuide },
       // { id: 'components-overview', title: 'Components Overview', icon: <Shield className="w-4 h-4" />, file: 'guides/components-overview.mdx', content: componentsOverview },
       { id: 'jlc-ordering', title: 'How to Order from JLCPCB', icon: <Upload className="w-4 h-4" />, file: 'guides/jlc-ordering.mdx', content: jlcOrdering },
@@ -42,7 +46,7 @@ const MDXRenderer = ({ content }) => {
 };
 
 const TutorialSystem = () => {
-  const [activeSection, setActiveSection] = useState('overview');
+  const [activeSection, setActiveSection] = useState('grounded-overview');
   const [expandedSections, setExpandedSections] = useState({
     'getting-started': true,
     'ordering': true,
@@ -145,7 +149,7 @@ const TutorialSystem = () => {
 
         {/* Main Content */}
         <div className="flex-1 overflow-auto">
-          <div className="max-w-4xl mx-auto p-8">
+          <div className="max-w-6xl mx-auto p-8">
             <div className="prose prose-invert prose-emerald max-w-none">
               {currentContent ? (
                 <MDXRenderer content={currentContent} />
