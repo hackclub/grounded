@@ -405,8 +405,8 @@ const Index = () => {
             <h1 className="text-2xl font-bold text-white mb-4 text-center">Frequently Asked Questions</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
-                <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">How many grants can I get</h3>
-                <p className="text-gray-300 mt-2">You can grants for as many projects as you like. The only requirement is that each project must be unique</p>
+                <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">How many grants can I get?</h3>
+                <p className="text-gray-300 mt-2">You can get grants for as many projects as you like. The only requirement is that each project must be unique.</p>
               </Card>
 
               <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
@@ -415,7 +415,7 @@ const Index = () => {
               </Card>
               <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
                 <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">How are the grants awarded?</h3>
-                <p className="text-gray-300 mt-2">Grants are typically givin in the form of a Hack Club Bank card along with various coupons depending on the orders</p>
+                <p className="text-gray-300 mt-2">Grants are typically given in the form of a Hack Club Bank card along with various coupons depending on the orders.</p>
               </Card>
               <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
                 <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">When will the components grant start?</h3>
@@ -423,11 +423,11 @@ const Index = () => {
               </Card>
               <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
                 <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">How can I get the full $5000?</h3>
-                <p className="text-gray-300 mt-2">In order to get the full $5000, you need to qualify for the OSHWLab stars prohgram. Hack Club will pay for your shipping on top.</p>
+                <p className="text-gray-300 mt-2">In order to get the full $5000, you need to qualify for the OSHWLab stars program. Hack Club will pay for your shipping on top.</p>
               </Card>
               <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
                 <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">When does this program end?</h3>
-                <p className="text-gray-300 mt-2">The current end date for the grant program is for August 31 however this may be subject to changes.</p>
+                <p className="text-gray-300 mt-2">The current end date for the grant program is for August 31, however this may be subject to changes.</p>
               </Card>
             </div>
 
