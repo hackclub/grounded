@@ -291,7 +291,7 @@ const Index = () => {
                       </div>
                     </div>
 
-                    <Link to="/guides">
+                    <Link to="/guides/pcba-grant">
                       <Button className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-semibold text-lg py-3 shadow-lg hover:shadow-blue-500/25 transition-all duration-300">
                         Get started with a PCB grant
                       </Button>
@@ -324,7 +324,7 @@ const Index = () => {
                         </div>
                       </div>
 
-                    <Link to="/guides">
+                    <Link to="/guides/hardware-grant">
                       <Button className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold text-lg py-3 shadow-lg hover:shadow-green-500/25 transition-all duration-300">
                         Apply for Hardware Grant
                       </Button>
