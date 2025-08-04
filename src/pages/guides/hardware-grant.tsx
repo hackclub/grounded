@@ -31,8 +31,8 @@ export default function GroundedHardwareGrant() {
             Each project is individually reviewed. There is no limit to the complexity or the number of components required. Here are some tips to get accepted:
           </p>
           <ul className="list-disc list-inside text-slate-400 space-y-2 max-w-md mx-auto">
-            <li>Don't keep it simple! Make a 3d printed case, add a pcb to link the components</li>
-            <li>Don't use more expensive component or a component that is not needed. If you use a Raspberry PI Pico to blink a light, you will be rejected.</li>
+            <li>Don't keep it simple! Make a 3d printed case, add a pcb to connect the components</li>
+            <li>Don't use a more expensive component which is not needed. If you use a Raspberry PI Pico to blink a light, you will be rejected.</li>
             <li>Make a nice polished final project and make sure everything works. If possible, model your project in Wokwi.</li>
           </ul>
         </div>
