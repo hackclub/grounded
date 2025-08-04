@@ -6,6 +6,7 @@ import GroundplaneDocs from './guides/tracking-time';
 import HowToOrderFromJLCPCB from './guides/jlc-order-guide';
 import GroundedDesignResources from './guides/pcb-resources';
 import OSHWLabStarsGuide from './guides/oshwlab-tutorial';
+import Parts from './guides/parts';
 
 const guides = {
   'getting-started': {
@@ -47,6 +48,13 @@ const guides = {
         component: GroundedDesignResources,
         path: '/guides/pcb-resources'
       },
+      { 
+        id: 'parts', 
+        title: 'Parts', 
+        icon: <Download className="w-4 h-4" />, 
+        component: Parts,
+        path: '/guides/parts'
+      },
     ]
   }
 };
@@ -58,7 +66,8 @@ const getCurrentGuideId = (pathname) => {
     '/guides/tracking-time': 'tracking-time',
     '/guides/jlc-ordering': 'jlc-ordering',
     '/guides/oshwlab-tutorial': 'oshwlab-tutorial',
-    '/guides/pcb-resources': 'pcb-resources'
+    '/guides/pcb-resources': 'pcb-resources',
+    '/guides/parts': 'parts'
   };
   return pathToId[pathname] || null;
 };
@@ -145,7 +154,7 @@ const GuideLayout = ({ children }) => {
 
                 {/* Enhanced expandable section with smooth animation */}
                 <div className={`ml-4 space-y-2 overflow-hidden transition-all duration-500 ease-in-out ${
-                  expandedSections[sectionKey] ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                  expandedSections[sectionKey] ? 'max-h-[32rem] opacity-100' : 'max-h-0 opacity-0'
                 }`}>
                   {section.items && section.items.map((item, index) => (
                     <button
@@ -234,6 +243,14 @@ export const PCBResourcesPage = () => {
   return (
     <GuideLayout>
       <GroundedDesignResources />
+    </GuideLayout>
+  );
+};
+
+export const PartsPage = () => {
+  return (
+    <GuideLayout>
+      <Parts />
     </GuideLayout>
   );
 };

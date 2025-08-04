@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/.vite
 /nextjs-migration/node_modules
 /.pnp
 .pnp.*
@@ -10,6 +11,7 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+pnpm-lock.yaml
 
 # testing
 /coverage
