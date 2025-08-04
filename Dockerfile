@@ -3,7 +3,7 @@ FROM node:18 AS builder
 
 WORKDIR /app
 COPY . .
-RUN npm install
+RUN npm install --legacy-peer-deps
 RUN npm run build
 
 # Stage 2: Run backend
@@ -13,7 +13,7 @@ WORKDIR /app
 COPY --from=builder /app /app
 
 # Install only production dependencies
-RUN npm install --omit=dev
+RUN npm install --omit=dev --legacy-peer-deps
 
 # Set environment variables (optional for Coolify too)
 ENV NODE_ENV=production
