@@ -1,29 +1,23 @@
-# -------- Build Stage --------
-FROM node:20 AS builder
+# Stage 1: Build frontend
+FROM node:18 AS builder
 
 WORKDIR /app
-
-# Install dependencies
-COPY package*.json ./
-RUN npm install --legacy-peer-deps
-
-# Copy source and build Vite frontend
 COPY . .
+RUN npm install
 RUN npm run build
 
-# -------- Run Stage --------
-FROM node:20 AS runner
+# Stage 2: Run backend
+FROM node:18
 
 WORKDIR /app
+COPY --from=builder /app /app
 
-# Copy only the files needed to run the app
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/api.js ./api.js
-COPY --from=builder /app/package.json ./
+# Install only production dependencies
+RUN npm install --omit=dev
 
-# Expose the API port (adjust if needed)
+# Set environment variables (optional for Coolify too)
+ENV NODE_ENV=production
+
 EXPOSE 3000
 
-# Start the API server
 CMD ["node", "api.js"]

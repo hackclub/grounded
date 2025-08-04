@@ -2,11 +2,19 @@ import express from "express";
 import AirtablePlus from "airtable-plus";
 import camelcase from "camelcase";
 import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
 
 dotenv.config();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3000;
+
+// Serve frontend from Vite build
+app.use(express.static(path.join(__dirname, "dist")));
 
 const camelizeObject = (obj) => {
   Object.keys(obj).forEach((key) => {
@@ -37,6 +45,11 @@ app.get("/api/parts", async (req, res) => {
   }
 });
 
+// Catch-all route to serve index.html for SPA routing
+app.get("*", (_, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
+
 app.listen(PORT, () => {
-  console.log(`API server running at http://localhost:${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
 });
