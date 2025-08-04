@@ -1,7 +1,7 @@
 import React from "react";
 import PartsGrid from "../../components/PartsGrid";
 
-export default function Parts() {
+export default function GroundedHardwareGrant() {
   return (
     <main className="min-h-screen w-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-300 px-6 py-12 space-y-12">
       <section className="max-w-4xl mx-auto space-y-6 text-center">
