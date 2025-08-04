@@ -92,12 +92,12 @@ const Footer = ({
                     <Heading as="h2" variant="subheadline" mb={3}>
                         Hack&nbsp;Club
                     </Heading>
-                    <Link href="/philosophy">Philosophy</Link>
-                    <Link href="/team">Our Team & Board</Link>
-                    <Link href="/jobs">Jobs</Link>
-                    <Link href="/brand">Branding</Link>
-                    <Link href="/press">Press Inquiries</Link>
-                    <Link href="/philanthropy">Donate</Link>
+                    <Link href="https://hackclub.com/philosophy">Philosophy</Link>
+                    <Link href="https://hackclub.com/team">Our Team & Board</Link>
+                    <Link href="https://hackclub.com/jobs">Jobs</Link>
+                    <Link href="https://hackclub.com/brand">Branding</Link>
+                    <Link href="https://hackclub.com/press">Press Inquiries</Link>
+                    <Link href="https://hackclub.com/philanthropy">Donate</Link>
                 </Box>
                 <Box>
                     <Heading as="h2" variant="subheadline" mb={3}>
@@ -132,7 +132,7 @@ const Footer = ({
                         }}
                     >
                         <Service
-                            href="/slack"
+                            href="https://hackclub.com/slack"
                             icon="slack-fill"
                             name="Slack"
                             target="_self"
