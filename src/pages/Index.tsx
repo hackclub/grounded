@@ -282,13 +282,6 @@ const Index = () => {
                           <span className="text-rose-500 font-mono font-bold">$150 limit</span>
                         </div>
                       </div>
-
-                      <div className="p-4 border border-yellow-800/50 rounded-xl bg-yellow-900/20">
-                        <div className="flex justify-between items-center">
-                          <span className="text-yellow-600 font-bold">OSHWLabs Level Project</span>
-                          <span className="text-yellow-500 font-mono font-bold">$5000 from OSWHLabs + $150</span>
-                        </div>
-                      </div>
                     </div>
 
                     <Link to="/guides/pcba-grant">
