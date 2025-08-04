@@ -299,44 +299,38 @@ const Index = () => {
                   </CardContent>
                 </Card>
 
-                <div className="relative">
-                  {/* Grayed out overlay */}
-                  <Card className="bg-gray-900/70 border-green-700/50 transition-all duration-300 group scale-100 shadow-none filter grayscale opacity-70 pointer-events-none">
-                    <CardContent className="p-8 text-center">
-                      <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-300">
-                        <span className="text-3xl" style={{ fontFamily: 'emoji' }}>🗑️</span>
-                      </div>
-                      <h3 className="text-2xl font-bold text-white mb-4">Hardware Grant</h3>
-                      <p className="text-gray-300 mb-6">
-                        Get components, tools, and materials to build your hardware project! Perfect for devboards, IoT devices, and robotics
-                      </p>
+                <Card className="bg-gray-900/70 border-green-700/50 hover:border-green-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-green-500/20">
+                  <CardContent className="p-8 text-center">
+                    <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform duration-300">
+                      <span className="text-3xl" style={{ fontFamily: 'emoji' }}>🔧</span>
+                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-4">Hardware Grant</h3>
+                    <p className="text-gray-300 mb-6">
+                      Get components, tools, and materials to build your hardware project! Perfect for devboards, IoT devices, and robotics
+                    </p>
 
-                      <div className="space-y-3 mb-8">
+                    <div className="space-y-3 mb-8">
                         <div className="flex justify-between items-center bg-green-900/30 p-3 rounded-lg">
                           <span className="text-green-400 font-semibold">Funding:</span>
-                          <span className="text-green-400 font-mono">Varies</span>
+                          <span className="text-green-400 font-mono">Up to $50 total</span>
                         </div>
                         <div className="flex justify-between items-center bg-green-800/30 p-3 rounded-lg">
-                          <span className="text-green-500 font-semibold">Timeline:</span>
-                          <span className="text-green-500 font-mono">1-2 weeks</span>
+                          <span className="text-green-500 font-semibold">Breakdown:</span>
+                          <span className="text-green-500 font-mono">$30 PCB + $20 parts</span>
                         </div>
                         <div className="flex justify-between items-center bg-green-900/20 p-3 rounded-lg">
-                          <span className="text-green-300 font-semibold">Submission:</span>
-                          <span className="text-green-300 font-mono">Wokwi and CAD</span>
+                          <span className="text-green-300 font-semibold">Includes:</span>
+                          <span className="text-green-300 font-mono">Parts from bin</span>
                         </div>
                       </div>
 
-                      <Button className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold text-lg py-3 shadow-lg cursor-not-allowed opacity-50">
+                    <Link to="/guides">
+                      <Button className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold text-lg py-3 shadow-lg hover:shadow-green-500/25 transition-all duration-300">
                         Apply for Hardware Grant
                       </Button>
-                    </CardContent>
-                  </Card>
-
-                  {/* Banner */}
-                  <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-yellow-400 text-black font-bold uppercase px-4 py-1 rounded shadow-lg select-none pointer-events-none z-20 text-sm sm:text-base">
-                    Coming soon after 50 PCBs are made
-                  </div>
-                </div>
+                    </Link>
+                  </CardContent>
+                </Card>
               </div>
             </div>
           </section>
