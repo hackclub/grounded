@@ -46,7 +46,7 @@ app.get("/api/parts", async (req, res) => {
 });
 
 // Catch-all route to serve index.html for SPA routing
-app.get("/*", (_, res) => {
+app.get("*", (_, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
