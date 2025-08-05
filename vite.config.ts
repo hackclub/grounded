@@ -8,7 +8,7 @@ export default defineConfig({
     host: "::",
     port: 8080, // Let Vite use default
     proxy: {
-      "/api": "http://localhost:3001", // Proxy API requests to backend
+      "/api": "http://localhost:3000", // Proxy API requests to backend
     },
   },
   plugins: [mdx(), react()],

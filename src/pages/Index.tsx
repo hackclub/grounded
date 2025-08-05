@@ -11,6 +11,7 @@ import Footer from '@/components/footer';
 import theme from '@hackclub/theme';
 import Balancer from 'react-wrap-balancer'
 import Sparkles from '@/components/Sparkles';
+import { PartsProvider } from '@/components/partscontext';
 
 /**
  * @type {import('theme-ui').ThemeUIStyleObject}
@@ -144,7 +145,7 @@ const Index = () => {
               <Button
                 variant="ghost"
                 className="text-gray-300 hover:text-white hover:bg-green-900/50 transition-all duration-300"
-                onClick={() => window.location.href = "/guides"}
+                onClick={() => window.location.href = "/guides/grounded-overview"}
               >
                 {/* <Sparkles className="w-4 h-4 mr-2" /> */}
                 Guides
@@ -201,7 +202,7 @@ const Index = () => {
                 </Balancer>
               </Heading>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 mt-16">
-                <Link to="/guides">
+                <Link to="/guides/grounded-overview">
                   <Button
                     size="lg"
                     className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold text-lg px-8 py-6 shadow-lg hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105"
@@ -218,9 +219,18 @@ const Index = () => {
                   </Button>
                 </Link>
               </div>
+              <Balancer ratio={0.3}>
+                In the past, Hack Club has run programs such as <a
+                  href="https://onboard.hackclub.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Onboard
+                </a> with:
+              </Balancer>
 
-              {/* Stats with emojis */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20">
+
                 {stats.map((stat, index) => (
                   <div key={index} className="text-center group hover:scale-110 transition-transform duration-300">
                     <div className="text-4xl mb-2">{stat.emoji}</div>
@@ -299,27 +309,32 @@ const Index = () => {
                     </div>
                     <h3 className="text-2xl font-bold text-white mb-4">Hardware Grant</h3>
                     <p className="text-gray-300 mb-6">
-                      Get components, tools, and materials to build your hardware project! Perfect for devboards, IoT devices, and robotics
+                      Get components, tools, and materials to build whatever hardware project you want!
                     </p>
 
                     <div className="space-y-3 mb-8">
-                        <div className="flex justify-between items-center bg-green-900/30 p-3 rounded-lg">
-                          <span className="text-green-400 font-semibold">Funding:</span>
-                          <span className="text-green-400 font-mono">Up to $50 total</span>
-                        </div>
-                        <div className="flex justify-between items-center bg-green-800/30 p-3 rounded-lg">
-                          <span className="text-green-500 font-semibold">Breakdown:</span>
-                          <span className="text-green-500 font-mono">$30 PCB + $20 parts</span>
-                        </div>
-                        <div className="flex justify-between items-center bg-green-900/20 p-3 rounded-lg">
-                          <span className="text-green-300 font-semibold">Includes:</span>
-                          <span className="text-green-300 font-mono">Parts from bin</span>
-                        </div>
+                      <div className="flex justify-between items-center bg-green-900/30 p-3 rounded-lg">
+                        <span className="text-green-400 font-semibold">Funding:</span>
+                        <span className="text-green-400 font-mono">Up to $50 total</span>
                       </div>
+                      <div className="flex justify-between items-center bg-green-800/30 p-3 rounded-lg">
+                        <span className="text-green-500 font-semibold">Breakdown:</span>
+                        <span className="text-green-500 font-mono">$30 PCB + $20 parts</span>
+                      </div>
+                      <div className="flex justify-between items-center bg-green-900/20 p-3 rounded-lg">
+                        <span className="text-green-300 font-semibold">Includes:</span>
+                        <span className="text-green-300 font-mono">Parts from bin</span>
+                      </div>
+                    </div>
 
                     <Link to="/guides/hardware-grant">
                       <Button className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold text-lg py-3 shadow-lg hover:shadow-green-500/25 transition-all duration-300">
                         Apply for Hardware Grant
+                      </Button>
+                    </Link>
+                    <Link to="/guides/hardware-inventory">
+                      <Button className="mt-5 w-full bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white font-semibold text-lg py-3 shadow-lg hover:shadow-green-500/25 transition-all duration-300">
+                        View the full inventory
                       </Button>
                     </Link>
                   </CardContent>
@@ -332,16 +347,19 @@ const Index = () => {
           <section className="py-20 px-6">
             <div className="max-w-6xl mx-auto text-center mb-16">
               <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent">
-                What are people already making?
+                What Parts Can I use?
               </h2>
               <p className="text-xl text-gray-300 mb-4">
-                Get inspired by these absolutely incredible projects from our community!
+                Use as many parts from this list that you need to complete your project!
               </p>
             </div>
 
             {/* Full-width ProjectCarousel without constraints */}
             <div className="w-screen relative left-1/2 -translate-x-1/2">
-              <ProjectCarousel />
+              <PartsProvider>
+                <ProjectCarousel />
+              </PartsProvider>
+
             </div>
           </section>
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Part = ({ title = "Part", desc = "Cool Project", quantity = 3, link = '', ref = ''}) => {
+const Part = ({ title = "Part", desc = "Cool Project", quantity = 3, link = '', ref = '', bom = ''}) => {
   return (
     <div className="bg-slate-900 rounded-2xl overflow-hidden shadow-lg border border-slate-700 hover:shadow-xl transition-shadow duration-300 min-w-[280px]">
       {link && (
@@ -13,6 +13,7 @@ const Part = ({ title = "Part", desc = "Cool Project", quantity = 3, link = '', 
       <div className="p-4 text-white">
         <h2 className="text-lg font-semibold">{title}</h2>
         <p className="text-sm text-slate-300">{desc}</p>
+        <p className="text-sm text-slate-600">BOM Name: {bom}</p>
         <span className="mt-2 block text-sm font-medium text-emerald-400">
           Quantity: {quantity}
         </span>

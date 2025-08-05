@@ -12,7 +12,8 @@ import {
   OSHWLabPage,
   PCBResourcesPage,
   PartsPage,
-  PCBGrantPage
+  PCBGrantPage,
+  InventoryPage,
 } from "./pages/Guides";
 import NotFound from "./pages/NotFound";
 
@@ -36,6 +37,9 @@ const App = () => (
           <Route path="/guides/jlc-ordering" element={<JLCOrderingPage />} />
           <Route path="/guides/oshwlab-tutorial" element={<OSHWLabPage />} />
           <Route path="/guides/pcb-resources" element={<PCBResourcesPage />} />
+          <Route path="/guides/hardware-inventory" element={<InventoryPage />} />
+
+
 
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
 

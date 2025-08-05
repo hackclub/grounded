@@ -1,5 +1,4 @@
 import React from "react";
-import PartsGrid from "../../components/PartsGrid";
 
 export default function GroundedHardwareGrant() {
   return (
@@ -10,14 +9,17 @@ export default function GroundedHardwareGrant() {
         <p className="text-slate-400 text-lg">
           We have a lot of stuff in a bin at Hack Club and I need your help to turn the parts into projects!
         </p>
-        
+        <p className="text-slate-400 text-lg">
+          I am serious, you can make whatever you want with whatever parts you want from below along with $50 to make it a high quality project.
+        </p>
+
         <div className="bg-slate-900/60 rounded-lg p-6 border border-slate-700 text-left">
           <p className="text-slate-400 mb-4">
             You can use any of the components below to create a project along with:
           </p>
           <ul className="list-disc list-inside text-slate-400 space-y-2 max-w-md mx-auto">
-            <li>Up to $30 for a PCB (not PCBA) board</li>
-            <li>Up to $20 for other parts you may need</li>
+            <li>Up to <code className="bg-emerald-500/20 px-1 rounded text-emerald-400">$30</code> for a PCB (not PCBA) board</li>
+            <li>Up to <code className="bg-emerald-500/20 px-1 rounded text-emerald-400">$20</code> for other parts you may need</li>
             <li>
               Free 3D prints through{" "}
               <code className="bg-emerald-500/20 px-1 rounded text-emerald-400">#print-legion</code>
@@ -68,14 +70,19 @@ export default function GroundedHardwareGrant() {
 
           <div>
             <h3 className="text-xl font-semibold mb-3">2. Create your Github Repo & Start Your Journal</h3>
-            <h4 className="text-lg font-medium mb-3 text-slate-300">If you rather not manage a journal, check out <code className="bg-emerald-500/20 px-1 rounded text-emerald-400">#Groundplane</code> on the sidebar</h4>
+            <h4 className="text-lg font-medium mb-3 text-slate-300">If you rather not manage a journal, check out  <a
+              href="/guides/tracking-time"
+              target=""
+              rel="noreferrer"
+              className="text-emerald-400 underline ml-1"
+            ><code className="bg-emerald-500/20 px-1 rounded text-emerald-400">#Groundplane</code></a></h4>
 
             <p className="mb-4">
               Create a git repository for your project! Most people use GitHub, but you can use any git provider you want.
             </p>
 
             <div className="bg-slate-900/60 rounded-lg p-4 my-4 border border-slate-700">
-              <h4 className="text-lg font-semibold mb-2 text-emerald-400">📝 Start Your Journal (Required for any custom projects!)</h4>
+              <h4 className="text-lg font-semibold mb-2 text-emerald-400">Start Your Journal (Required for any custom projects!)</h4>
               <p className="mb-3">
                 Create a <code className="bg-emerald-700 px-1 rounded">JOURNAL.md</code> file in your repo. At the very top, include the following data:
               </p>
@@ -88,7 +95,7 @@ Created On: "10/7/2025"
 ---`}</pre>
               </div>
               <p className="mt-3 text-yellow-400 font-semibold">
-                Journaling or #Groundplane is mandatory for custom Hardware grants!
+                Journaling or #Groundplane is mandatory for Hardware grants!
               </p>
             </div>
 
@@ -110,7 +117,7 @@ Created On: "10/7/2025"
                 <p className="font-semibold">Do NOT have:</p>
                 <ul className="list-disc list-inside space-y-1 text-sm">
                   <li>Wall of timestamps with barely any descriptions</li>
-                  <li>No images</li>
+                  <li>Missing images</li>
                   <li>Terrible formatting that's impossible to read</li>
                   <li>AI generated journal entries; anything written by AI will be immediately rejected</li>
                 </ul>
@@ -136,14 +143,25 @@ Created On: "10/7/2025"
               If you get stuck or want more example projects, post in the Slack channel.
             </p>
             <p>Just remember to update your journal throughout your entire project.</p>
+            <p>The inventory is usually a good place to start with:</p>
+
           </div>
         </div>
       </section>
 
       <section className="max-w-6xl mx-auto space-y-6">
-        <h2 className="text-3xl font-bold text-emerald-400 text-center">Parts Inventory</h2>
-        <PartsGrid />
+        <a
+          href="/guides/hardware-inventory"
+          target=""
+          rel="noreferrer"
+          className="text-emerald-400 underline"
+        >
+
+
+          <h2 className="text-3xl font-bold text-emerald-400 text-center">Parts Inventory</h2>
+        </a>
       </section>
+      <p>You'll notice that under each part, there is a BOM reference (bill of materials). As you make your project, be sure to keep track of all of the parts you use. When you submit your project via the form, you will enter all of the parts you use.</p>
 
       <section className="max-w-4xl mx-auto">
         <h3 className="text-xl font-semibold mb-3">4. Submit your project</h3>
@@ -152,15 +170,15 @@ Created On: "10/7/2025"
         </p>
         <div className="space-y-4">
           <p className="text-slate-300">Submit your project through this form:</p>
-          <a 
-            href="https://forms.hackclub.com/grounded-hardware" 
-            target="_blank" 
+          <a
+            href="https://forms.hackclub.com/grounded-hardware"
+            target="_blank"
             className="inline-block bg-emerald-500/20 px-4 py-2 rounded-md text-emerald-400 font-semibold hover:bg-emerald-500/30 transition"
           >
-            🔗 Grounded Hardware Grant
+            Grounded Hardware Grant
           </a>
         </div>
       </section>
-    </main>
+    </main >
   );
 }

@@ -8,6 +8,9 @@ import HowToOrderFromJLCPCB from './guides/jlc-order-guide';
 import GroundedDesignResources from './guides/pcb-resources';
 import OSHWLabStarsGuide from './guides/oshwlab-tutorial';
 import GroundedHardwareGrant from './guides/hardware-grant';
+import HardwareInventory from './guides/hardware-inventory';
+
+
 
 const guides = {
   'getting-started': {
@@ -41,6 +44,13 @@ const guides = {
         icon: <Wrench className="w-4 h-4" />,
         component: GroundplaneDocs,
         path: '/guides/tracking-time'
+      },
+      {
+        id: 'hardware-inventory',
+        title: 'Hardware Inventory',
+        icon: <BookOpen className="w-4 h-4" />,
+        component: HardwareInventory,
+        path: '/guides/hardware-inventory'
       },
       {
         id: 'jlc-ordering',
@@ -78,6 +88,8 @@ const getCurrentGuideId = (pathname) => {
     '/guides/jlc-ordering': 'jlc-ordering',
     '/guides/oshwlab-tutorial': 'oshwlab-tutorial',
     '/guides/pcb-resources': 'pcb-resources',
+    '/guides/hardware-inventory': 'hardware-inventory',
+
   };
   return pathToId[pathname] || null;
 };
@@ -203,7 +215,10 @@ const GuideLayout = ({ children }) => {
 
         {/* Main Content */}
         <div className="flex-1 overflow-auto ml-80">
-          <div className="max-w-4xl mx-auto p-8 pr-8">
+          <div
+            className={`mx-auto p-8 pr-8 ${location.pathname === '/guides/hardware-inventory' ? '' : 'max-w-4xl'
+              }`}
+          >
             <div className="prose prose-invert prose-emerald max-w-none">
               {children}
             </div>
@@ -269,6 +284,14 @@ export const PartsPage = () => {
   return (
     <GuideLayout>
       <GroundedHardwareGrant />
+    </GuideLayout>
+  );
+};
+
+export const InventoryPage = () => {
+  return (
+    <GuideLayout>
+      <HardwareInventory />
     </GuideLayout>
   );
 };
