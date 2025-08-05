@@ -130,7 +130,7 @@ Created On: "10/7/2025"
             <p className="mb-3">
               Look at the available parts below and start your project. A typical project will have a 3d model and if it is possible to, make a{" "}
               <a
-                href="https://hackclub.com/slack/?event=grounded"
+                href="https://wokwi.com/"
                 target="_blank"
                 rel="noreferrer"
                 className="text-emerald-400 underline"
