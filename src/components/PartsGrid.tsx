@@ -1,6 +1,6 @@
 import React from "react";
 import Part from "./part";
-import { useParts } from "@/components/partscontext";
+import { useParts } from "@/components/PartsWrapper";
 
 export default function PartsGrid() {
   const { parts, loading, error } = useParts();

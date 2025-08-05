@@ -11,7 +11,7 @@ import Footer from '@/components/footer';
 import theme from '@hackclub/theme';
 import Balancer from 'react-wrap-balancer'
 import Sparkles from '@/components/Sparkles';
-import { PartsProvider } from '@/components/partscontext';
+import { PartsProvider } from '@/components/PartsWrapper';
 
 /**
  * @type {import('theme-ui').ThemeUIStyleObject}

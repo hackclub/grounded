@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useParts } from "@/components/partscontext";
+import { useParts } from "@/components/PartsWrapper";
 
 const SCROLL_SPEED = 5;
 

@@ -1,6 +1,6 @@
 import React from "react";
 import PartsGrid from "../../components/PartsGrid";
-import { PartsProvider } from '@/components/partscontext';
+import { PartsProvider } from '@/components/PartsWrapper';
 
 
 
