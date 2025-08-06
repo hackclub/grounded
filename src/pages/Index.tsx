@@ -268,8 +268,34 @@ const Index = () => {
 
 
 
-                    <h3 className="text-2xl font-bold text-white mb-4">PCB Grant</h3>
-                    <p className="text-gray-300 mb-6">Custom PCB fabrication with funding for serious open-source projects!</p>
+                    <h3 className="text-2xl font-bold text-white mb-4">PCBA Grant</h3>
+                    <p className="text-gray-300 mb-2">Custom PCB fabrication with funding for serious open-source projects!</p>
+                    <p className="text-gray-300 font-semibold mb-3 tracking-wide">Perfect for:</p>
+
+                    <ul className="grid grid-cols-2 gap-x-6 gap-y-2 mb-4">
+                      <li className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors">
+                        <span className="text-green-400">✔</span>
+                        Custom Dev Boards
+                      </li>
+                      <li className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors">
+                        <span className="text-green-400">✔</span>
+                        A Flight Computer
+                      </li>
+                      <li className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors">
+                        <span className="text-green-400">✔</span>
+                        A GPS Tracker
+                      </li>
+                      <li className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors">
+                        <span className="text-green-400">✔</span>
+                        A PCB Business Card
+                      </li>
+                      <li className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors">
+                        <span className="text-green-400">✔</span>
+                        A USB Hub
+                      </li>
+                    </ul>
+
+
 
                     <div className="space-y-4 mb-8">
                       <div className="p-4 border border-green-800/50 rounded-xl bg-green-900/20">
@@ -296,7 +322,7 @@ const Index = () => {
 
                     <Link to="/guides/pcba-grant">
                       <Button className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-semibold text-lg py-3 shadow-lg hover:shadow-blue-500/25 transition-all duration-300">
-                        Get started with a PCB grant
+                        Get started with a PCBA grant
                       </Button>
                     </Link>
                   </CardContent>
@@ -309,8 +335,30 @@ const Index = () => {
                     </div>
                     <h3 className="text-2xl font-bold text-white mb-4">Hardware Grant</h3>
                     <p className="text-gray-300 mb-6">
-                      Get components, tools, and materials to build whatever hardware project you want!
+                      Get components, PCBS, and materials to build whatever hardware project you want!
                     </p>
+                    <ul className="grid grid-cols-2 gap-x-6 gap-y-2 mb-4">
+                      <li className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors">
+                        <span className="text-green-400">✔</span>
+                        A Battlebot
+                      </li>
+                      <li className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors">
+                        <span className="text-green-400">✔</span>
+                        A Robot Dog
+                      </li>
+                      <li className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors">
+                        <span className="text-green-400">✔</span>
+                        A DJ Board
+                      </li>
+                      <li className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors">
+                        <span className="text-green-400">✔</span>
+                        Game Console
+                      </li>
+                      <li className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors">
+                        <span className="text-green-400">✔</span>
+                        Keyboard
+                      </li>
+                    </ul>
 
                     <div className="space-y-3 mb-8">
                       <div className="flex justify-between items-center bg-green-900/30 p-3 rounded-lg">
@@ -329,7 +377,7 @@ const Index = () => {
 
                     <Link to="/guides/hardware-grant">
                       <Button className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold text-lg py-3 shadow-lg hover:shadow-green-500/25 transition-all duration-300">
-                        Apply for Hardware Grant
+                        Get started with a Hardware gtant
                       </Button>
                     </Link>
                     <Link to="/guides/hardware-inventory">
@@ -425,10 +473,6 @@ const Index = () => {
               <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
                 <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">When will the components grant start?</h3>
                 <p className="text-gray-300 mt-2">Once 50 unique PCB's are designed, we will launch a components grant giving away</p>
-              </Card>
-              <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
-                <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">How can I get the full $5000?</h3>
-                <p className="text-gray-300 mt-2">In order to get the full $5000, you need to qualify for the OSHWLab stars program. Hack Club will pay for your shipping on top.</p>
               </Card>
               <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
                 <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">When does this program end?</h3>

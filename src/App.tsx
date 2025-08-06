@@ -38,6 +38,10 @@ const App = () => (
           <Route path="/guides/oshwlab-tutorial" element={<OSHWLabPage />} />
           <Route path="/guides/pcb-resources" element={<PCBResourcesPage />} />
           <Route path="/guides/hardware-inventory" element={<InventoryPage />} />
+          <Route path="/bin" element={<InventoryPage />} />
+          <Route path="/guides/bin" element={<InventoryPage />} />
+
+
 
 
 
