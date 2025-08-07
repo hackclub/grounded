@@ -377,7 +377,7 @@ const Index = () => {
 
                     <Link to="/guides/hardware-grant">
                       <Button className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold text-lg py-3 shadow-lg hover:shadow-green-500/25 transition-all duration-300">
-                        Get started with a Hardware gtant
+                        Get started with a Hardware grant
                       </Button>
                     </Link>
                     <Link to="/guides/hardware-inventory">
