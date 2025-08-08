@@ -476,7 +476,7 @@ const Index = () => {
               </Card>
               <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
                 <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">When does this program end?</h3>
-                <p className="text-gray-300 mt-2">The current end date for the grant program is for August 31, however this may be subject to changes.</p>
+                <p className="text-gray-300 mt-2">The current end date for the grant program is for September 31st-2025.</p>
               </Card>
             </div>
 
