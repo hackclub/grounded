@@ -21,6 +21,16 @@ const BattleBot = () => {
                     <li>Up to a $10 grant for a LIPO Battery</li>
                     <li>Up to $20 for a PCB board</li>
                 </ul>
+
+                <h1 className="text-4xl font-bold mb-4 text-emerald-400 mt-10">How to get?</h1>
+                <p>Follow the outline for the <a
+              href="/guides/hardware-grant"
+              className="text-emerald-400 underline hover:text-emerald-600"
+              target=""
+              rel="noopener noreferrer"
+            >Grounded Hardware Grant</a></p>
+
+            <p>Add the "Battlebot Kit" to the BOM</p>
             </div>
         </div>
     );
