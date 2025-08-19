@@ -9,6 +9,7 @@ import GroundedDesignResources from './guides/pcb-resources';
 import OSHWLabStarsGuide from './guides/oshwlab-tutorial';
 import GroundedHardwareGrant from './guides/hardware-grant';
 import HardwareInventory from './guides/hardware-inventory';
+import BattleBot from './guides/battlebot';
 
 
 
@@ -73,6 +74,13 @@ const guides = {
         component: GroundedDesignResources,
         path: '/guides/pcb-resources'
       },
+      {
+        id: 'battlebot', 
+        title: 'BattleBot Kit', 
+        icon: <Upload className="w-4 h-4" />,
+        component: BattleBot,
+        path: '/guides/battlebot'
+      }
 
     ]
   }
@@ -89,6 +97,7 @@ const getCurrentGuideId = (pathname) => {
     '/guides/oshwlab-tutorial': 'oshwlab-tutorial',
     '/guides/pcb-resources': 'pcb-resources',
     '/guides/hardware-inventory': 'hardware-inventory',
+    '/guides/battlebot': 'battlebot',
 
   };
   return pathToId[pathname] || null;
@@ -176,7 +185,7 @@ const GuideLayout = ({ children }) => {
                 </button>
 
                 {/* Enhanced expandable section with smooth animation */}
-                <div className={`ml-4 space-y-2 overflow-hidden transition-all duration-500 ease-in-out ${expandedSections[sectionKey] ? 'max-h-[32rem] opacity-100' : 'max-h-0 opacity-0'
+                <div className={`ml-4 space-y-2 overflow-hidden transition-all duration-500 ease-in-out ${expandedSections[sectionKey] ? 'max-h-[40-rem] opacity-100' : 'max-h-0 opacity-0'
                   }`}>
                   {section.items && section.items.map((item, index) => (
                     <button
@@ -291,10 +300,18 @@ export const PartsPage = () => {
 export const InventoryPage = () => {
   return (
     <GuideLayout>
-      <HardwareInventory />
+      <HardwareInventory/>
     </GuideLayout>
   );
 };
+
+export const BattlebotPage = () => {
+  return (
+    <GuideLayout>
+      <BattleBot/>
+    </GuideLayout>
+  )
+}
 
 // Main Guides page component (for /guides route)
 const GuidesHomePage = () => {

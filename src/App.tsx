@@ -4,7 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
-import Guides from "./pages/Guides";
+import Guides, { BattlebotPage } from "./pages/Guides";
 import {
   OverviewPage,
   TrackingTimePage,
@@ -40,6 +40,7 @@ const App = () => (
           <Route path="/guides/hardware-inventory" element={<InventoryPage />} />
           <Route path="/bin" element={<InventoryPage />} />
           <Route path="/guides/bin" element={<InventoryPage />} />
+          <Route path="/guides/battlebot" element={<BattlebotPage/>}/>
 
 
 

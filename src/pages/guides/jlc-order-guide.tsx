@@ -65,7 +65,7 @@ const HowToOrderFromJLCPCB = () => {
       <section>
         <h3 className="text-xl font-semibold mb-3 text-emerald-400">High-spec Options</h3>
         <img
-          src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/d5ccaac60a89163f1e602b053c8b63d8b13e800d_high-spec-options.png"
+          src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/17dd855c15140aee37fd0c6ea2e45934da3e9494__b673362e-4936-43de-8ade-742e41cb5d32_.png"
           alt="High-spec options"
           className="rounded-md shadow-lg max-w-full"
         />
