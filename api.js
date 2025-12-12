@@ -1,5 +1,5 @@
 import express from "express";
-import AirtablePlus from "airtable-plus";
+import Airtable from "airtable";
 import camelcase from "camelcase";
 import dotenv from "dotenv";
 import path from "path";
@@ -11,6 +11,12 @@ console.log("📦 Imports loaded successfully");
 console.log("🔧 Loading environment configuration...");
 dotenv.config();
 console.log("✅ Environment variables loaded");
+
+Airtable.configure({
+  apiKey: process.env.AIRTABLE_API_KEY,
+});
+
+const base = Airtable.base("appn5LTtzmsgmboWY");
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -61,16 +67,9 @@ try {
       console.log("  - API Key length:", process.env.AIRTABLE_API_KEY?.length || 0);
       console.log("  - Base ID: appn5LTtzmsgmboWY");
       console.log("  - Table Name: Parts");
-      
-      const airtable = new AirtablePlus({
-        apiKey: process.env.AIRTABLE_API_KEY,
-        baseID: "appn5LTtzmsgmboWY",
-        tableName: "Parts",
-      });
-      console.log("✅ Airtable connection configured");
 
       console.log("📊 Fetching records from Airtable...");
-      const records = await airtable.read();
+      const records = await base("Parts").select().all();
       console.log(`✅ Retrieved ${records.length} records from Airtable`);
       
       console.log("🔄 Processing records...");
