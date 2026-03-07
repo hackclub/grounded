@@ -95,7 +95,7 @@ const Index = () => {
           style={{ animationDelay: '-2s' }}
         >
           <img
-            src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/ae8f46ee7f073299633edd7b0d4ad17281649096_image-6-removebg-preview.png"
+            src="https://cdn.hackclub.com/019cca79-5ce0-7e48-aab4-1f230f883bd8/image-6-removebg-preview.png"
             alt="Floating module - a non contact temperature meter" />
         </a>
 
@@ -251,7 +251,7 @@ const Index = () => {
                   <CardContent className="p-8 text-center">
                     {/* Sponsor Image */}
                     <img
-                      src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/4737201a9a360dcc0bd5e848a63f2fba3defdeba_image.png"
+                      src="https://cdn.hackclub.com/019cca78-cea8-75a3-a1e2-939295a0b8ef/image.png"
                       alt="Sponsor"
                       className="w-28 h-auto mx-auto mb-4"
                     />
@@ -429,7 +429,7 @@ const Index = () => {
               <p className="text-white text-lg font-semibold mb-4">Coupons for PCB's were donated by:</p>
               <div className="flex justify-center items-center gap-8">
                 <img
-                  src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/4737201a9a360dcc0bd5e848a63f2fba3defdeba_image.png"
+                  src="https://cdn.hackclub.com/019cca78-cea8-75a3-a1e2-939295a0b8ef/image.png"
                   alt="Sponsor"
                   className="w-28 h-auto mx-auto mb-4"
                 />

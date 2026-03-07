@@ -78,7 +78,7 @@ Upload your Gerber files to [JLCPCB.com](https://jlcpcb.com/) and take a screens
 > Curious about order settings or shipping tips?  
 > See `How to Order from JLCPCB`
 
-![Cart Screenshot](https://hc-cdn.hel1.your-objectstorage.com/s/v3/51761af33c599ad46040b56176a516b543293c64_cart__1_.png)
+![Cart Screenshot](https://cdn.hackclub.com/rescue?url=https://hc-cdn.hel1.your-objectstorage.com/s/v3/51761af33c599ad46040b56176a516b543293c64_cart__1_.png)
 
 **Note:** Screenshot is **required** for project approval.
 
@@ -112,7 +112,7 @@ Submit the required details through this form:
 
 Share your board in [#electronics](https://hackclub.slack.com/archives/C056AMWSFKJ)!
 
-![PCB Sharing](https://hc-cdn.hel1.your-objectstorage.com/s/v3/54d28c4e1c05457e39b2191c79389a7e550aad65_john-sharing-pcb.png)
+![PCB Sharing](https://cdn.hackclub.com/rescue?url=https://hc-cdn.hel1.your-objectstorage.com/s/v3/54d28c4e1c05457e39b2191c79389a7e550aad65_john-sharing-pcb.png)
 
 ### 8. Update your journal when you get your PCB
 

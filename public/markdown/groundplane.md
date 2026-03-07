@@ -12,35 +12,35 @@ To get started with using Groundplane, head to [https://groundplane.hackclub.com
 
 When you first open Groundplane, you will see something like this:
 
-![Groundplane landing page](https://hc-cdn.hel1.your-objectstorage.com/s/v3/5d20aadd45e9a4c73d470b475b9d89089bb59876_image.png)
+![Groundplane landing page](https://cdn.hackclub.com/rescue?url=https://hc-cdn.hel1.your-objectstorage.com/s/v3/5d20aadd45e9a4c73d470b475b9d89089bb59876_image.png)
 
 Go ahead and click **Get Started**. You should be brought to a page like this:
 
-![Groundplane login page](https://hc-cdn.hel1.your-objectstorage.com/s/v3/83e6da24a59699a6abdb8d0bbe6ef61b0fd90bb9_image.png)
+![Groundplane login page](https://cdn.hackclub.com/rescue?url=https://hc-cdn.hel1.your-objectstorage.com/s/v3/83e6da24a59699a6abdb8d0bbe6ef61b0fd90bb9_image.png)
 
 Once you click **Login with Slack**, it will redirect you to Slack login, and once that is done it will bring you to the main page that looks something like this:
 
-![Groundplane main dashboard](https://hc-cdn.hel1.your-objectstorage.com/s/v3/c045abff86cb1f5fbb6f3046e0a0204dfbf80aad_image.png)
+![Groundplane main dashboard](https://cdn.hackclub.com/rescue?url=https://hc-cdn.hel1.your-objectstorage.com/s/v3/c045abff86cb1f5fbb6f3046e0a0204dfbf80aad_image.png)
 
 Now this is the main page where you can perform all your actions!
 
 On the top right, you should see a **Create Project** button like this:
 
-![Create Project button location](https://hc-cdn.hel1.your-objectstorage.com/s/v3/e16c5b1f3ada73b255628cd877e028300373848a_image.png)
+![Create Project button location](https://cdn.hackclub.com/rescue?url=https://hc-cdn.hel1.your-objectstorage.com/s/v3/e16c5b1f3ada73b255628cd877e028300373848a_image.png)
 
 Once you click this, you can begin setting up your first project!
 
 The fields are pretty self-explanatory. Here is a picture of my example:
 
-![Project creation form example](https://hc-cdn.hel1.your-objectstorage.com/s/v3/2bfa663d6408fcdd43f6d2328178299d9cdae821_image.png)
+![Project creation form example](https://cdn.hackclub.com/rescue?url=https://hc-cdn.hel1.your-objectstorage.com/s/v3/2bfa663d6408fcdd43f6d2328178299d9cdae821_image.png)
 
 Once you click **Create**, Groundplane should redirect you back to the home page and your project should appear!
 
-![Project card on homepage](https://hc-cdn.hel1.your-objectstorage.com/s/v3/50f41858b20da2562141c12d4e901bd2c65bc665_image.png)
+![Project card on homepage](https://cdn.hackclub.com/rescue?url=https://hc-cdn.hel1.your-objectstorage.com/s/v3/50f41858b20da2562141c12d4e901bd2c65bc665_image.png)
 
 On the project card, you have a couple of options:
 
-![Project card options](https://hc-cdn.hel1.your-objectstorage.com/s/v3/1b091a5fbbe125a79dbddfa0c432c86211485b62_image.png)
+![Project card options](https://cdn.hackclub.com/rescue?url=https://hc-cdn.hel1.your-objectstorage.com/s/v3/1b091a5fbbe125a79dbddfa0c432c86211485b62_image.png)
 
 ### You can:
 
@@ -53,7 +53,7 @@ On the project card, you have a couple of options:
 
 From here, you want to click the **View Project** button on the project card, and it will redirect you to your project page:
 
-![Project page view](https://hc-cdn.hel1.your-objectstorage.com/s/v3/497005a4cd4f623c2e9c1aac9dcf756f36e40ae2_image.png)
+![Project page view](https://cdn.hackclub.com/rescue?url=https://hc-cdn.hel1.your-objectstorage.com/s/v3/497005a4cd4f623c2e9c1aac9dcf756f36e40ae2_image.png)
 
 Now on the project page, there are 2 sections:
 
@@ -66,7 +66,7 @@ We want to encourage you to document your projects step-by-step, as that is a gr
 
 Once you click **Create Devlog** in the bottom section:
 
-![Create Devlog button location](https://hc-cdn.hel1.your-objectstorage.com/s/v3/8f4b61b9c509040cef45fe003dc16d9e804fc00c_image.png)
+![Create Devlog button location](https://cdn.hackclub.com/rescue?url=https://hc-cdn.hel1.your-objectstorage.com/s/v3/8f4b61b9c509040cef45fe003dc16d9e804fc00c_image.png)
 
 You will be brought to a long-ish form that allows you to submit your devlog.
 
@@ -88,15 +88,15 @@ After that, you can go ahead and submit your devlog and wait for review!
 
 After creating a devlog, if you click **View Project** again, you should see it under here like so:
 
-![Devlog with pending approval status](https://hc-cdn.hel1.your-objectstorage.com/s/v3/8da2d7aa9bd45cb2cff2e66e6082e0780d3c47b7_image.png)
+![Devlog with pending approval status](https://cdn.hackclub.com/rescue?url=https://hc-cdn.hel1.your-objectstorage.com/s/v3/8da2d7aa9bd45cb2cff2e66e6082e0780d3c47b7_image.png)
 
 If you look closely, you can see how it says **pending approval**. This means that one of the organizers needs to manually review your devlog and approve it.
 
-![Pending approval indicator](https://hc-cdn.hel1.your-objectstorage.com/s/v3/74a3aa90cb9b00c049d7d13f13952f8a03086589_image.png)
+![Pending approval indicator](https://cdn.hackclub.com/rescue?url=https://hc-cdn.hel1.your-objectstorage.com/s/v3/74a3aa90cb9b00c049d7d13f13952f8a03086589_image.png)
 
 Once your devlog is approved, it should look something like this:
 
-![Approved devlog view](https://hc-cdn.hel1.your-objectstorage.com/s/v3/f56b2324c67b55033713671a7b836d35ebba0511_image.png)
+![Approved devlog view](https://cdn.hackclub.com/rescue?url=https://hc-cdn.hel1.your-objectstorage.com/s/v3/f56b2324c67b55033713671a7b836d35ebba0511_image.png)
 
 ## Project Completion
 

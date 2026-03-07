@@ -16,7 +16,7 @@ const projects: Project[] = [
   },
   {
     title: "A non-contact temperature meter",
-    imageUrl: "https://hc-cdn.hel1.your-objectstorage.com/s/v3/ae8f46ee7f073299633edd7b0d4ad17281649096_image-6-removebg-preview.png",
+    imageUrl: "https://cdn.hackclub.com/019cca79-5ce0-7e48-aab4-1f230f883bd8/image-6-removebg-preview.png",
     githubUrl: "https://github.com/souptik-samanta/Infrared-gun",
   },
   {
