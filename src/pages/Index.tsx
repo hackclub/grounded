@@ -417,7 +417,7 @@ const Index = () => {
               </Card>
               <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
                 <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">How can I get the full 5000?</h3>
-                <p className="text-gray-300 mt-2">In order to get the full 5000, you need to qualify for the OSHWLab stars prohgram. Hack Club will pay for your shipping on top.</p>
+                <p className="text-gray-300 mt-2">In order to get the full 5000, you need to qualify for the OSHWLab stars program. Hack Club will pay for your shipping on top.</p>
               </Card>
               <Card className="bg-gray-900/70 border-blue-700/50 hover:border-blue-500 transition-all duration-300 group hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 p-4">
                 <h3 className="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">When does this program end?</h3>
